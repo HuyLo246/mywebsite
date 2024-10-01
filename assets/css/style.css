@@ -1,0 +1,1496 @@
+/* General Styles */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    font-family: 'Poppins', sans-serif;
+    user-select: none; /* Prevent text selection */
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    overflow-x: hidden;
+    background-color: #000000;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    user-select: none;
+}
+
+/* Header Styles */
+header {
+    position: fixed; /* Keep header fixed */
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1rem 9%;
+    background-color: #1e1e1e;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    font-size: calc(1rem + 0.5vw);
+}
+
+/* Header Rescaling */
+@media (max-width: 768px) {
+    header {
+        font-size: calc(1rem + 1vw); /* Increase font size on smaller screens */
+    }
+
+    .logo {
+        font-size: 2.5rem; /* Adjust logo font size */
+    }
+
+    nav a {
+        font-size: 1.5rem; /* Adjust navigation link font size */
+    }
+}
+
+.logo {
+    font-size: 3rem;
+    color: #9e4bb7;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+}
+
+nav a {
+    font-size: 1.8rem;
+    color: #fff;
+    margin-left: 3rem;
+    transition: color 0.3s ease;
+}
+
+nav a.active {
+    color: #9e4bb7;
+}
+
+.more-btn {
+    display: none;
+    background-color: #9e4bb7;
+    padding: 1rem 1.5rem;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    z-index: 101;
+}
+
+.nav-items {
+    display: flex;
+    align-items: center;
+}
+
+.nav-items a {
+    margin-right: 20px;
+    color: #fff;
+    text-decoration: none;
+}
+
+/* Home Page Styles */
+.home {
+    position: relative; /* Position relative to allow absolute positioning of content */
+    width: 100%;
+    min-height: 100vh; /* Make the section full viewport height */
+    background-image: url('assets/img/background.jpg'); /* Correct path to your image */
+    background-size: cover; /* Cover the whole section with the background image */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent image repetition */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Hide overflow to prevent scrollbars */
+}
+
+.home-content {
+    position: relative; /* Position relative to appear over the background */
+    z-index: 1; /* Ensure content appears above the background image */
+    padding: 5rem 15%;
+    text-align: center;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.home-content h1 {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+.home-content p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.home-background {
+    position: absolute; /* Position the image absolutely */
+    top: 0; /* Place it at the top */
+    left: 0; /* Place it at the left */
+    width: 100%; /* Make it full width */
+    height: 100%; /* Make it full height */
+    object-fit: cover; /* Ensure the image covers the entire area */
+    z-index: -1; /* Place it behind the content */
+    opacity: 0.5; /* Adjust opacity to make it darker */
+    background-image: url("assets/img/background.jpg");
+    background-size: cover; /* Cover the whole section with the background image */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent image repetition */
+}
+
+/* Add this new class for the dark overlay */
+.home-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Dark overlay with 50% opacity */
+    z-index: 0; /* Place it above the background image but below the content */
+}
+
+/* Button Styles */
+.btn {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background-color: #9e4bb7;
+    color: #fff; /* Changed text color to white */
+    font-size: 1.8rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Added box shadow */
+}
+
+.btn:hover {
+    background-color: #7a3e9e;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Increased box shadow on hover */
+}
+
+/* Social Icons Styles */
+.social-icons {
+    display: flex;
+    margin-top: 2rem;
+    justify-content: center; /* Center the social icons */
+    margin-bottom: 1rem; /* Add margin to the bottom */
+}
+
+.social-icons a {
+    display: flex;
+    justify-content: center; /* Center the icon within the link */
+    align-items: center;
+    width: 5rem; /* Increased width */
+    height: 5rem; /* Increased height */
+    background-color: transparent;
+    border: 0.3rem solid #9e4bb7; /* Increased border thickness */
+    font-size: 2.5rem; /* Increased font size */
+    border-radius: 50%;
+    margin: 0 1rem; /* Adjust spacing as needed */
+    transition: 0.3s ease;
+    color: #9e4bb7;
+}
+
+.social-icons a:hover {
+    color: black;
+    transform: scale(1.3);
+    background-color: #9e4bb7;
+}
+
+/* Divider Styles */
+.divider {
+    width: 100%;
+    height: 5px; /* Increased height */
+    background-color: #9e4bb7;
+    margin: 0rem 0;
+}
+
+/* About Me Styles */
+.about-me {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 5rem 15%;
+    background-color: #000000;
+    color: #fff;
+    min-height: 100vh; /* Set minimum height to match home section */
+}
+
+.about-me-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 800px;
+    gap: 2rem;
+}
+
+.about-me-title {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    color: #9e4bb7;
+}
+
+.about-me-info {
+    display: flex;
+    flex-direction: column; /* Stack image and text vertically */
+    align-items: center;
+    width: 100%;
+    gap: 2rem;
+}
+
+.about-me-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center; /* Center the text */
+}
+
+.about-me-text h3 {
+    font-size: 3rem; /* Adjust font size as needed */
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.about-me-text p {
+    font-size: 1.8rem;
+    line-height: 1.6;
+}
+
+.about-me-image {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.about-me-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.2s linear;
+    filter: drop-shadow(0 0 10px #9e4bb7);
+}
+
+.about-me-image img:hover {
+    filter: drop-shadow(0 0 20px #9e4bb7);
+}
+
+/* Skills and Interests Styles */
+.skills, .interests {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+}
+
+.skills-title, .interests-title {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.skills ul, .interests ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.skills li, .interests li {
+    background-color: #9e4bb7;
+    color: #fff;
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    font-size: 1.6rem;
+    font-weight: 500;
+}
+
+/* Videos Styles */
+.videos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 5rem 15%;
+    background-color: #000000;
+    color: #fff;
+    min-height: 100vh; /* Set minimum height to match home section */
+}
+
+.videos h2 {
+    font-size: 4rem;
+    margin-bottom: 2rem;
+    color: #9e4bb7;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add text shadow for depth */
+}
+
+.videos p {
+    font-size: 1.8rem;
+    line-height: 1.6;
+    margin-bottom: 3rem; /* Increased margin for better spacing */
+}
+
+.stats {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 4rem; /* Increased margin for more space */
+    gap: 2rem; /* Add gap between stat items */
+    padding: 2rem; /* Add padding for better spacing */
+    height: 120px;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Center content vertically within stat-item */
+    transition: transform 0.3s ease; /* Add transition for pop-in effect */
+    padding: 1rem 2rem; /* Add padding */
+    border-radius: 10px; /* Add rounded corners to the stat items */
+    color: #fff; /* Set text color to white */
+    text-align: center; /* Center text within stat-item */
+    height: 80px; /* Set a lower height for the stat-item */
+}
+
+.stat-item span {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #9e4bb7;
+}
+
+.stat-item p {
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: #fff;
+}
+
+/* Pop-in effect on hover */
+.stat-item:hover {
+    transform: scale(1.1); /* Slightly enlarge on hover */
+}
+
+.video-toggle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.video-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 2rem;
+    transition: transform 0.3s ease; /* Add transition for hover effect */
+}
+
+.video-item:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+.video-item img {
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+}
+
+.video-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 3rem; /* Increased gap between videos */
+    margin-bottom: 4rem; /* Add margin below video container */
+}
+
+.video {
+    width: 30vw;
+    height: 20vw;
+    position: relative;
+}
+
+.video iframe {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+
+.video p {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.6rem;
+    color: #fff;
+}
+
+.video-toggle .video-item {
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    padding: 1rem 2rem; /* Increased padding */
+    border-radius: 10px; /* Increased border radius */
+    background-color: #1e1e1e; /* Set a background color */
+    color: #fff; /* Set text color to white */
+    font-size: 1.6rem; /* Increased font size */
+    width: 110px; /* Set a fixed width for square shape */
+    height: 110px; /* Set a fixed height for square shape */
+    border-radius: 0; /* Remove border radius for square corners */
+    margin-right: 0.4rem;
+    margin-left: 0.4rem;
+}
+
+.video-toggle .video-item.active {
+    background-color: #9e4bb7; /* Change background color on active state */
+    color: #fff; /* Change text color on active state */
+    border: 2px solid #fff; /* Change border color on active state */
+}
+
+.video-container .video {
+    display: none; /* Initially hide all videos */
+}
+
+.video-container .video.active {
+    display: block; /* Show the active video */
+}
+
+/* Footer Styles */
+footer {
+    background-color: #222;
+    color: #fff;
+    padding: 4rem 9%; /* Increased top and bottom padding */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5rem;
+    position: relative; /* Allow positioning of the secret link */
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.footer-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem; /* Added margin for spacing */
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem; /* Increased gap between icons */
+    margin-bottom: 2rem;
+}
+
+nav ul {
+    display: flex;
+    gap: 3rem; /* Increased gap between navigation links */
+    list-style: none;
+    padding: 0;
+}
+
+.copyright {
+    text-align: center;
+    width: 100%;
+    font-size: 1.4rem;
+    margin-top: 1rem;
+}
+
+.secret-link {
+    color: #9e4bb71a;
+    font-size: 1rem;
+    position: absolute; /* Position it absolutely */
+    bottom: 1.5rem; /* Adjust as needed */
+    right: 1rem; /* Adjust as needed */
+    text-decoration: none;
+    opacity: 0.7; /* Make it less prominent */
+}
+
+.secret-link:hover {
+    color: #9e4bb7;
+    text-decoration: underline;
+    opacity: 1; /* Make it fully visible on hover */
+}
+
+/* Donate Styles */
+.donate {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 5rem 15%;
+    background-color: #000000;
+    color: #fff;
+    min-height: 100vh; /* Set minimum height to match home section */
+}
+
+.donate h2 {
+    font-size: 4rem;
+    margin-bottom: 2rem;
+    color: #9e4bb7;
+}
+
+.donate p {
+    font-size: 1.8rem;
+    line-height: 1.6;
+}
+
+.donate-options {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.donate-button {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background-color: #9e4bb7;
+    color: black;
+    font-size: 1.8rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 0 1rem;
+}
+
+.donate-button:hover {
+    background-color: #7a3e9e;
+}
+
+.donate-options .donate-button {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background-color: #9e4bb7; /* Default button color */
+    color: black;
+    font-size: 1.8rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 0 1rem;
+    text-decoration: none; /* Remove underline */
+    display: flex; /* Align image and text */
+    align-items: center; /* Center vertically */
+    width: auto; /* Adjust width as needed */
+}
+
+.donate-options .donate-button img {
+    margin-right: 10px; /* Add space between image and text */
+}
+
+.donate-options .donate-button:hover {
+    background-color: #7a3e9e; /* Darker shade of purple */
+    transform: scale(1.05); /* Slightly enlarge on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+}
+
+/* Specific styles for each donate button */
+.donate-options a[href="https://www.paypal.com/paypalme/huylo246ytb"] {
+    background-color: #ffffff; /* PayPal blue */
+}
+
+.donate-options a[href="https://ko-fi.com/huylo246"] {
+    background-color: #13C3FF; /* Ko-Fi orange */
+}
+
+.donate-options a[href="https://buymeacoffee.com/huylo246"] {
+    background-color: #FFDD00; /* Buy Me a Coffee orange */
+}
+
+.donate-options a[href="https://www.coinbase.com/price/bitcoin"] {
+    background-color: #f7931a; /* Bitcoin orange */
+}
+nav a:hover {
+    color: #9e4bb7;
+}
+
+.donate-options .donate-button img {
+    margin-right: 10px; /* Add space between image and text */
+    width: 35px; /* Set image width */
+    height: 35px; /* Set image height */
+}
+
+/* Contact Styles */
+.contact {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 5rem 15%;
+    background-color: #000000;
+    color: #fff;
+    min-height: 100vh; /* Set minimum height to match home section */
+}
+
+.contact h2 {
+    font-size: 4rem;
+    margin-bottom: 2rem;
+    color: #9e4bb7;
+}
+
+.contact-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    max-width: 500px;
+    background-color: #1e1e1e;
+    padding: 3rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.contact-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+}
+
+.contact-form input,
+.contact-form textarea {
+    padding: 1rem;
+    border: 1px solid #9e4bb7;
+    border-radius: 5px;
+    font-size: 1.6rem;
+    color: #fff;
+    background-color: #1e1e1e;
+    /* Add these styles */
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 1rem;
+    padding-left: 1.5rem; /* Add padding for placeholder */
+}
+
+.contact-form textarea {
+    height: 100px; /* Set a fixed height for the textarea */
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+    color: #9e4bb7; /* Set placeholder color */
+}
+
+.contact-form button {
+    padding: 1rem 2rem;
+    background-color: #9e4bb7;
+    color: black;
+    font-size: 1.8rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border: none;
+    width: 100%; /* Make the button full width */
+    box-sizing: border-box; /* Include padding and border in width */
+    margin-top: 1rem; /* Add some space above the button */
+}
+
+.contact-form button:hover {
+    background-color: #7a3e9e;
+}
+
+/* Media Query for Smaller Screens */
+@media (max-width: 768px) {
+    .nav-items {
+        display: none; /* Hide navigation items by default */
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #000000;
+        padding: 20px;
+        z-index: 100;
+    }
+
+    .nav-items a {
+        display: block;
+        padding: 10px 0;
+        text-align: center;
+    }
+
+    .menu-btn {
+        display: block; /* Show the menu button */
+        position: relative;
+        top: 10px;
+        right: 10px;
+        padding: 10px;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        /* Add these styles for a better-looking menu button */
+        color: #ffffff; /* White color for the icon */
+        font-size: 2rem; /* Larger icon size */
+        transition: transform 0.3s ease; /* Smooth transition for hover effect */
+    }
+    
+    .menu-btn:hover {
+        transform: scale(1.1); /* Slightly enlarge the icon on hover */
+    }
+    
+    .menu-btn.active .bi-list {
+        display: none;
+    }
+    
+    .menu-btn.active .bi-x {
+        display: block;
+    }
+    
+    .nav-items.active {
+        display: block; /* Show navigation items when menu button is clicked */
+    }
+
+    /* Hide the default navigation items on smaller screens */
+    .nav-items {
+        display: none;
+    }
+
+    /* Show the "More" button */
+    .more-btn {
+        display: block;
+    }
+
+    /* Style for the "More" button dropdown */
+    .more-btn.active {
+        /* Add styles for the active state of the "More" button */
+        background-color: #7a3e9e; /* Change background color */
+        color: #ffffff; /* Change text color */
+    }
+
+    .more-btn.active .nav-items {
+        display: block;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #1e1e1e;
+        padding: 10px 0;
+        border-radius: 5px;
+        z-index: 101;
+    }
+
+    .more-btn.active .nav-items a {
+        display: block;
+        padding: 10px 20px;
+        text-align: center;
+        color: #fff;
+    }
+
+    .more-btn.active .nav-items a:hover {
+        background-color: #9e4bb7;
+    }
+}
+
+/* Fix for the "More" button not being visible */
+@media (max-width: 768px) {
+    .more-btn {
+        display: block; /* Show the "More" button on smaller screens */
+    }
+}
+
+/* Renamed "more-btn" to "menu-btn" to match the HTML */
+@media (max-width: 768px) {
+    .menu-btn {
+        display: block; /* Show the "More" button on smaller screens */
+        margin-left: auto; /* Push the menu button to the right */
+        margin-top: -13px;
+    }
+}
+
+.container {
+    display: inline-block;
+    cursor: pointer;
+    margin-left: 2rem; /* Add margin to align with logo */
+}
+
+.bar1, .bar2, .bar3 {
+    width: 30px;
+    height: 5px;
+    background-color: #ffffff;
+    margin: 6px 0;
+    transition: 0.4s;
+}
+
+.change .bar1 {
+    transform: translate(0, 11px) rotate(-45deg);
+    background-color: #9e4bb7;
+}
+
+.change .bar2 {
+    opacity: 0;
+}
+
+.change .bar3 {
+    transform: translate(0, -11px) rotate(45deg);
+    background-color: #9e4bb7;
+}
+
+/* Hide the menu button on larger screens */
+@media (min-width: 769px) {
+    .menu-btn {
+        display: none;
+    }
+}
+
+/* Center the menu button in the header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+}
+
+.menu-btn {
+    margin-left: auto; /* Push the menu button to the right */
+}
+
+.home-image {
+    position: absolute; /* Position the image absolutely */
+    top: 0; /* Place it at the top */
+    left: 0; /* Place it at the left */
+    width: 100%; /* Make it full width */
+    height: 100%; /* Make it full height */
+    object-fit: cover; /* Ensure the image covers the entire area */
+    z-index: -1; /* Place it behind the content */
+    opacity: 0.7; /* Add a slight opacity to the image */
+}
+
+.home-content {
+    position: relative; /* Position the content relative to the image */
+    z-index: 1; /* Ensure the content is on top of the image */
+    padding: 5rem 15%; /* Add padding to the content */
+    text-align: center; /* Center the content */
+    color: #fff; /* Set the text color to white */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.home-content h1 {
+    font-size: 5rem; /* Adjust the font size as needed */
+    margin-bottom: 1rem;
+    color: #9e4bb7;
+}
+
+.home-content p {
+    font-size: 1.8rem; /* Adjust the font size as needed */
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.home-content .btn {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background-color: #9e4bb7;
+    color: black;
+    font-size: 1.8rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 2rem;
+}
+
+.home-content .btn:hover {
+    background-color: #7a3e9e;
+}
+
+.home-content .social-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.home-content .social-icons a {
+    color: #9e4bb7;
+    font-size: 2rem;
+    transition: color 0.4s ease;
+    animation: fade-in 2s ease-in-out;
+    display: flex; /* Make the link a flex container */
+    justify-content: center; /* Center the icon horizontally */
+    align-items: center; /* Center the icon vertically */
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.home-content .social-icons a:hover {
+    color: #000000;
+}
+
+@media (max-width: 768px) {
+    .home-content h1 {
+        font-size: 2.5rem; /* Adjust the font size as needed */
+        margin-bottom: 2rem;
+        color: #9e4bb7;
+    }
+}
+
+/* Footer Social Icons */
+.footer-section .social-icons {
+    display: flex;
+    justify-content: center; /* Center the social icons */
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.footer-section .social-icons a {
+    display: inline-flex;
+    justify-content: center; /* Center the icon within the link */
+    align-items: center;
+    width: 4rem;
+    height: 4rem;
+    background-color: transparent;
+    border: 0.2rem solid #9e4bb7;
+    font-size: 2rem;
+    border-radius: 50%;
+    margin: 0 1rem; /* Adjust spacing as needed */
+    transition: 0.3s ease;
+    color: #9e4bb7;
+}
+
+.footer-section .social-icons a:hover {
+    color: black;
+    transform: scale(1.3);
+    background-color: #9e4bb7;
+}
+
+.wrapper {
+    height: 6vh;
+    display: grid;
+    place-items: center;
+}
+
+.typing-text {
+    width: 100%;
+    animation: typing 2s steps(23), blink .5s step-end infinite alternate;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 3px solid white; /* Changed border color to white */
+    font-family: monospace;
+    font-size: 2em;
+}
+
+@keyframes typing {
+    from {
+        width: 0;
+    }
+}
+
+@keyframes blink {
+    50% {
+        border-color: transparent;
+    }
+}
+
+/* Added styles for skills and interests */
+.skills, .interests {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+}
+
+.skills-title, .interests-title {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.skills ul, .interests ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.skills li, .interests li {
+    background-color: #9e4bb7;
+    color: #fff;
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    font-size: 1.6rem;
+    font-weight: 500;
+}
+
+/* Make all sections the same height as the home section */
+section {
+    min-height: 100vh; /* Set minimum height to match home section */
+}
+
+/* Home Section Content Centering */
+.home-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Center content vertically */
+}
+
+/* Parallax Effect for Home Section Background */
+.home-background {
+    background-attachment: fixed; /* Fix the background to the viewport */
+    background-size: cover; /* Ensure the background covers the entire viewport */
+    transform: translate3d(0, 0, 0); /* Improve performance */
+}
+
+.home-content {
+    position: relative; /* Position the content relative to the background */
+    z-index: 1; /* Ensure the content is on top of the background */
+    padding: 5rem 15%; /* Add padding to the content */
+    text-align: center; /* Center the content */
+    color: #fff; /* Set the text color to white */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.home-content h1 {
+    font-size: 5rem; /* Adjust the font size as needed */
+    margin-bottom: 1rem;
+    color: #9e4bb7;
+}
+
+.home-content p {
+    font-size: 1.8rem; /* Adjust the font size as needed */
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.home-content .btn {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background-color: #9e4bb7;
+    color: black;
+    font-size: 1.8rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 2rem;
+}
+
+.home-content .btn:hover {
+    background-color: #7a3e9e;
+}
+
+.home-content .social-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.home-content .social-icons a {
+    color: #9e4bb7;
+    font-size: 2rem;
+    transition: color 0.4s ease;
+    animation: fade-in 2s ease-in-out;
+    display: flex; /* Make the link a flex container */
+    justify-content: center; /* Center the icon horizontally */
+    align-items: center; /* Center the icon vertically */
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.home-content .social-icons a:hover {
+    color: #000000;
+}
+
+@media (max-width: 768px) {
+    .home-content h1 {
+        font-size: 2.5rem; /* Adjust the font size as needed */
+        margin-bottom: 2rem;
+        color: #9e4bb7;
+    }
+}
+
+/* Footer Social Icons */
+.footer-section .social-icons {
+    display: flex;
+    justify-content: center; /* Center the social icons */
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.footer-section .social-icons a {
+    display: inline-flex;
+    justify-content: center; /* Center the icon within the link */
+    align-items: center;
+    width: 4rem;
+    height: 4rem;
+    background-color: transparent;
+    border: 0.2rem solid #9e4bb7;
+    font-size: 2rem;
+    border-radius: 50%;
+    margin: 0 1rem; /* Adjust spacing as needed */
+    transition: 0.3s ease;
+    color: #9e4bb7;
+}
+
+.footer-section .social-icons a:hover {
+    color: black;
+    transform: scale(1.3);
+    background-color: #9e4bb7;
+}
+
+
+.wrapper {
+    height: 6vh;
+    display: grid;
+    place-items: center;
+}
+
+.typing-text {
+    width: 100%;
+    animation: typing 2s steps(23), blink .5s step-end infinite alternate;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 3px solid white; /* Changed border color to white */
+    font-family: monospace;
+    font-size: 2em;
+}
+
+@keyframes typing {
+    from {
+        width: 0;
+    }
+}
+
+@keyframes blink {
+    50% {
+        border-color: transparent;
+    }
+}
+
+/* Added styles for skills and interests */
+.skills, .interests {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+}
+
+.skills-title, .interests-title {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.skills ul, .interests ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.skills li, .interests li {
+    background-color: #9e4bb7;
+    color: #fff;
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    font-size: 1.6rem;
+    font-weight: 500;
+}
+
+/* Make all sections the same height as the home section */
+section {
+    min-height: 100vh; /* Set minimum height to match home section */
+}
+
+/* Home Section Content Centering */
+.home-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Center content vertically */
+}
+
+/* Parallax Effect for Home Section Background */
+.home-background {
+    background-attachment: fixed; /* Fix the background to the viewport */
+    background-size: cover; /* Ensure the background covers the entire viewport */
+    transform: translate3d(0, 0, 0); /* Improve performance */
+}
+
+.channels {
+    padding: 5rem 15%;
+    background-color: #000000;
+    color: #cfcfcf;
+    text-align: center;
+    display: flex; /* Make the channels section a flex container */
+    flex-direction: column; /* Arrange items vertically */
+    align-items: center; /* Center items horizontally */
+    justify-content: center; /* Center items vertically */
+}
+
+.channels h2 {
+    font-size: 4rem;
+    margin-bottom: 2rem;
+    color: #9e4bb7;
+}
+
+.channel-list {
+    display: grid; /* Use grid layout for the channel list */
+    grid-template-columns: repeat(4, 1fr); /* 2 columns */
+    grid-template-rows: repeat(4, 1fr); /* 2 rows */
+    gap: 3rem; /* Increased space between channel items */
+    max-width: 2000px; /* Set a max width for the channel list */
+    margin: 0 auto; /* Center the channel list */
+    display: flex; /* Use flexbox for the channel list */
+    justify-content: center; /* Center the channel items */
+    flex-wrap: wrap; /* Allow items to wrap to the next line */
+}
+
+.channel-item {
+    border-radius: 10px;
+    padding: 4rem; /* Increased padding for larger items */
+    width: 450px; /* Increased width for channel items */
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a subtle box shadow */
+    display: flex; /* Make the channel item a flex container */
+    flex-direction: column; /* Arrange items vertically */
+    align-items: center; /* Center items horizontally */
+    justify-content: center; /* Center items vertically */
+    position: relative; /* Add position relative to the channel-item */
+}
+
+.channel-item img {
+    width: 60%; /* Make the image responsive to the container width */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 50%; /* Make the image round */
+    object-fit: cover; /* Ensure the image covers the entire area */
+    position: relative; /* Change to relative for better positioning */
+    top: 0; /* Place the image at the top */
+    transform: translateX(-50%); /* Center the image horizontally */
+    margin-bottom: 2rem; /* Add margin to separate image from text */
+}
+
+.channel-item h3 {
+    font-size: 2.5rem; /* Increased font size for channel title */
+    margin-bottom: 1rem;
+    color: #ffffff;
+}
+
+.channel-item p {
+    font-size: 1.8rem; /* Increased font size for channel description */
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+}
+
+.subscribe-button {
+    display: inline-block;
+    padding: 1rem 2rem; /* Increased padding for the button */
+    background-color: #ff0000; /* Red background color */
+    color: #fff; /* White text color */
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    font-size: 1.8rem; /* Increased font size for the button */
+    border: none; /* Remove default border */
+    cursor: pointer; /* Add cursor pointer */
+    width: 50%; /* Make the button full width */
+    box-sizing: border-box; /* Include padding and border in width */
+}
+
+.subscribe-button:hover {
+    background-color: #c40000; /* Darker red on hover */
+}
+
+.follow-button {
+    display: inline-block;
+    padding: 1rem 2rem; /* Increased padding for the button */
+    background-color: #00f1f1; /* TikTok-like color */
+    color: #ffffff; /* White text color */
+    border-radius: 5px; /* Rounded corners */
+    text-decoration: none; /* Remove underline */
+    font-size: 1.8rem; /* Font size */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+    border: 2px solid transparent; /* Transparent border for hover effect */
+    /* Match the subscribe button */
+    width: 50%; /* Make the button full width */
+    box-sizing: border-box; /* Include padding and border in width */
+}
+
+.follow-button:hover {
+    background-color: #00b3b3; /* Darker shade on hover */
+    transform: scale(1.05); /* Slightly enlarge on hover */
+    border: 2px solid #fff; /* White border on hover */
+}
+
+/* Typing Animation for h3 */
+.typing-animation {
+    width: 100%;
+    animation: typing 3s steps(40), blink .5s step-end infinite alternate;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 3px solid white; /* Change border color to white */
+    font-family: monospace;
+    font-size: 2.5rem; /* Adjust font size as needed */
+}
+
+@keyframes typing {
+    from {
+        width: 0;
+    }
+}
+
+.linktree-button {
+    display: inline-flex;
+    align-items: center;
+    background-color: transparent; /* No background color */
+    border: none; /* Remove border */
+    cursor: pointer; /* Pointer cursor */
+    transition: transform 0.3s ease; /* Smooth transition */
+    margin-bottom: 1rem;
+}
+
+.linktree-button img {
+    width: 93px; /* Set image width */
+    height: 29px; /* Set image height */
+    border: 2px solid #9e4bb7; /* Add border with desired color */
+    border-radius: 10px; /* Optional: rounded corners for the border */
+}
+.linktree-button:hover {
+    border: 2px solid #9e4bb7; /* Add border with desired color */
+}
+
+@media (max-width: 768px) {
+    .home-content h1 {
+        font-size: 2.5rem; /* Adjust the font size as needed */
+        margin-bottom: 2rem;
+        color: #9e4bb7;
+    }
+    .home-content p {
+        font-size: 1.5rem; /* Adjust the font size as needed */
+        line-height: 1.6;
+        margin-bottom: 2rem;
+    }
+    .home-content .btn {
+        font-size: 1.5rem; /* Adjust the font size as needed */
+    }
+    .channel-item h3 {
+        font-size: 2rem; /* Increased font size for channel title */
+        margin-bottom: 1rem;
+        color: #ffffff;
+    }
+    .channel-item p {
+        font-size: 1.5rem; /* Increased font size for channel description */
+        line-height: 1.5;
+        margin-bottom: 1.5rem;
+    }
+    .subscribe-button {
+        font-size: 1.5rem; /* Increased font size for the button */
+    }
+    .follow-button {
+        font-size: 1.5rem; /* Font size */
+    }
+    .typing-animation {
+        font-size: 2rem; /* Adjust font size as needed */
+    }
+    .channel-list {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns */
+        grid-template-rows: repeat(auto-fit, minmax(250px, 1fr)); /* Adjust as needed */
+    }
+    .channel-item {
+        width: 100%; /* Make channel items full width */
+    }
+    .donate-options {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+    .donate-button {
+        width: 100%; /* Make donate buttons full width */
+    }
+    .contact-form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+    .contact-form input,
+    .contact-form textarea {
+        width: 100%; /* Make form inputs full width */
+    }
+    .contact-form button {
+        width: 100%; /* Make form button full width */
+    }
+    /* Additional styles for smaller screens */
+    .channel-item p {
+        word-wrap: break-word; /* Allow text to wrap */
+    }
+    .donate-button img {
+        width: 20px; /* Reduce logo size */
+        height: auto;
+    }
+    .linktree-button img {
+        width: 50px; /* Reduce logo size */
+        height: auto;
+    }
+    .about-me-title {
+        font-size: 3rem; /* Adjusted font size for mobile */
+    }
+
+    .about-me-text h3 {
+        font-size: 2.5rem; /* Adjusted font size for mobile */
+    }
+
+    .about-me-text p {
+        font-size: 1.5rem; /* Adjusted font size for mobile */
+    }
+}

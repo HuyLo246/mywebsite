@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="assets/js/main.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <title>Portfolio Website</title>
+</head>
+<body> 
+    <header id="header">
+        <a href="#" class="logo">HuyLo246</a>
+        <nav>
+            <div class="nav-items">
+                <a href="#home" class="active">Home</a>
+                <a href="#about-me">About Me</a>
+                <a href="#videos">Videos</a>
+                <a href="#channels">Channels</a>
+                <a href="#donate">Donate</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <button class="menu-btn">
+                <div class="container" onclick="myFunction(this)">
+                    <div class="bar1"></div>
+                    <div class="bar2"></div>
+                    <div class="bar3"></div>
+                </div>
+            </button>
+        </nav>
+    </header>
+    <div class="divider"></div>
+    <section class="home" id="home">
+        <div class="home-background">
+            <img src="assets/img/background.jpg" alt="Home Background">
+        </div>
+        <div class="home-overlay"></div>
+        <div class="home-content">
+            <div class="wrapper">
+                <h1 class="typing-text"><span>Welcome to the website of HuyLo246!</span></h1>
+            </div>
+            <p>Explore my work and passions!</p>
+            <a href="#about-me" class="btn">Get Started</a>
+            <div class="social-icons">
+                <a href="https://www.linkedin.com/in/huylo246"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="https://www.youtube.com/@huylo246"><i class="fa-brands fa-youtube"></i></a>
+                <a href="https://www.facebook.com/HuyLo246YTB"><i class="fa-brands fa-facebook"></i></a>
+                <a href="https://www.tiktok.com/@huylo246"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="https://github.com/HuyLo246"><i class="fa-brands fa-github"></i></a>
+            </div>
+        </div>
+    </section>
+    <div class="divider"></div>
+    <section class="about-me" id="about-me">
+        <div class="about-me-content">
+            <h1 class="about-me-title">Hi, It's <span>Huy</span></h1>
+            <div class="about-me-info">
+                <div class="about-me-image">
+                    <img src="assets/img/profile.jpg" alt="Profile Picture">
+                </div>
+                <div class="about-me-text">
+                    <h3 class="typing-text"><span class="typing">I'm a YouTuber, TikToker, Coder, and Web Designer</span></h3>
+                    <p>I am a creative YouTuber who loves making fun content around memes and trends, bringing humor and entertainment to my audience. I'm also a coder and web designer, passionate about crafting beautiful and functional websites. Blending creativity with tech, I'm always eager to learn, create, and share my passions.</p>
+                    <div class="skills">
+                        <h4 class="skills-title">My Skills</h4>
+                        <ul>
+                            <li>HTML</li>
+                            <li>CSS</li>
+                            <li>JavaScript</li>
+                            <li>Python</li>
+                            <li>C | C++ | C#</li>
+                            <li>Video Editing</li>
+                            <li>Web Design</li>
+                        </ul>
+                    </div>
+                    <div class="interests">
+                        <h4 class="interests-title">My Interests</h4>
+                        <ul>
+                            <li>Gaming</li>
+                            <li>Music</li>
+                            <li>Art</li>
+                            <li>Technology</li>
+                            <li>Travel</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="divider"></div>
+    <section class="videos" id="videos">
+        <h2>My latest videos!</h2>
+        <div class="video-toggle">
+            <div class="video-item active" data-platform="youtube">
+                <img src="assets/img/youtube.png" alt="Youtube">
+                <p>Youtube</p>
+            </div>
+            <div class="video-item" data-platform="tiktok">
+                <img src="assets/img/tik-tok.png" alt="Tiktok">
+                <p>Tiktok</p>
+            </div>
+        </div>
+        <div class="video-container">
+            <div class="video youtube-video active">
+                <iframe src="https://www.youtube.com/embed/MefRObnr7Mw?si=QRzYl8M6xE9b86yU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <p>Youtube Video</p>
+            </div>
+            <div class="video tiktok-video">
+                <iframe src="https://www.tiktok.com/embed/7404582007986064658" title="TikTok video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <p>TikTok Video</p>
+            </div>
+        </div>
+        <div class="stats">
+            <div class="stat-item">
+                <span>+5M</span>
+                <p>Video Views</p>
+            </div>
+            <div class="stat-item">
+                <span>+16K</span>
+                <p>Followers</p>
+            </div>
+            <div class="stat-item">
+                <span>+15K</span>
+                <p>Likes</p>
+            </div>
+            <div class="stat-item">
+                <span>+65K</span>
+                <p>Comments</p>
+            </div>
+        </div>
+    </section>
+    <div class="divider"></div>
+    <section class="channels" id="channels">
+        <h2>My Channels</h2>
+        <div class="channel-list">
+            <div class="channel-item">
+                <img src="assets/img/profile.jpg" alt="Aparate Pacanele SD">
+                <h3>HuyLo246</h3>
+                <p>10.7K Subscribers</p>
+                <a href="https://www.youtube.com/channel/UCEpM_52JCSKMpyydi13_9Hg?sub_confirmation=1" class="subscribe-button">Subscribe</a>
+            </div>
+            <div class="channel-item">
+                <img src="assets/img/profile2.jpg" alt="Bye sdsd">
+                <h3>HuyLo246 Vi En</h3>
+                <p>160 Subscribers</p>
+                <a href="https://www.youtube.com/channel/UCl0lnofE9naSUnloicXTyVw?sub_confirmation=1" class="subscribe-button">Subscribe</a>
+            </div>
+            <div class="channel-item">
+                <img src="assets/img/profile.jpg" alt="SDSU Imperial Valley">
+                <h3>HuyLo246</h3>
+                <p>100 Followers</p>
+                <a href="https://www.tiktok.com/@huylo246" class="follow-button">Follow</a>
+            </div>
+        </div>
+    </section>
+    <div class="divider"></div>
+    <section class="donate" id="donate">
+        <h2>Support My Work</h2>
+        <p>Your contributions help me create more amazing content. Thank you for your support!</p>
+        <div class="donate-options">
+            <a href="https://www.paypal.com/paypalme/huylo246ytb" class="donate-button">
+                <img src="assets/img/paypal-logo.png">
+                Donate via PayPal
+            </a>
+            <a href="https://ko-fi.com/huylo246" class="donate-button">
+                <img src="assets/img/ko-fi-logo.png">
+                Donate via Ko-Fi
+            </a>
+            <a href="https://buymeacoffee.com/huylo246" class="donate-button">
+                <img src="assets/img/buymeacoffee-logo.png">
+                Buy Me a Coffee
+            </a>
+            <a href="https://www.coinbase.com/price/bitcoin" class="donate-button">
+                <img src="assets/img/bitcoin-logo.png">
+                Donate via Bitcoin
+            </a>
+        </div>
+    </section>
+    <div class="divider"></div>
+    <section class="contact" id="contact">
+        <h2>Contact Me</h2>
+        <div class="contact-form">
+            <form action="forms/contact.php" method="post">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </section>
+    <div class="divider"></div>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="social-icons">
+                    <a href="https://www.linkedin.com/in/huylo246"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="https://www.youtube.com/@huylo246"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="https://www.facebook.com/HuyLo246YTB"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="https://www.tiktok.com/@huylo246"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="https://github.com/HuyLo246"><i class="fa-brands fa-github"></i></a>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about-me">About Me</a></li>
+                        <li><a href="#videos">Videos</a></li>
+                        <li><a href="#channels">Channels</a></li>
+                        <li><a href="#donate">Donate</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <p class="copyright">Copyright &copy; 2023 HuyLo246. All rights reserved.</p>
+            <a href="https://youtu.be/xvFZjo5PgG0?si=vLrNY-9DPkZ8M6rq" class="secret-link">Secret Link</a>
+        </div>
+    </footer>
+    <script>
+        const menuBtn = document.querySelector('.menu-btn');
+        const navItems = document.querySelector('.nav-items');
+
+        menuBtn.addEventListener('click', () => {
+            menuBtn.classList.toggle('active');
+            navItems.classList.toggle('active');
+        });
+
+        function myFunction(x) {
+            x.classList.toggle("change");
+        }
+        // Add event listeners to navigation links
+        document.querySelectorAll('.nav-items a').forEach(link => {
+            link.addEventListener('click', () => {
+                // Remove active class from all links
+                document.querySelectorAll('.nav-items a').forEach(l => l.classList.remove('active'));
+                // Add active class to the clicked link
+                link.classList.add('active');
+            });
+        });
+
+        // Add event listeners for active link on scroll
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-items a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - sectionHeight / 3) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Video Toggle Functionality
+        const videoItems = document.querySelectorAll('.video-item');
+        const videoContainers = document.querySelectorAll('.video-container .video');
+
+        videoItems.forEach(item => {
+            item.addEventListener('click', () => {
+                // Remove active class from all video items
+                videoItems.forEach(i => i.classList.remove('active'));
+                // Add active class to the clicked video item
+                item.classList.add('active');
+
+                // Get the platform of the clicked video item
+                const platform = item.dataset.platform;
+
+                // Show the corresponding video container
+                videoContainers.forEach(container => {
+                    if (container.classList.contains(platform + '-video')) {
+                        container.classList.add('active');
+                    } else {
+                        container.classList.remove('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
