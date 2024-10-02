@@ -182,11 +182,30 @@
                 <img src="assets/img/buymeacoffee-logo.png" alt="Buy Me a Coffee Logo">
                 Buy Me a Coffee
             </a>
-            <a href="https://www.coinbase.com/price/bitcoin" class="donate-button" data-aos="zoom-in" data-aos-delay="400">
+            <a href="#donateform" class="donate-button bitcoin-button" data-aos="zoom-in" data-aos-delay="400">
                 <img src="assets/img/bitcoin-logo.png" alt="Bitcoin Logo">
                 Donate via Bitcoin
             </a>
-        </div>
+            <div id="donateform" class="overlay">
+                <div class="popup">
+                    <h2>Bitcoin QR Code</h2>
+                    <div class="content">
+                        <img src="assets/img/bitcoin-qr.jpg" alt="QR Donate Code"> <!-- QR Image URL -->
+                        <h2>Bitcoin Address</h2>
+                        <a class="close" href="#">&times;</a>
+                        <div class="content">
+                            <a class="donate-button" data-aos="zoom-in" data-aos-delay="600" onclick="copyToClipboard('3GYJdcwWBBhWPU3cHUDnWgJvpt3W2MWmry')">
+                                <span id="bitcoin-address" class="bitcoin-address">3GYJdcwWBBhWPU3cHUDnWgJvpt3W2MWmry</span> 
+                                <i class="fa-solid fa-copy" id="copy-icon" style="margin-left: 10px;"></i>
+                            </a>
+                            <p class="caution">
+                                <i class="fa-solid fa-exclamation-triangle"></i>
+                                Only send BTC to this address, sending other currencies or tokens to this address may result in the loss of funds and tokens that cannot be recovered.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
     </section>
     <div class="divider" data-aos="fade-up"></div>
     <section class="contact" id="contact" data-aos="fade-up">
@@ -256,6 +275,19 @@
 
         function myFunction(x) {
             x.classList.toggle("change");
+        }
+        function copyToClipboard(text) {
+        navigator.clipboard.writeText(text)
+            .then(() => {
+                // Optional: Display a success message or change the icon
+                document.getElementById('copy-icon').classList.add('copied');
+                setTimeout(() => {
+                    document.getElementById('copy-icon').classList.remove('copied');
+                }, 1000);
+            })
+            .catch(err => {
+                console.error('Failed to copy: ', err);
+            });
         }
         // Add event listeners to navigation links
         document.querySelectorAll('.nav-items a').forEach(link => {

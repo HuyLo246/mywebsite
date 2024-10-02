@@ -9,7 +9,7 @@
     border: none;
     outline: none;
     font-family: 'Poppins', sans-serif;
-    user-select: none; /* Prevent text selection */
+    user-select: text;
 }
 
 html {
@@ -625,8 +625,14 @@ nav ul {
     background-color: #FFDD00; /* Buy Me a Coffee orange */
 }
 
-.donate-options a[href="https://www.coinbase.com/price/bitcoin"] {
+.donate-button.bitcoin-button {
     background-color: #f7931a; /* Bitcoin orange */
+    color: black; /* Text color */
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.donate-button.bitcoin-button:hover {
+    background-color: #9e4bb7; /* Darker shade on hover */
 }
 nav a:hover {
     color: #9e4bb7;
@@ -1492,5 +1498,112 @@ section {
 
     .about-me-text p {
         font-size: 1.5rem; /* Adjusted font size for mobile */
+    }
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.8); /* Darker overlay for better contrast */
+    transition: opacity 500ms;
+    visibility: hidden;
+    opacity: 0;
+    display: flex; /* Use flexbox to center the popup */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
+.overlay:target {
+    visibility: visible;
+    opacity: 1;
+}
+
+.popup {
+    padding: 30px; /* Increased padding for better spacing */
+    background: #1e1e1e; /* Match the website's background color */
+    border-radius: 15px; /* Increased border radius for a softer look */
+    width: 80%; /* Adjust width for better visibility */
+    max-width: 600px; /* Set a max width for larger screens */
+    position: relative;
+    transition: all 0.3s ease-in-out; /* Faster transition for better UX */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Added shadow for depth */
+}
+
+.popup h2 {
+    color: #9e4bb7; /* Match the website's color scheme */
+    font-family: Tahoma, Arial, sans-serif;
+    text-align: center; /* Center the title */
+}
+
+.popup .close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    transition: all 200ms;
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+}
+
+.popup .close:hover {
+    color: #9e4bb7;
+}
+
+.popup .content {
+    max-height: 60%; /* Increase max height for better content visibility */
+    overflow: auto;
+    color: #fff; /* Set text color to white for better contrast */
+    text-align: center; /* Center text in the content */
+}
+
+.popup img {
+    margin-bottom: 2%;
+    border-radius: 15px; /* Rounded corners for the image */
+    width: 100%; /* Make image responsive */
+    max-width: 150px; /* Set a max width for the image */
+    border: 5px solid #ffffff; /* Add outline with desired color */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Optional: add shadow for depth */
+}
+
+.caution {
+    color: #FFA500; /* Orange color */
+    font-size: 1.4rem; /* Font size */
+    text-align: left; /* Align text to the left */
+    margin-top: 2rem; /* Space above the caution message */
+    padding: 1.5rem; /* Increased padding for more height */
+    background-color: rgba(0, 0, 0, 0.7); /* Dark background for contrast */
+    border-radius: 5px; /* Rounded corners */
+    display: flex; /* Use flexbox for alignment */
+    align-items: center; /* Center items vertically */
+    position: relative; /* Allow positioning of the icon */
+}
+
+.caution i {
+    margin-right: 1rem; /* Space between icon and text */
+    font-size: 2rem; /* Increase icon size */
+    color: #FFA500; /* Match icon color with text */
+}
+
+.bitcoin-address {
+    background-color: white; /* Set background color to white */
+    padding: 10px; /* Add padding for better spacing */
+    border-radius: 5px; /* Optional: add border radius */
+    display: inline-block; /* Ensure it wraps around the text */
+    margin-right: 10px; /* Add space to the right of the address */
+}
+
+copy-icon {
+    margin-left: 10px; /* Ensure there's space between the address and the icon */
+}
+
+@media screen and (max-width: 700px) {
+    .box {
+        width: 70%;
+    }
+    .popup {
+        width: 70%;
     }
 }
