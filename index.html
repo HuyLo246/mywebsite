@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="assets/css/style.css">
     <script src="assets/js/main.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
@@ -249,12 +250,25 @@
     <section class="contact" id="contact" data-aos="fade-up">
         <h2 data-aos="fade-right">Contact Me</h2>
         <div class="contact-form" data-aos="fade-up" data-aos-delay="100">
-            <form action="https://formsubmit.co/huylo4660@gmail.com" method="POST">
-                <input type="text" name="name" placeholder="Your Name" required data-aos="zoom-in" data-aos-delay="200">
-                <input type="email" name="email" placeholder="Your Email" required data-aos="zoom-in" data-aos-delay="300">
-                <textarea name="message" placeholder="Your Message" required data-aos="zoom-in" data-aos-delay="400"></textarea>
-                <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
-                <button type="submit" data-aos="zoom-in" data-aos-delay="500">Send Message</button>
+            <form action="#">
+                <div class="dbl-field">
+                    <div class="field">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="field">
+                        <input type="email" name="email" placeholder="Your Email" required>
+                    </div>
+                </div>
+                <div class="field">
+                    <input type="text" name="phone" placeholder="Phone Number (Optional)">
+                </div>
+                <div class="message">
+                    <textarea name="message" placeholder="Your Message" required></textarea>
+                </div>
+                <div class="button-area">
+                    <button type="submit">Send Message</button>
+                    <span></span>
+                </div>
             </form>
         </div>
     </section>

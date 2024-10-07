@@ -109,7 +109,6 @@ nav a.active {
     position: relative; /* Position relative to allow absolute positioning of content */
     width: 100%;
     min-height: 100vh; /* Make the section full viewport height */
-    background-image: url('assets/img/background.jpg'); /* Correct path to your image */
     background-size: cover; /* Cover the whole section with the background image */
     background-position: center; /* Center the image */
     background-repeat: no-repeat; /* Prevent image repetition */
@@ -149,7 +148,6 @@ nav a.active {
     object-fit: cover; /* Ensure the image covers the entire area */
     z-index: -1; /* Place it behind the content */
     opacity: 0.5; /* Adjust opacity to make it darker */
-    background-image: url("assets/img/background.jpg");
     background-size: cover; /* Cover the whole section with the background image */
     background-position: center; /* Center the image */
     background-repeat: no-repeat; /* Prevent image repetition */
@@ -1830,3 +1828,4 @@ copy-icon {
         scrollbar-width: none;  /* Firefox */
     }
 }
+
