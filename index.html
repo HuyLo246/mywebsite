@@ -12,10 +12,42 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="icon" href="assets/img/icon.png" type="image/x-icon">
     <title>Portfolio Website</title>
 </head>
 <body>
     <header id="header" data-aos="fade-down">
+        <div class="menuHamburger">&#9776;</div>
+        <div class="sidebarMenu">
+            <div class="sidebar-header">
+                <img src="assets/img/profile.jpg" alt="Profile Picture" class="sidebar-profile">
+                <h3>HuyLo246</h3>
+            </div>
+            <div class="close">&times;</div>
+            <nav class="sidebar-nav">
+                <div class="divider"></div>
+                <a href="#home"><i class="fas fa-home"></i> Home</a>
+                <a href="#about-me"><i class="fas fa-user"></i> About Me</a>
+                <a href="#videos"><i class="fas fa-video"></i> Videos</a>
+                <a href="#channels"><i class="fas fa-tv"></i> Channels</a>
+                <a href="#donate"><i class="fas fa-donate"></i> Donate</a>
+                <a href="#contact"><i class="fas fa-envelope"></i> Contact</a>
+                <div class="divider"></div>
+                <div class="other-label">Other</div>
+                <a href="https://linktr.ee/huylo246" class="linktree-button">
+                    <i class="fas fa-link"></i> Linktree
+                </a>
+                <div class="divider"></div>
+            </nav>
+            <div class="sidebar-social">
+                <a href="https://www.linkedin.com/in/huylo246"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.youtube.com/@huylo246"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.facebook.com/HuyLo246YTB"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.tiktok.com/@huylo246"><i class="fab fa-tiktok"></i></a>
+                <a href="https://github.com/HuyLo246"><i class="fab fa-github"></i></a>
+            </div>
+        </div>
         <a href="#" class="logo" data-aos="fade-right">HuyLo246</a>
         <nav data-aos="fade-left">
             <div class="nav-items">
@@ -152,10 +184,16 @@
                 <a href="https://www.youtube.com/channel/UCEpM_52JCSKMpyydi13_9Hg?sub_confirmation=1" class="subscribe-button" data-aos="fade-right">Subscribe</a> <!-- Button fades right -->
             </div>
             <div class="channel-item" data-aos="zoom-in" data-aos-delay="200">
-                <img src="assets/img/profile2.jpg" alt="Bye sdsd" data-aos="flip-left">
+                <img src="assets/img/profile2.png" alt="Bye sdsd" data-aos="flip-left">
                 <h3 data-aos="fade-up">HuyLo246 Vi En</h3>
-                <p data-aos="fade-left">160 Subscribers</p>
+                <p data-aos="fade-left">163 Subscribers</p>
                 <a href="https://www.youtube.com/channel/UCl0lnofE9naSUnloicXTyVw?sub_confirmation=1" class="subscribe-button" data-aos="fade-right">Subscribe</a>
+            </div>
+            <div class="channel-item" data-aos="zoom-in" data-aos-delay="200">
+                <img src="assets/img/profile3.png" alt="Bye sdsd" data-aos="flip-left">
+                <h3 data-aos="fade-up">Huy The Coder</h3>
+                <p data-aos="fade-left">4 Subscribers</p>
+                <a href="https://www.youtube.com/channel/UCAxTfKzpYTwA8fzLN22rOoA?sub_confirmation=1" class="subscribe-button" data-aos="fade-right">Subscribe</a>
             </div>
             <div class="channel-item" data-aos="zoom-in" data-aos-delay="300">
                 <img src="assets/img/profile.jpg" alt="SDSU Imperial Valley" data-aos="flip-left">
@@ -211,10 +249,13 @@
     <section class="contact" id="contact" data-aos="fade-up">
         <h2 data-aos="fade-right">Contact Me</h2>
         <div class="contact-form" data-aos="fade-up" data-aos-delay="100">
-            <form action="forms/contact.php" method="post">
+            <form action="https://api.web3forms.com/submit" method="POST">
+                <input type="hidden" name="access_key" value="2d647fe7-93b6-4fef-9bef-53805a0f634a">
                 <input type="text" name="name" placeholder="Your Name" required data-aos="zoom-in" data-aos-delay="200">
                 <input type="email" name="email" placeholder="Your Email" required data-aos="zoom-in" data-aos-delay="300">
                 <textarea name="message" placeholder="Your Message" required data-aos="zoom-in" data-aos-delay="400"></textarea>
+                <!-- Honeypot Spam Protection -->
+                <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
                 <button type="submit" data-aos="zoom-in" data-aos-delay="500">Send Message</button>
             </form>
         </div>
@@ -342,6 +383,31 @@
                 });
             });
         });
+    const menuHamburger = document.querySelector('.menuHamburger');
+    const sidebarMenu = document.querySelector('.sidebarMenu');
+    const closeSidebar = document.querySelector('.sidebarMenu .close');
+
+    menuHamburger.addEventListener('click', () => {
+        sidebarMenu.classList.add('active');
+    });
+
+    closeSidebar.addEventListener('click', () => {
+        sidebarMenu.classList.remove('active');
+    });
+
+    // Close sidebar when clicking outside of it
+    document.addEventListener('click', (e) => {
+        if (!sidebarMenu.contains(e.target) && e.target !== menuHamburger) {
+            sidebarMenu.classList.remove('active');
+        }
+    });
+
+    // Close sidebar when a menu item is clicked
+    sidebarMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            sidebarMenu.classList.remove('active');
+        });
+    });
     </script>
 </body>
 </html>
