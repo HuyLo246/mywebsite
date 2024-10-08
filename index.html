@@ -248,9 +248,16 @@
     </section>
     <div class="divider" data-aos="fade-up"></div>
     <section class="contact" id="contact" data-aos="fade-up">
-        <h2 data-aos="fade-right">Contact Me</h2>
+        <div class="contact-intro">
+            <h2 data-aos="fade-right">Get in Touch</h2>
+            <p data-aos="fade-left">Fill out the form below and we'll get back to you as soon as possible.</p>
+        </div>
         <div class="contact-form" data-aos="fade-up" data-aos-delay="100">
-            <form action="#">
+            <form action="https://api.web3forms.com/submit" method="POST">
+                <input type="hidden" name="access_key" value="2d647fe7-93b6-4fef-9bef-53805a0f634a" />
+                <input type="hidden" name="subject" value="New Contact Form Submission from Web3Forms" />
+                <input type="hidden" name="from_name" value="My Website" />
+                
                 <div class="dbl-field">
                     <div class="field">
                         <input type="text" name="name" placeholder="Your Name" required>
