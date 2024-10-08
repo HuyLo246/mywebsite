@@ -652,13 +652,14 @@ nav a:hover {
     padding: 5rem 15%;
     background-color: #000000;
     color: #fff;
-    min-height: 100vh; /* Set minimum height to match home section */
+    min-height: 100vh;
 }
 
 .contact h2 {
     font-size: 4rem;
     margin-bottom: 2rem;
     color: #9e4bb7;
+    text-align: center;
 }
 
 .contact-form {
@@ -670,57 +671,85 @@ nav a:hover {
     max-width: 500px;
     background-color: #1e1e1e;
     padding: 3rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(158, 75, 183, 0.3);
 }
 
 .contact-form form {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.5rem;
     width: 100%;
 }
 
 .contact-form input,
 .contact-form textarea {
-    padding: 1rem;
-    border: 1px solid #9e4bb7;
-    border-radius: 5px;
+    padding: 1.2rem;
+    border: 2px solid #9e4bb7;
+    border-radius: 8px;
     font-size: 1.6rem;
     color: #fff;
-    background-color: #1e1e1e;
-    /* Add these styles */
+    background-color: #2a2a2a;
     width: 100%;
     box-sizing: border-box;
-    margin-bottom: 1rem;
-    padding-left: 1.5rem; /* Add padding for placeholder */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: #c17ed9;
+    box-shadow: 0 0 10px rgba(158, 75, 183, 0.5);
+    outline: none;
 }
 
 .contact-form textarea {
-    height: 100px; /* Set a fixed height for the textarea */
+    height: 150px;
+    resize: vertical;
 }
 
 .contact-form input::placeholder,
 .contact-form textarea::placeholder {
-    color: #9e4bb7; /* Set placeholder color */
+    color: #888;
 }
 
 .contact-form button {
-    padding: 1rem 2rem;
+    padding: 1.2rem 2rem;
     background-color: #9e4bb7;
-    color: black;
+    color: #fff;
     font-size: 1.8rem;
-    border-radius: 0.5rem;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
     border: none;
-    width: 100%; /* Make the button full width */
-    box-sizing: border-box; /* Include padding and border in width */
-    margin-top: 1rem; /* Add some space above the button */
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 1rem;
 }
 
 .contact-form button:hover {
-    background-color: #7a3e9e;
+    background-color: #c17ed9;
+    transform: translateY(-2px);
+}
+
+.contact-form button:active {
+    transform: translateY(0);
+}
+
+/* Media Query for Smaller Screens */
+@media (max-width: 768px) {
+    .contact h2 {
+        font-size: 3rem;
+    }
+
+    .contact-form {
+        padding: 2rem;
+    }
+
+    .contact-form input,
+    .contact-form textarea,
+    .contact-form button {
+        font-size: 1.6rem;
+    }
 }
 
 /* Media Query for Smaller Screens */
