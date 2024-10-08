@@ -255,8 +255,10 @@
         <div class="contact-form" data-aos="fade-up" data-aos-delay="100">
             <form action="https://api.web3forms.com/submit" method="POST">
                 <input type="hidden" name="access_key" value="2d647fe7-93b6-4fef-9bef-53805a0f634a" />
-                <input type="hidden" name="subject" value="New Contact Form Submission from Web3Forms" />
-                <input type="hidden" name="from_name" value="My Website" />
+                <input type="hidden" name="subject" value="New Contact Form Submission" />
+                <input type="hidden" name="from_name" value="HuyLo246 Website" />
+                <!-- Add a honeypot field -->
+                <input type="checkbox" name="botcheck" id="" style="display: none;" />
                 
                 <div class="dbl-field">
                     <div class="field">
@@ -272,6 +274,7 @@
                 <div class="message">
                     <textarea name="message" placeholder="Your Message" required></textarea>
                 </div>
+                <!-- Add a CAPTCHA or reCAPTCHA here if possible -->
                 <div class="button-area">
                     <button type="submit">Send Message</button>
                     <span></span>
