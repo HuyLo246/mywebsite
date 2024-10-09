@@ -62,6 +62,12 @@ header {
     color: #9e4bb7;
     font-weight: 800;
     cursor: pointer;
+    transition: color 0.3s ease, transform 0.3s ease; /* Added transition for hover effect */
+}
+
+.logo:hover {
+    color: #ffffff; /* Change color on hover */
+    transform: scale(1.1); /* Slightly enlarge on hover */
 }
 
 nav {
@@ -1858,3 +1864,10 @@ copy-icon {
     }
 }
 
+.footer-section .social-icons a {
+    color: white; /* Set social icon color to white */
+    transition: color 0.2s ease; /* Faster transition for hover effect */
+}
+.footer-section .social-icons a:hover {
+    color: white; /* Keep hover color white */
+}

@@ -18,7 +18,7 @@
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="icon" href="assets/img/icon.png" type="image/x-icon">
-    <title>Portfolio Website</title>
+    <title>HuyLo246</title>
 </head>
 <body>
     <header id="header" data-aos="fade-down">
@@ -309,126 +309,158 @@
             <a href="https://youtu.be/xvFZjo5PgG0?si=vLrNY-9DPkZ8M6rq" class="secret-link" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="700">Secret Link</a>
         </div>
     </footer>
-    <style>
-        .footer-section .social-icons a {
-            color: white; /* Set social icon color to white */
-            transition: color 0.2s ease; /* Faster transition for hover effect */
-        }
-        .footer-section .social-icons a:hover {
-            color: white; /* Keep hover color white */
-        }
-    </style>
     <script>
+        // Initialize AOS (Animate On Scroll)
         AOS.init({
-          duration: 800, // Duration of animations
-          easing: 'ease-in-out', // Easing function
-          once: true, // Animation happens only once
+            duration: 800, // Duration of animations
+            easing: 'ease-in-out', // Easing function
+            once: true, // Animation happens only once
         });
-      </script>
-        <script>
+    
+        // Menu button functionality
         const menuBtn = document.querySelector('.menu-btn');
         const navItems = document.querySelector('.nav-items');
-
+    
         menuBtn.addEventListener('click', () => {
             menuBtn.classList.toggle('active');
             navItems.classList.toggle('active');
         });
-
-        function myFunction(x) {
-            x.classList.toggle("change");
-        }
+    
+        // Copy to clipboard function
         function copyToClipboard(text) {
-        navigator.clipboard.writeText(text)
-            .then(() => {
-                // Optional: Display a success message or change the icon
-                document.getElementById('copy-icon').classList.add('copied');
-                setTimeout(() => {
-                    document.getElementById('copy-icon').classList.remove('copied');
-                }, 1000);
-            })
-            .catch(err => {
-                console.error('Failed to copy: ', err);
+            navigator.clipboard.writeText(text)
+                .then(() => {
+                    document.getElementById('copy-icon').classList.add('copied');
+                    setTimeout(() => {
+                        document.getElementById('copy-icon').classList.remove('copied');
+                    }, 1000);
+                })
+                .catch(err => {
+                    console.error('Failed to copy: ', err);
+                });
+        }
+    
+        // Navigation link functionality
+        function setupNavLinks() {
+            document.querySelectorAll('.nav-items a').forEach(link => {
+                link.addEventListener('click', () => {
+                    document.querySelectorAll('.nav-items a').forEach(l => l.classList.remove('active'));
+                    link.classList.add('active');
+                });
             });
         }
-        // Add event listeners to navigation links
-        document.querySelectorAll('.nav-items a').forEach(link => {
-            link.addEventListener('click', () => {
-                // Remove active class from all links
-                document.querySelectorAll('.nav-items a').forEach(l => l.classList.remove('active'));
-                // Add active class to the clicked link
-                link.classList.add('active');
-            });
-        });
-        // Add event listeners for active link on scroll
-        const sections = document.querySelectorAll('section');
-        const navLinks = document.querySelectorAll('.nav-items a');
-
-        window.addEventListener('scroll', () => {
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (pageYOffset >= sectionTop - sectionHeight / 3) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === '#' + current) {
-                    link.classList.add('active');
-                }
-            });
-        });
-        // Video Toggle Functionality
-        const videoItems = document.querySelectorAll('.video-item');
-        const videoContainers = document.querySelectorAll('.video-container .video');
-        videoItems.forEach(item => {
-            item.addEventListener('click', () => {
-                // Remove active class from all video items
-                videoItems.forEach(i => i.classList.remove('active'));
-                // Add active class to the clicked video item
-                item.classList.add('active');
-
-                // Get the platform of the clicked video item
-                const platform = item.dataset.platform;
-
-                // Show the corresponding video container
-                videoContainers.forEach(container => {
-                    if (container.classList.contains(platform + '-video')) {
-                        container.classList.add('active');
-                    } else {
-                        container.classList.remove('active');
+    
+        // Active link on scroll
+        function setupScrollActiveLinks() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-items a');
+    
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (pageYOffset >= sectionTop - sectionHeight / 3) {
+                        current = section.getAttribute('id');
+                    }
+                });
+    
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === '#' + current) {
+                        link.classList.add('active');
                     }
                 });
             });
-        });
-    const menuHamburger = document.querySelector('.menuHamburger');
-    const sidebarMenu = document.querySelector('.sidebarMenu');
-    const closeSidebar = document.querySelector('.sidebarMenu .close');
-
-    menuHamburger.addEventListener('click', () => {
-        sidebarMenu.classList.add('active');
-    });
-
-    closeSidebar.addEventListener('click', () => {
-        sidebarMenu.classList.remove('active');
-    });
-
-    // Close sidebar when clicking outside of it
-    document.addEventListener('click', (e) => {
-        if (!sidebarMenu.contains(e.target) && e.target !== menuHamburger) {
-            sidebarMenu.classList.remove('active');
         }
-    });
-
-    // Close sidebar when a menu item is clicked
-    sidebarMenu.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
+    
+        // Video toggle functionality
+        function setupVideoToggle() {
+            const videoItems = document.querySelectorAll('.video-item');
+            const videoContainers = document.querySelectorAll('.video-container .video');
+    
+            videoItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    videoItems.forEach(i => i.classList.remove('active'));
+                    item.classList.add('active');
+    
+                    const platform = item.dataset.platform;
+                    videoContainers.forEach(container => {
+                        container.classList.toggle('active', container.classList.contains(platform + '-video'));
+                    });
+                });
+            });
+        }
+    
+        // Sidebar functionality
+        const menuHamburger = document.querySelector('.menuHamburger');
+        const sidebarMenu = document.querySelector('.sidebarMenu');
+        const closeSidebar = document.querySelector('.sidebarMenu .close');
+    
+        menuHamburger.addEventListener('click', () => {
+            sidebarMenu.classList.add('active');
+        });
+    
+        closeSidebar.addEventListener('click', () => {
             sidebarMenu.classList.remove('active');
         });
-    });
+    
+        // Close sidebar when clicking outside of it
+        document.addEventListener('click', (e) => {
+            if (!sidebarMenu.contains(e.target) && e.target !== menuHamburger) {
+                sidebarMenu.classList.remove('active');
+            }
+        });
+    
+        // Close sidebar when a menu item is clicked
+        sidebarMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                sidebarMenu.classList.remove('active');
+            });
+        });
+    
+        // Contact form submission
+        const form = document.querySelector("#contact form");
+        if (form) {
+            const statusTxt = form.querySelector(".button-area span");
+    
+            form.onsubmit = (e) => {
+                e.preventDefault();
+                const recaptchaResponse = grecaptcha.getResponse();
+                if (recaptchaResponse.length === 0) {
+                    alert("Please complete the reCAPTCHA before sending your message.");
+                    return; // Stop form submission
+                }
+    
+                statusTxt.style.color = "#0D6EFD";
+                statusTxt.style.display = "block";
+                statusTxt.innerText = "Sending your message...";
+                form.classList.add("disabled");
+    
+                let xhr = new XMLHttpRequest();
+                xhr.open("POST", "forms/contact.php", true);
+                xhr.onload = () => {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        let response = xhr.response;
+                        statusTxt.style.color = response.includes("required") || response.includes("valid") || response.includes("failed") ? "red" : "#0D6EFD";
+                        if (!response.includes("required") && !response.includes("valid") && !response.includes("failed")) {
+                            form.reset();
+                            setTimeout(() => {
+                                statusTxt.style.display = "none";
+                            }, 3000);
+                        }
+                        statusTxt.innerText = response;
+                        form.classList.remove("disabled");
+                    }
+                };
+                let formData = new FormData(form);
+                xhr.send(formData);
+            }
+        }
+        // Initialize functions
+        setupNavLinks();
+        setupScrollActiveLinks();
+        setupVideoToggle();
     </script>
-    <script src="assets/js/main.js"></script>
 </body>
 </html>
