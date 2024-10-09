@@ -187,7 +187,7 @@
                 <p data-aos="fade-left">10.7K Subscribers</p> <!-- Subscriber count fades left -->
                 <a href="https://www.youtube.com/channel/UCEpM_52JCSKMpyydi13_9Hg?sub_confirmation=1" class="subscribe-button" data-aos="fade-right">Subscribe</a> <!-- Button fades right -->
             </div>
-            <div class="channel-item" data-aos="zoom-in" data-aos-delay="200">
+            <div class="channel-item" data-aos="fade-up" data-aos-delay="300"> <!-- Added animation for this item -->
                 <img src="assets/img/profile2.png" alt="Bye sdsd" data-aos="flip-left">
                 <h3 data-aos="fade-up">HuyLo246 Vi En</h3>
                 <p data-aos="fade-left">163 Subscribers</p>
@@ -199,7 +199,7 @@
                 <p data-aos="fade-left">4 Subscribers</p>
                 <a href="https://www.youtube.com/channel/UCAxTfKzpYTwA8fzLN22rOoA?sub_confirmation=1" class="subscribe-button" data-aos="fade-right">Subscribe</a>
             </div>
-            <div class="channel-item" data-aos="zoom-in" data-aos-delay="300">
+            <div class="channel-item" data-aos="fade-up" data-aos-delay="400"> <!-- Added animation for this item -->
                 <img src="assets/img/profile.jpg" alt="SDSU Imperial Valley" data-aos="flip-left">
                 <h3 data-aos="fade-up">HuyLo246</h3>
                 <p data-aos="fade-left">100 Followers</p>
@@ -431,30 +431,6 @@
                     alert("Please complete the reCAPTCHA before sending your message.");
                     return; // Stop form submission
                 }
-    
-                statusTxt.style.color = "#0D6EFD";
-                statusTxt.style.display = "block";
-                statusTxt.innerText = "Sending your message...";
-                form.classList.add("disabled");
-    
-                let xhr = new XMLHttpRequest();
-                xhr.open("POST", "forms/contact.php", true);
-                xhr.onload = () => {
-                    if (xhr.readyState == 4 && xhr.status == 200) {
-                        let response = xhr.response;
-                        statusTxt.style.color = response.includes("required") || response.includes("valid") || response.includes("failed") ? "red" : "#0D6EFD";
-                        if (!response.includes("required") && !response.includes("valid") && !response.includes("failed")) {
-                            form.reset();
-                            setTimeout(() => {
-                                statusTxt.style.display = "none";
-                            }, 3000);
-                        }
-                        statusTxt.innerText = response;
-                        form.classList.remove("disabled");
-                    }
-                };
-                let formData = new FormData(form);
-                xhr.send(formData);
             }
         }
         // Initialize functions
