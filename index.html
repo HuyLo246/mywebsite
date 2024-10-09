@@ -256,7 +256,7 @@
             <p data-aos="fade-left">Fill out the form below and I'll get back to you as soon as possible.</p>
         </div>
         <div class="contact-form" data-aos="zoom-in" data-aos-delay="300">
-            <form action="https://formsubmit.co/huylo4660@gmail.com" method="POST">
+            <form action="https://formsubmit.co/huylo4660@gmail.com" method="POST" id="contact-form">
                 <div class="dbl-field">
                     <div class="field" data-aos="fade-right" data-aos-delay="400">
                         <input type="text" name="name" placeholder="Your Name" required>
@@ -420,16 +420,18 @@
         });
     
         // Contact form submission
-        const form = document.querySelector("#contact form");
+        const form = document.querySelector("#contact-form");
         if (form) {
             const statusTxt = form.querySelector(".button-area span");
-    
+
             form.onsubmit = (e) => {
                 e.preventDefault();
                 const recaptchaResponse = grecaptcha.getResponse();
                 if (recaptchaResponse.length === 0) {
                     alert("Please complete the reCAPTCHA before sending your message.");
                     return; // Stop form submission
+                } else {
+                    form.submit(); // Allow form submission if reCAPTCHA is completed
                 }
             }
         }
