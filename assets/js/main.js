@@ -293,4 +293,45 @@
       }
     }
   });
+// Contact Form Submission
+const form = document.querySelector("#contact form");
+if (form) {
+  const statusTxt = form.querySelector(".button-area span");
+
+  form.onsubmit = (e) => {
+    e.preventDefault();
+
+    // Check if reCAPTCHA is completed
+    const recaptchaResponse = grecaptcha.getResponse();
+    if (recaptchaResponse.length === 0) {
+      alert("Please complete the reCAPTCHA before sending your message.");
+      return; // Stop form submission
+    }
+
+    statusTxt.style.color = "#0D6EFD";
+    statusTxt.style.display = "block";
+    statusTxt.innerText = "Sending your message...";
+    form.classList.add("disabled");
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "forms/contact.php", true);
+    xhr.onload = () => {
+      if(xhr.readyState == 4 && xhr.status == 200){
+        let response = xhr.response;
+        if(response.indexOf("required") != -1 || response.indexOf("valid") != -1 || response.indexOf("failed") != -1){
+          statusTxt.style.color = "red";
+        }else{
+          form.reset();
+          setTimeout(() => {
+            statusTxt.style.display = "none";
+          }, 3000);
+        }
+        statusTxt.innerText = response;
+        form.classList.remove("disabled");
+      }
+    }
+    let formData = new FormData(form);
+    xhr.send(formData);
+  }
+}
 })();
