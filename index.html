@@ -62,14 +62,6 @@
                 <a href="#donate">Donate</a>
                 <a href="#contact">Contact</a>
             </div>
-            <button class="menu-btn">
-                <div class="container" onclick="myFunction(this)">
-                    <div class="bar1"></div>
-                    <div class="bar2"></div>
-                    <div class="bar3"></div>
-                </div>
-            </button>
-        </nav>
     </header>
     <div class="divider" data-aos="fade-up"></div>
     <section class="home" id="home" data-aos="fade-up">
@@ -315,15 +307,6 @@
             duration: 800, // Duration of animations
             easing: 'ease-in-out', // Easing function
             once: true, // Animation happens only once
-        });
-    
-        // Menu button functionality
-        const menuBtn = document.querySelector('.menu-btn');
-        const navItems = document.querySelector('.nav-items');
-    
-        menuBtn.addEventListener('click', () => {
-            menuBtn.classList.toggle('active');
-            navItems.classList.toggle('active');
         });
     
         // Copy to clipboard function
