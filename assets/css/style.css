@@ -2275,3 +2275,164 @@ nav ul {
         padding: 15px;
     }
 }
+
+/* Combined media queries for responsiveness on phone screens and tablets */
+@media (max-width: 768px) {
+    body {
+        font-size: 14px;
+        padding: 0 10px; /* Prevent content from touching screen edges */
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    header {
+        padding: 1rem 5%;
+    }
+
+    .logo {
+        font-size: 2.5rem;
+    }
+
+    nav a {
+        font-size: 1.5rem;
+    }
+
+    .home-content {
+        padding: 3rem 5%;
+    }
+
+    .home-content h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .home-content p {
+        font-size: 1.5rem;
+        line-height: 1.6;
+        margin-bottom: 2rem;
+    }
+
+    .btn {
+        font-size: 1.5rem;
+        padding: 1rem 2rem;
+        width: 100%; /* Full-width buttons */
+    }
+
+    .social-icons a {
+        font-size: 2rem;
+        width: 4rem;
+        height: 4rem;
+    }
+
+    .channel-list {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px; /* Reduced gap between items */
+    }
+
+    .channel-item {
+        width: 100%; /* Full-width items */
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .channel-item h3 {
+        font-size: 2rem;
+    }
+
+    .channel-item p {
+        font-size: 1.5rem;
+        word-wrap: break-word; /* Allow text wrapping */
+    }
+
+    .subscribe-button, .follow-button {
+        font-size: 1.5rem;
+        padding: 0.8rem 1.5rem;
+        width: 100%; /* Full-width buttons */
+        box-sizing: border-box;
+    }
+
+    .contact-form input, .contact-form textarea, .contact-form button {
+        width: 100%; /* Full-width form elements */
+        font-size: 1.5rem;
+        padding: 1rem;
+    }
+
+    .donate-button {
+        width: 100%;
+        font-size: 1.5rem;
+    }
+
+    .linktree-button img {
+        width: 50px; /* Reduced logo size for mobile */
+    }
+
+    .footer-section {
+        padding: 20px;
+    }
+
+    .popup {
+        width: 90%;
+        padding: 20px;
+    }
+
+    /* Additional styles for very small screens */
+    @media (max-width: 480px) {
+        h1 {
+            font-size: 1.8rem;
+        }
+
+        h2 {
+            font-size: 1.4rem;
+        }
+
+        .home-content h1 {
+            font-size: 2rem;
+        }
+
+        .home-content p {
+            font-size: 1.4rem;
+        }
+
+        .btn {
+            font-size: 1.3rem;
+        }
+
+        .popup {
+            padding: 15px;
+        }
+
+        .channel-list {
+            grid-template-columns: 1fr; /* Single-column layout on mobile */
+            grid-template-rows: auto;
+            gap: 15px;
+        }
+
+        .channel-item h3 {
+            font-size: 1.8rem;
+        }
+
+        .channel-item p {
+            font-size: 1.4rem;
+        }
+
+        .subscribe-button, .follow-button {
+            font-size: 1.3rem;
+            padding: 0.8rem;
+        }
+
+        .footer-section {
+            padding: 15px;
+        }
+
+        .popup {
+            padding: 15px;
+        }
+    }
+}
