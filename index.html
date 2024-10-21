@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6663683058658571"
      crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     <script src="assets/js/main.js"></script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-PNMYVL2N1K"></script>
@@ -50,6 +51,9 @@
                 <div class="other-label">Other</div>
                 <a href="https://linktr.ee/huylo246" class="linktree-button">
                     <i class="fas fa-link"></i> Linktree
+                </a>
+                <a href="https://www.shutterstock.com/g/HuyLo246" class="linktree-button">
+                    <i class="fas fa-link"></i> Shutterstock
                 </a>
                 <div class="divider"></div>
             </nav>
@@ -161,19 +165,19 @@
         </div>
         <div class="stats" data-aos="fade-up">
             <div class="stat-item" data-aos="zoom-in">
-                <span>+5M</span>
+                <span data-countup>+4700000</span> <!-- Use raw number for counting -->
                 <p>Video Views</p>
             </div>
             <div class="stat-item" data-aos="zoom-in" data-aos-delay="100">
-                <span>+16K</span>
+                <span data-countup>+76500</span> <!-- Use raw number for counting -->
                 <p>Followers</p>
             </div>
             <div class="stat-item" data-aos="zoom-in" data-aos-delay="200">
-                <span>+15K</span>
+                <span data-countup>+45900</span> <!-- Use raw number for counting -->
                 <p>Likes</p>
             </div>
             <div class="stat-item" data-aos="zoom-in" data-aos-delay="300">
-                <span>+65K</span>
+                <span data-countup>+65700</span> <!-- Use raw number for counting -->
                 <p>Comments</p>
             </div>
         </div>
@@ -183,24 +187,40 @@
         <h2 data-aos="fade-down" data-aos-duration="800">My Channels</h2> <!-- Title fades down -->
         <div class="channel-list">
             <div class="channel-item" data-aos="zoom-in" data-aos-delay="100"> <!-- Each channel item zooms in -->
+                <div class="social-icon">
+                        <img src="https://img.icons8.com/color/48/000000/youtube-play.png" alt="YouTube">
+                    </a>
+                </div>
                 <img src="assets/img/profile.jpg" alt="Aparate Pacanele SD" data-aos="flip-left"> <!-- Image flips -->
                 <h3 data-aos="fade-up">HuyLo246</h3> <!-- Text fades up -->
-                <p data-aos="fade-left">10.7K Subscribers</p> <!-- Subscriber count fades left -->
+                <p data-aos="fade-left">11K Subscribers</p> <!-- Subscriber count fades left -->
                 <a href="https://www.youtube.com/channel/UCEpM_52JCSKMpyydi13_9Hg?sub_confirmation=1" class="subscribe-button" data-aos="fade-right">Subscribe</a> <!-- Button fades right -->
             </div>
             <div class="channel-item" data-aos="fade-up" data-aos-delay="300"> <!-- Added animation for this item -->
+                <div class="social-icon">
+                    <img src="https://img.icons8.com/color/48/000000/youtube-play.png" alt="YouTube">
+                </a>
+            </div>
                 <img src="assets/img/profile2.png" alt="Bye sdsd" data-aos="flip-left">
                 <h3 data-aos="fade-up">HuyLo246 Vi En</h3>
-                <p data-aos="fade-left">163 Subscribers</p>
+                <p data-aos="fade-left">166 Subscribers</p>
                 <a href="https://www.youtube.com/channel/UCl0lnofE9naSUnloicXTyVw?sub_confirmation=1" class="subscribe-button" data-aos="fade-right">Subscribe</a>
             </div>
             <div class="channel-item" data-aos="zoom-in" data-aos-delay="200">
+                <div class="social-icon">
+                    <img src="https://img.icons8.com/color/48/000000/youtube-play.png" alt="YouTube">
+                </a>
+            </div>
                 <img src="assets/img/profile3.png" alt="Bye sdsd" data-aos="flip-left">
                 <h3 data-aos="fade-up">Huy The Coder</h3>
-                <p data-aos="fade-left">4 Subscribers</p>
+                <p data-aos="fade-left">7 Subscribers</p>
                 <a href="https://www.youtube.com/channel/UCAxTfKzpYTwA8fzLN22rOoA?sub_confirmation=1" class="subscribe-button" data-aos="fade-right">Subscribe</a>
             </div>
             <div class="channel-item" data-aos="fade-up" data-aos-delay="400"> <!-- Added animation for this item -->
+                <div class="social-icon">
+                    <img src="https://img.icons8.com/color/48/000000/tiktok.png" alt="TikTok">
+                </a>
+            </div>
                 <img src="assets/img/profile.jpg" alt="SDSU Imperial Valley" data-aos="flip-left">
                 <h3 data-aos="fade-up">HuyLo246</h3>
                 <p data-aos="fade-left">100 Followers</p>
@@ -427,6 +447,51 @@
                 }
             }
         }
+        // Count up
+        function formatNumber(num) {
+            if (num >= 1000000) {
+                return `+${(num / 1000000).toFixed(1)}M`; // Format as millions
+            } else if (num >= 1000) {
+                return `+${(num / 1000).toFixed(1)}K`; // Format as thousands
+            }
+            return `+${num}`; // Return the number as is if less than 1000
+        }
+
+        function countup(el, target) {
+            let data = { count: 0 };
+            anime({
+                targets: data,
+                count: [0, target],
+                duration: 3000, // Set duration to 3000 milliseconds (3 seconds)
+                round: 1,
+                delay: 200,
+                easing: 'easeOutCubic',
+                update() {
+                    el.innerText = formatNumber(data.count); // Format the number for display
+                }
+            });
+        }
+
+        function makeCountup(el) {
+            const text = el.textContent.replace(/\+/g, ''); // Remove the '+' sign for parsing
+            const target = parseInt(text.replace(/M/g, '000000').replace(/K/g, '000'), 10); // Convert to number
+
+            const io = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.intersectionRatio > 0) {
+                        countup(el, target);
+                        io.unobserve(entry.target);
+                    }
+                });
+            });
+
+            io.observe(el);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const els = document.querySelectorAll('[data-countup]');
+            els.forEach(makeCountup);
+        });
         // Initialize functions
         setupNavLinks();
         setupScrollActiveLinks();

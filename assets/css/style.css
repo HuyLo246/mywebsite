@@ -367,6 +367,7 @@ nav a.active {
 }
 
 .stat-item {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1328,10 +1329,24 @@ section {
 }
 
 .channel-item {
+    position: relative; /* Ensure positioning is relative for absolute positioning of icons */
     background-color: #1e1e1e; /* Optional: background color for items */
     padding: 20px; /* Optional: padding inside items */
     text-align: center; /* Center text */
     transition: transform 0.3s; /* Add transition for hover effect */
+    border-radius: 10px; /* Rounded corners */
+}
+
+.social-icon {
+    position: absolute; /* Position the icon absolutely */
+    top: 10px; /* Adjust as needed */
+    left: 20px; /* Adjust as needed */
+    width: 12%; /* Set width for the icon */
+    height: auto; /* Set height for the icon */
+    overflow: visible; /* Hide overflow */
+    display: flex; /* Center the icon */
+    justify-content: center; /* Center the icon */
+    align-items: center; /* Center the icon */
 }
 
 .channel-item img {
