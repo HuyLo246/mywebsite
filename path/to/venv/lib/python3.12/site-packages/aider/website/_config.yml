@@ -1,0 +1,48 @@
+theme: just-the-docs
+url: "https://aider.chat"
+
+plugins:
+  - jekyll-redirect-from
+  - jekyll-sitemap
+  - jekyll-feed
+
+defaults:
+  - scope:
+      path: "README.md"
+      type: "pages"
+    values:
+      description: "aider is AI pair programming in your terminal"
+
+exclude:
+  - "tmp*"
+  - "**/tmp*"
+  - OLD
+  - "**/OLD/**"
+  - "OLD/**"
+  - vendor
+  - feed.xml
+
+aux_links:
+  "GitHub":
+    - "https://github.com/Aider-AI/aider"
+  "Discord":
+    - "https://discord.gg/Tv2uQnR88V"
+  "Blog":
+    - "/blog/"
+
+nav_external_links:
+  - title: "GitHub"
+    url: "https://github.com/Aider-AI/aider"
+  - title: "Discord"
+    url: "https://discord.gg/Tv2uQnR88V"
+
+repository: Aider-AI/aider
+
+callouts:
+  tip:
+    title: Tip
+    color: green
+  note:
+    title: Note
+    color: yellow
+    
