@@ -2383,3 +2383,68 @@ nav ul {
         padding: 15px;
     }
 }
+
+@media (max-width: 768px) {
+    .home-content h1, .about-me-title {
+        font-size: 2.5rem;
+    }
+    .home-content p, .about-me-text p {
+        font-size: 1.5rem;
+    }
+    .channel-item h3 {
+        font-size: 2rem;
+    }
+    .channel-item p {
+        font-size: 1.5rem;
+    }
+    .subscribe-button, .follow-button, .btn {
+        font-size: 1.5rem;
+    }
+    .contact-form {
+        padding: 1rem;
+    }
+    /* Add this line */
+    .channel-list {
+        grid-template-columns: 1fr; /* Single column layout */
+    }
+}
+
+@media (max-width: 992px) {
+    .channel-list {
+        grid-template-columns: repeat(2, 1fr); /* Two columns */
+    }
+}
+
+@media (max-width: 768px) {
+    .channel-list {
+        grid-template-columns: 1fr; /* Single column */
+    }
+}
+
+/* Add these styles to position the menu button on the right */
+@media (max-width: 768px) {
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .menuHamburger {
+        position: absolute;
+        margin-left: 50%; /* Position it 10px from the right edge */
+        top: 50%;
+        transform: translateY(-50%); /* Center vertically */
+        z-index: 1001; /* Ensure it's above other elements */
+    }
+}
+
+@media (max-width: 480px) {
+    .home-content h1 {
+        font-size: 2rem; /* Reduce font size for smaller screens */
+        line-height: 1.2; /* Adjust line height */
+    }
+    .typing-text {
+        font-size: 1.5rem; /* Smaller font size for typing effect */
+        white-space: normal; /* Allow text to wrap */
+    }
+}
