@@ -505,7 +505,8 @@ footer {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 2rem; /* Added margin for spacing */
+    margin-bottom: 2rem;
+    text-align: center; /* Center text */
 }
 
 .social-icons {
@@ -514,6 +515,15 @@ footer {
     align-items: center;
     gap: 1.5rem; /* Increased gap between icons */
     margin-bottom: 2rem;
+}
+
+.footer-section nav ul {
+    display: flex;
+    gap: 2rem; /* Adjust gap for better spacing */
+    list-style: none;
+    padding: 0;
+    flex-wrap: wrap; /* Allow wrapping for smaller screens */
+    justify-content: center; /* Center navigation links */
 }
 
 nav ul {
@@ -1006,15 +1016,15 @@ nav {
 /* Footer Social Icons */
 .footer-section .social-icons {
     display: flex;
-    justify-content: center; /* Center the social icons */
+    justify-content: center;
     align-items: center;
-    gap: 1rem;
-    margin-top: 2rem;
+    gap: 1rem; /* Adjust gap between icons */
+    margin-bottom: 1rem;
 }
 
 .footer-section .social-icons a {
     display: inline-flex;
-    justify-content: center; /* Center the icon within the link */
+    justify-content: center;
     align-items: center;
     width: 4rem;
     height: 4rem;
@@ -1022,7 +1032,6 @@ nav {
     border: 0.2rem solid #9e4bb7;
     font-size: 2rem;
     border-radius: 50%;
-    margin: 0 1rem; /* Adjust spacing as needed */
     transition: 0.3s ease;
     color: #9e4bb7;
 }
@@ -1372,38 +1381,29 @@ section {
     margin-bottom: 1.5rem;
 }
 
-.subscribe-button {
-    display: inline-block;
-    padding: 1rem 2rem; /* Increased padding for the button */
-    background-color: #ff0000; /* Red background color */
-    color: #fff; /* White text color */
+.subscribe-button, .follow-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #ff0000;
+    color: #fff;
     border-radius: 5px;
     text-decoration: none;
     transition: background-color 0.3s ease;
-    font-size: 1.8rem; /* Increased font size for the button */
-    border: none; /* Remove default border */
-    cursor: pointer; /* Add cursor pointer */
-    width: 50%; /* Make the button full width */
-    box-sizing: border-box; /* Include padding and border in width */
+    font-size: 1.8rem;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .subscribe-button:hover {
-    background-color: #c40000; /* Darker red on hover */
+    background-color: #c40000;
 }
 
 .follow-button {
-    display: inline-block;
-    padding: 1rem 2rem; /* Increased padding for the button */
     background-color: #00f1f1; /* TikTok-like color */
-    color: #ffffff; /* White text color */
-    border-radius: 5px; /* Rounded corners */
-    text-decoration: none; /* Remove underline */
-    font-size: 1.8rem; /* Font size */
-    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
-    border: 2px solid transparent; /* Transparent border for hover effect */
-    /* Match the subscribe button */
-    width: 50%; /* Make the button full width */
-    box-sizing: border-box; /* Include padding and border in width */
 }
 
 .follow-button:hover {
@@ -2290,6 +2290,55 @@ nav ul {
 
     .footer-section {
         padding: 15px;
+    }
+}
+
+@media (max-width: 576px) {
+    /* Adjust button font size and padding */
+    .btn, .donate-button, .follow-button {
+        font-size: 1.2rem; /* Smaller font size */
+        padding: 0.8rem 1.5rem; /* Reduced padding */
+    }
+
+    /* Adjust header and logo */
+    header {
+        padding: 0.8rem 5%;
+    }
+
+    .logo {
+        font-size: 2rem; /* Smaller logo font size */
+    }
+
+    /* Adjust navigation links */
+    nav a {
+        font-size: 1.2rem; /* Smaller font size for nav links */
+    }
+
+    /* Adjust text elements */
+    .home-content h1 {
+        font-size: 2rem; /* Smaller font size for headings */
+    }
+
+    .home-content p, .channel-item p {
+        font-size: 1.2rem; /* Smaller font size for paragraphs */
+    }
+
+    /* Adjust social icons */
+    .social-icons a {
+        width: 4rem; /* Smaller icon size */
+        height: 4rem;
+        font-size: 1.8rem; /* Smaller font size for icons */
+    }
+
+    /* Adjust grid layout for channels */
+    .channel-list {
+        grid-template-columns: 1fr; /* Single column layout */
+        gap: 20px; /* Reduced gap */
+    }
+
+    /* Adjust footer */
+    .footer-section {
+        padding: 2rem 5%; /* Reduced padding for footer */
     }
 }
 
