@@ -2346,11 +2346,6 @@ nav ul {
     }
 }
 
-.container, .home-content, .channel-list, .contact-form, .about-me-content {
-    width: 100%;
-    max-width: 100%; /* Prevent overflow */
-}
-
 /* Responsive Grid Layout */
 .channel-list {
     display: grid;
