@@ -2031,7 +2031,6 @@ h2 {
     border: none;
     outline: none;
     font-family: 'Poppins', sans-serif;
-    -webkit-user-select: text;
     user-select: text;
 }
 
@@ -2046,7 +2045,6 @@ body {
     background-color: #000000;
     color: #fff;
     font-family: 'Poppins', sans-serif;
-    -webkit-user-select: none;
     user-select: none;
 }
 
@@ -2292,4 +2290,3 @@ nav ul {
         padding: 15px;
     }
 }
-
