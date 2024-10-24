@@ -161,6 +161,21 @@ document.addEventListener('DOMContentLoaded', () => {
   els.forEach(makeCountup);
 });
 
+// assets/js/lang-toggle.js
+function switchLanguage(language) {
+  const elements = document.querySelectorAll('.translatable');
+  
+  elements.forEach(element => {
+      const translation = element.getAttribute(`data-${language}`);
+      if (translation) {
+          element.textContent = translation;
+      }
+  });
+  
+  // Update HTML lang attribute for better SEO
+  document.documentElement.lang = language;
+}
+
 // Initialize functions
 setupNavLinks();
 setupScrollActiveLinks();
