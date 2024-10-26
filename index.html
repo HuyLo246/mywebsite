@@ -233,44 +233,65 @@
     <div class="divider" data-aos="fade-up"></div>
     <section class="donate" id="donate" data-aos="fade-up">
         <h2 data-aos="fade-right">Support My Work</h2>
-        <p data-aos="fade-left">Your contributions help me create more amazing content. Thank you for your support!</p>
+        <p data-aos="fade-left">Your contributions help me create more amazing content. Thank you for your support!</p>   
         <div class="donate-options">
+            <!-- Donation Buttons -->
             <a href="https://www.paypal.com/paypalme/huylo246ytb" class="donate-button" data-aos="zoom-in" data-aos-delay="100">
-                <img src="assets/img/paypal-logo.png" alt="PayPal Logo">
-                Donate via PayPal
+                <img src="assets/img/paypal-logo.png" alt="PayPal Logo"> Donate via PayPal
             </a>
             <a href="https://ko-fi.com/huylo246" class="donate-button" data-aos="zoom-in" data-aos-delay="200">
-                <img src="assets/img/ko-fi-logo.png" alt="Ko-Fi Logo">
-                Donate via Ko-Fi
+                <img src="assets/img/ko-fi-logo.png" alt="Ko-Fi Logo"> Donate via Ko-Fi
             </a>
             <a href="https://buymeacoffee.com/huylo246" class="donate-button" data-aos="zoom-in" data-aos-delay="300">
-                <img src="assets/img/buymeacoffee-logo.png" alt="Buy Me a Coffee Logo">
-                Buy Me a Coffee
+                <img src="assets/img/buymeacoffee-logo.png" alt="Buy Me a Coffee Logo"> Buy Me a Coffee
             </a>
             <a href="#donateform" class="donate-button bitcoin-button" data-aos="zoom-in" data-aos-delay="400">
-                <img src="assets/img/bitcoin-logo.png" alt="Bitcoin Logo">
-                Donate via Bitcoin
+                <img src="assets/img/bitcoin-logo.png" alt="Bitcoin Logo"> Donate via Bitcoin
             </a>
-            <div id="donateform" class="overlay">
-                <div class="popup">
-                    <h2>Bitcoin QR Code</h2>
+        </div>
+        <!-- QR Code Button -->
+        <div class="qr-code-container">
+            <button id="qrToggleBtn" class="qr-toggle-btn" data-aos="fade-up" data-aos-delay="500">
+                Scan QR Code to Donate
+                <i class="fas fa-chevron-down"></i>
+            </button>
+            <div id="qrCodeWrapper" class="qr-code-wrapper">
+                <img src="assets/img/qrbank.jpg" alt="Donation QR Code" id="qrCode" class="qr-code">
+            </div>
+        </div>
+        <!-- Bitcoin Donation Popup -->
+        <div id="donateform" class="overlay">
+            <div class="popup">
+                <h2>Bitcoin QR Code</h2>
+                <div class="content">
+                    <img src="assets/img/bitcoin-qr.jpg" alt="QR Donate Code">
+                    <h2>Bitcoin Address</h2>
+                    <a class="close" href="#">&times;</a>
                     <div class="content">
-                        <img src="assets/img/bitcoin-qr.jpg" alt="QR Donate Code"> <!-- QR Image URL -->
-                        <h2>Bitcoin Address</h2>
-                        <a class="close" href="#">&times;</a>
-                        <div class="content">
-                            <a class="donate-button" data-aos="zoom-in" data-aos-delay="600" onclick="copyToClipboard('3GYJdcwWBBhWPU3cHUDnWgJvpt3W2MWmry')">
-                                <span id="bitcoin-address" class="bitcoin-address">3GYJdcwWBBhWPU3cHUDnWgJvpt3W2MWmry</span> 
-                                <span class="copy-icon">📋</span>
-                            </a>
-                            <p class="caution">
-                                <i class="fa-solid fa-exclamation-triangle"></i>
-                                Only send BTC to this address, sending other currencies or tokens to this address may result in the loss of funds and tokens that cannot be recovered.
-                            </p>
-                        </div>
+                        <a class="donate-button" data-aos="zoom-in" data-aos-delay="600" onclick="copyToClipboard('3GYJdcwWBBhWPU3cHUDnWgJvpt3W2MWmry')">
+                            <span id="bitcoin-address" class="bitcoin-address">3GYJdcwWBBhWPU3cHUDnWgJvpt3W2MWmry</span>
+                            <span class="copy-icon">📋</span>
+                        </a>
+                        <p class="caution">
+                            <i class="fa-solid fa-exclamation-triangle"></i>
+                            Only send BTC to this address. Sending other currencies or tokens may result in the loss of funds.
+                        </p>
                     </div>
                 </div>
             </div>
+        </div>
+        <!-- Bank Information Popup -->
+        <div id="bankInfoPopup" class="bank-info-popup">
+            <div class="bank-info-content">
+                <h3>Bank Transfer Information</h3>
+                <p>Bank Name: Agribank</p>
+                <p>Account Holder: LO DUC HUY</p>
+                <p>Account Number: 3520205200702</p>
+                <h4>Swift Code:</h4>
+                <pre><code>VBAAVNVX</code></pre>
+                <button id="closeBankInfo">Close</button>
+            </div>
+        </div>
     </section>
     <div class="divider" data-aos="fade-up"></div>
     <section class="contact" id="contact" data-aos="fade-up">

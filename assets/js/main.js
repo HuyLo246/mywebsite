@@ -176,6 +176,72 @@ function switchLanguage(language) {
   document.documentElement.lang = language;
 }
 
+// Add this to your existing main.js file
+
+document.addEventListener('DOMContentLoaded', function() {
+  const qrCode = document.getElementById('qrCode');
+  const bankInfoPopup = document.getElementById('bankInfoPopup');
+  const closeBankInfo = document.getElementById('closeBankInfo');
+
+  if (qrCode && bankInfoPopup && closeBankInfo) {
+      qrCode.addEventListener('click', function() {
+          bankInfoPopup.style.display = 'flex';
+          anime({
+              targets: '.bank-info-content',
+              scale: [0.9, 1],
+              opacity: [0, 1],
+              easing: 'easeOutCubic',
+              duration: 300
+          });
+      });
+
+      closeBankInfo.addEventListener('click', function() {
+          anime({
+              targets: '.bank-info-content',
+              scale: [1, 0.9],
+              opacity: [1, 0],
+              easing: 'easeInCubic',
+              duration: 300,
+              complete: function() {
+                  bankInfoPopup.style.display = 'none';
+              }
+          });
+      });
+
+      bankInfoPopup.addEventListener('click', function(e) {
+          if (e.target === bankInfoPopup) {
+              anime({
+                  targets: '.bank-info-content',
+                  scale: [1, 0.9],
+                  opacity: [1, 0],
+                  easing: 'easeInCubic',
+                  duration: 300,
+                  complete: function() {
+                      bankInfoPopup.style.display = 'none';
+                  }
+              });
+          }
+      });
+  }
+});
+
+// Add this to your existing DOMContentLoaded event listener
+document.addEventListener('DOMContentLoaded', function() {
+  const qrToggleBtn = document.getElementById('qrToggleBtn');
+  const qrCodeWrapper = document.getElementById('qrCodeWrapper');
+  const chevronIcon = qrToggleBtn.querySelector('i');
+
+  qrToggleBtn.addEventListener('click', function() {
+      if (qrCodeWrapper.style.maxHeight) {
+          qrCodeWrapper.style.maxHeight = null;
+          chevronIcon.style.transform = 'rotate(0deg)';
+      } else {
+          qrCodeWrapper.style.maxHeight = qrCodeWrapper.scrollHeight + "px";
+          chevronIcon.style.transform = 'rotate(180deg)';
+      }
+  });
+});
+
 // Initialize functions
 setupNavLinks();
 setupScrollActiveLinks();

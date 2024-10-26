@@ -9,6 +9,7 @@
     border: none;
     outline: none;
     font-family: 'Poppins', sans-serif;
+    -webkit-user-select: text;
     user-select: text;
 }
 
@@ -23,6 +24,7 @@ body {
     background-color: #000000;
     color: #fff;
     font-family: 'Poppins', sans-serif;
+    -webkit-user-select: none; 
     user-select: none;
     overflow-x: hidden;
 }
@@ -505,7 +507,8 @@ footer {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 2rem; /* Added margin for spacing */
+    margin-bottom: 2rem;
+    text-align: center; /* Center text */
 }
 
 .social-icons {
@@ -514,6 +517,15 @@ footer {
     align-items: center;
     gap: 1.5rem; /* Increased gap between icons */
     margin-bottom: 2rem;
+}
+
+.footer-section nav ul {
+    display: flex;
+    gap: 2rem; /* Adjust gap for better spacing */
+    list-style: none;
+    padding: 0;
+    flex-wrap: wrap; /* Allow wrapping for smaller screens */
+    justify-content: center; /* Center navigation links */
 }
 
 nav ul {
@@ -1006,15 +1018,15 @@ nav {
 /* Footer Social Icons */
 .footer-section .social-icons {
     display: flex;
-    justify-content: center; /* Center the social icons */
+    justify-content: center;
     align-items: center;
-    gap: 1rem;
-    margin-top: 2rem;
+    gap: 1rem; /* Adjust gap between icons */
+    margin-bottom: 1rem;
 }
 
 .footer-section .social-icons a {
     display: inline-flex;
-    justify-content: center; /* Center the icon within the link */
+    justify-content: center;
     align-items: center;
     width: 4rem;
     height: 4rem;
@@ -1022,7 +1034,6 @@ nav {
     border: 0.2rem solid #9e4bb7;
     font-size: 2rem;
     border-radius: 50%;
-    margin: 0 1rem; /* Adjust spacing as needed */
     transition: 0.3s ease;
     color: #9e4bb7;
 }
@@ -1372,38 +1383,29 @@ section {
     margin-bottom: 1.5rem;
 }
 
-.subscribe-button {
-    display: inline-block;
-    padding: 1rem 2rem; /* Increased padding for the button */
-    background-color: #ff0000; /* Red background color */
-    color: #fff; /* White text color */
+.subscribe-button, .follow-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #ff0000;
+    color: #fff;
     border-radius: 5px;
     text-decoration: none;
     transition: background-color 0.3s ease;
-    font-size: 1.8rem; /* Increased font size for the button */
-    border: none; /* Remove default border */
-    cursor: pointer; /* Add cursor pointer */
-    width: 50%; /* Make the button full width */
-    box-sizing: border-box; /* Include padding and border in width */
+    font-size: 1.8rem;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .subscribe-button:hover {
-    background-color: #c40000; /* Darker red on hover */
+    background-color: #c40000;
 }
 
 .follow-button {
-    display: inline-block;
-    padding: 1rem 2rem; /* Increased padding for the button */
     background-color: #00f1f1; /* TikTok-like color */
-    color: #ffffff; /* White text color */
-    border-radius: 5px; /* Rounded corners */
-    text-decoration: none; /* Remove underline */
-    font-size: 1.8rem; /* Font size */
-    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
-    border: 2px solid transparent; /* Transparent border for hover effect */
-    /* Match the subscribe button */
-    width: 50%; /* Make the button full width */
-    box-sizing: border-box; /* Include padding and border in width */
 }
 
 .follow-button:hover {
@@ -1623,15 +1625,19 @@ section {
 }
 
 .bitcoin-address {
-    background-color: white; /* Set background color to white */
-    padding: 10px; /* Add padding for better spacing */
-    border-radius: 5px; /* Optional: add border radius */
-    display: inline-block; /* Ensure it wraps around the text */
-    margin-right: 10px; /* Add space to the right of the address */
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    display: inline-block;
+    position: relative; /* Ensure relative positioning */
+    width: calc(100% - 40px); /* Adjust width to account for icon */
+    margin-right: 10px;
 }
 
-copy-icon {
-    margin-left: 10px; /* Ensure there's space between the address and the icon */
+.copy-icon {
+    position: absolute;
+    right: 20px; /* Move to the right */
+    cursor: pointer;
 }
 
 @media screen and (max-width: 700px) {
@@ -2031,6 +2037,7 @@ h2 {
     border: none;
     outline: none;
     font-family: 'Poppins', sans-serif;
+    -webkit-user-select: text;
     user-select: text;
 }
 
@@ -2045,6 +2052,7 @@ body {
     background-color: #000000;
     color: #fff;
     font-family: 'Poppins', sans-serif;
+    -webkit-user-select: none;
     user-select: none;
 }
 
@@ -2289,4 +2297,201 @@ nav ul {
     .footer-section {
         padding: 15px;
     }
+}
+
+@media (max-width: 576px) {
+    /* Adjust button font size and padding */
+    .btn, .donate-button, .follow-button {
+        font-size: 1.2rem; /* Smaller font size */
+        padding: 0.8rem 1.5rem; /* Reduced padding */
+    }
+
+    /* Adjust header and logo */
+    header {
+        padding: 0.8rem 5%;
+    }
+
+    .logo {
+        font-size: 2rem; /* Smaller logo font size */
+    }
+
+    /* Adjust navigation links */
+    nav a {
+        font-size: 1.2rem; /* Smaller font size for nav links */
+    }
+
+    /* Adjust text elements */
+    .home-content h1 {
+        font-size: 2rem; /* Smaller font size for headings */
+    }
+
+    .home-content p, .channel-item p {
+        font-size: 1.2rem; /* Smaller font size for paragraphs */
+    }
+
+    /* Adjust social icons */
+    .social-icons a {
+        width: 4rem; /* Smaller icon size */
+        height: 4rem;
+        font-size: 1.8rem; /* Smaller font size for icons */
+    }
+
+    /* Adjust grid layout for channels */
+    .channel-list {
+        grid-template-columns: 1fr; /* Single column layout */
+        gap: 20px; /* Reduced gap */
+    }
+
+    /* Adjust footer */
+    .footer-section {
+        padding: 2rem 5%; /* Reduced padding for footer */
+    }
+}
+
+/* Responsive Grid Layout */
+.channel-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive columns */
+    gap: 20px; /* Adjust as needed */
+}
+
+/* Media Queries for Mobile Responsiveness */
+@media (max-width: 768px) {
+    .home-content h1, .about-me-title {
+        font-size: 2.5rem;
+    }
+    .home-content p, .about-me-text p {
+        font-size: 1.5rem;
+    }
+    .channel-item h3 {
+        font-size: 2rem;
+    }
+    .channel-item p {
+        font-size: 1.5rem;
+    }
+    .subscribe-button, .follow-button, .btn {
+        font-size: 1.5rem;
+    }
+    .contact-form {
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+    .footer-section {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .home-content h1, .about-me-title {
+        font-size: 2.5rem;
+    }
+    .home-content p, .about-me-text p {
+        font-size: 1.5rem;
+    }
+    .channel-item h3 {
+        font-size: 2rem;
+    }
+    .channel-item p {
+        font-size: 1.5rem;
+    }
+    .subscribe-button, .follow-button, .btn {
+        font-size: 1.5rem;
+    }
+    .contact-form {
+        padding: 1rem;
+    }
+    /* Add this line */
+    .channel-list {
+        grid-template-columns: 1fr; /* Single column layout */
+    }
+}
+
+@media (max-width: 992px) {
+    .channel-list {
+        grid-template-columns: repeat(2, 1fr); /* Two columns */
+    }
+}
+
+@media (max-width: 768px) {
+    .channel-list {
+        grid-template-columns: 1fr; /* Single column */
+    }
+}
+
+/* Add these styles to position the menu button on the right */
+@media (max-width: 768px) {
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .menuHamburger {
+        position: absolute;
+        margin-left: 50%; /* Position it 10px from the right edge */
+        top: 50%;
+        transform: translateY(-50%); /* Center vertically */
+        z-index: 1001; /* Ensure it's above other elements */
+    }
+}
+
+@media (max-width: 480px) {
+    .home-content h1 {
+        font-size: 2rem; /* Reduce font size for smaller screens */
+        line-height: 1.2; /* Adjust line height */
+    }
+    .typing-text {
+        font-size: 1.5rem; /* Smaller font size for typing effect */
+        white-space: normal; /* Allow text to wrap */
+    }
+}
+
+/* Responsive Video */
+iframe {
+    width: 100%;
+    height: auto;
+}
+
+/* Media Queries for mobile screens */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .nav-items {
+        display: block;
+        padding: 10px;
+    }
+
+    .sidebarMenu {
+        width: 80%;
+    }
+}
+
+/* Language Toggle Styling */
+.lang-toggle {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 1000;
+}
+
+.lang-toggle button {
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+    border: none;
+    background-color: #333;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.lang-toggle button:hover {
+    background-color: #555;
 }
