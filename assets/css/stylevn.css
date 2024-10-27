@@ -1,6 +1,14 @@
 /* General Styles */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
 
+:root {
+    --primary-color: #FF6B00;
+    --secondary-color: #ff6b6b;
+    --background-color: #000000;
+    --text-color: #ffffff;
+    --header-bg: #1a1a1a;
+  }
+
 * {
     margin: 0;
     padding: 0;
@@ -44,24 +52,9 @@ header {
     font-size: calc(1rem + 0.5vw);
 }
 
-/* Header Rescaling */
-@media (max-width: 768px) {
-    header {
-        font-size: calc(1rem + 1vw); /* Increase font size on smaller screens */
-    }
-
-    .logo {
-        font-size: 2.5rem; /* Adjust logo font size */
-    }
-
-    nav a {
-        font-size: 1.5rem; /* Adjust navigation link font size */
-    }
-}
-
 .logo {
     font-size: 3rem;
-    color: #9e4bb7;
+    color: #FF6B00;
     font-weight: 800;
     cursor: pointer;
     transition: color 0.3s ease, transform 0.3s ease; /* Added transition for hover effect */
@@ -85,12 +78,12 @@ nav a {
 }
 
 nav a.active {
-    color: #9e4bb7;
+    color: #FF6B00;
 }
 
 .more-btn {
     display: none;
-    background-color: #9e4bb7;
+    background-color: #FF6B00;
     padding: 1rem 1.5rem;
     border-radius: 5px;
     color: #fff;
@@ -148,17 +141,17 @@ nav a.active {
 }
 
 .home-background {
-    position: absolute; /* Position the image absolutely */
-    top: 0; /* Place it at the top */
-    left: 0; /* Place it at the left */
-    width: 100%; /* Make it full width */
-    height: 100%; /* Make it full height */
-    object-fit: cover; /* Ensure the image covers the entire area */
-    z-index: -1; /* Place it behind the content */
-    opacity: 0.5; /* Adjust opacity to make it darker */
-    background-size: cover; /* Cover the whole section with the background image */
-    background-position: center; /* Center the image */
-    background-repeat: no-repeat; /* Prevent image repetition */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../img/background2.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.5;
+    z-index: -1;
 }
 
 /* Add this new class for the dark overlay */
@@ -176,7 +169,7 @@ nav a.active {
 .btn {
     display: inline-block;
     padding: 1rem 2rem;
-    background-color: #9e4bb7;
+    background-color: #FF6B00;
     color: #fff; /* Changed text color to white */
     font-size: 1.8rem;
     border-radius: 0.5rem;
@@ -205,25 +198,25 @@ nav a.active {
     width: 5rem; /* Increased width */
     height: 5rem; /* Increased height */
     background-color: transparent;
-    border: 0.3rem solid #9e4bb7; /* Increased border thickness */
+    border: 0.3rem solid #FF6B00; /* Increased border thickness */
     font-size: 2.5rem; /* Increased font size */
     border-radius: 50%;
     margin: 0 1rem; /* Adjust spacing as needed */
     transition: 0.3s ease;
-    color: #9e4bb7;
+    color: #FF6B00;
 }
 
 .social-icons a:hover {
     color: black;
     transform: scale(1.3);
-    background-color: #9e4bb7;
+    background-color: #FF6B00;
 }
 
 /* Divider Styles */
 .divider {
     width: 100%;
     height: 5px; /* Increased height */
-    background-color: #9e4bb7;
+    background-color: #FF6B00;
     margin: 0rem 0;
 }
 
@@ -251,7 +244,7 @@ nav a.active {
 .about-me-title {
     font-size: 4rem;
     margin-bottom: 1rem;
-    color: #9e4bb7;
+    color: #FF6B00;
 }
 
 .about-me-info {
@@ -294,11 +287,11 @@ nav a.active {
     border-radius: 50%;
     cursor: pointer;
     transition: 0.2s linear;
-    filter: drop-shadow(0 0 10px #9e4bb7);
+    filter: drop-shadow(0 0 10px #FF6B00);
 }
 
 .about-me-image img:hover {
-    filter: drop-shadow(0 0 20px #9e4bb7);
+    filter: drop-shadow(0 0 20px #FF6B00);
 }
 
 /* Skills and Interests Styles */
@@ -325,7 +318,7 @@ nav a.active {
 }
 
 .skills li, .interests li {
-    background-color: #9e4bb7;
+    background-color: #FF6B00;
     color: #fff;
     padding: 0.8rem 1.5rem;
     border-radius: 5px;
@@ -348,7 +341,7 @@ nav a.active {
 .videos h2 {
     font-size: 4rem;
     margin-bottom: 2rem;
-    color: #9e4bb7;
+    color: #FF6B00;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add text shadow for depth */
 }
 
@@ -385,7 +378,7 @@ nav a.active {
 .stat-item span {
     font-size: 3rem;
     font-weight: 700;
-    color: #9e4bb7;
+    color: #FF6B00;
 }
 
 .stat-item p {
@@ -471,7 +464,7 @@ nav a.active {
 }
 
 .video-toggle .video-item.active {
-    background-color: #9e4bb7; /* Change background color on active state */
+    background-color: #FF6B00; /* Change background color on active state */
     color: #fff; /* Change text color on active state */
     border: 2px solid #fff; /* Change border color on active state */
 }
@@ -543,7 +536,7 @@ nav ul {
 }
 
 .secret-link {
-    color: #9e4bb71a;
+    color: #FF6B001a;
     font-size: 1rem;
     position: absolute; /* Position it absolutely */
     bottom: 1.5rem; /* Adjust as needed */
@@ -553,7 +546,7 @@ nav ul {
 }
 
 .secret-link:hover {
-    color: #9e4bb7;
+    color: #FF6B00;
     text-decoration: underline;
     opacity: 1; /* Make it fully visible on hover */
 }
@@ -573,7 +566,7 @@ nav ul {
 .donate h2 {
     font-size: 4rem;
     margin-bottom: 2rem;
-    color: #9e4bb7;
+    color: #FF6B00;
 }
 
 .donate p {
@@ -591,7 +584,7 @@ nav ul {
 .donate-button {
     display: inline-block;
     padding: 1rem 2rem;
-    background-color: #9e4bb7;
+    background-color: #FF6B00;
     color: black;
     font-size: 1.8rem;
     border-radius: 0.5rem;
@@ -607,7 +600,7 @@ nav ul {
 .donate-options .donate-button {
     display: inline-block;
     padding: 1rem 2rem;
-    background-color: #9e4bb7; /* Default button color */
+    background-color: #FF6B00; /* Default button color */
     color: black;
     font-size: 1.8rem;
     border-radius: 0.5rem;
@@ -650,10 +643,10 @@ nav ul {
 }
 
 .donate-button.bitcoin-button:hover {
-    background-color: #9e4bb7; /* Darker shade on hover */
+    background-color: #FF6B00; /* Darker shade on hover */
 }
 nav a:hover {
-    color: #9e4bb7;
+    color: #FF6B00;
 }
 
 .donate-options .donate-button img {
@@ -677,7 +670,7 @@ nav a:hover {
 .contact h2 {
     font-size: 4rem;
     margin-bottom: 2rem;
-    color: #9e4bb7;
+    color: #FF6B00;
     text-align: center;
 }
 
@@ -704,7 +697,7 @@ nav a:hover {
 .contact-form input,
 .contact-form textarea {
     padding: 1.2rem;
-    border: 2px solid #9e4bb7;
+    border: 2px solid #FF6B00;
     border-radius: 8px;
     font-size: 1.6rem;
     color: #fff;
@@ -733,7 +726,7 @@ nav a:hover {
 
 .contact-form button {
     padding: 1.2rem 2rem;
-    background-color: #9e4bb7;
+    background-color: #FF6B00;
     color: #fff;
     font-size: 1.8rem;
     border-radius: 8px;
@@ -754,129 +747,6 @@ nav a:hover {
     transform: translateY(0);
 }
 
-/* Media Query for Smaller Screens */
-@media (max-width: 768px) {
-    .contact h2 {
-        font-size: 3rem;
-    }
-
-    .contact-form {
-        padding: 2rem;
-    }
-
-    .contact-form input,
-    .contact-form textarea,
-    .contact-form button {
-        font-size: 1.6rem;
-    }
-}
-
-/* Media Query for Smaller Screens */
-@media (max-width: 768px) {
-    .nav-items {
-        display: none; /* Hide navigation items by default */
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background-color: #000000;
-        padding: 20px;
-        z-index: 100;
-    }
-
-    .nav-items a {
-        display: block;
-        padding: 10px 0;
-        text-align: center;
-    }
-
-    .menu-btn {
-        display: block; /* Show the menu button */
-        position: relative;
-        top: 10px;
-        right: 10px;
-        padding: 10px;
-        background-color: transparent;
-        border: none;
-        cursor: pointer;
-        /* Add these styles for a better-looking menu button */
-        color: #ffffff; /* White color for the icon */
-        font-size: 2rem; /* Larger icon size */
-        transition: transform 0.3s ease; /* Smooth transition for hover effect */
-    }
-    
-    .menu-btn:hover {
-        transform: scale(1.1); /* Slightly enlarge the icon on hover */
-    }
-    
-    .menu-btn.active .bi-list {
-        display: none;
-    }
-    
-    .menu-btn.active .bi-x {
-        display: block;
-    }
-    
-    .nav-items.active {
-        display: block; /* Show navigation items when menu button is clicked */
-    }
-
-    /* Hide the default navigation items on smaller screens */
-    .nav-items {
-        display: none;
-    }
-
-    /* Show the "More" button */
-    .more-btn {
-        display: block;
-    }
-
-    /* Style for the "More" button dropdown */
-    .more-btn.active {
-        /* Add styles for the active state of the "More" button */
-        background-color: #7a3e9e; /* Change background color */
-        color: #ffffff; /* Change text color */
-    }
-
-    .more-btn.active .nav-items {
-        display: block;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background-color: #1e1e1e;
-        padding: 10px 0;
-        border-radius: 5px;
-        z-index: 101;
-    }
-
-    .more-btn.active .nav-items a {
-        display: block;
-        padding: 10px 20px;
-        text-align: center;
-        color: #fff;
-    }
-
-    .more-btn.active .nav-items a:hover {
-        background-color: #9e4bb7;
-    }
-}
-
-/* Fix for the "More" button not being visible */
-@media (max-width: 768px) {
-    .more-btn {
-        display: block; /* Show the "More" button on smaller screens */
-    }
-}
-
-/* Renamed "more-btn" to "menu-btn" to match the HTML */
-@media (max-width: 768px) {
-    .menu-btn {
-        display: block; /* Show the "More" button on smaller screens */
-        margin-left: auto; /* Push the menu button to the right */
-        margin-top: -13px;
-    }
-}
 
 .container {
     display: inline-block;
@@ -894,7 +764,7 @@ nav a:hover {
 
 .change .bar1 {
     transform: translate(0, 11px) rotate(-45deg);
-    background-color: #9e4bb7;
+    background-color: #FF6B00;
 }
 
 .change .bar2 {
@@ -903,14 +773,7 @@ nav a:hover {
 
 .change .bar3 {
     transform: translate(0, -11px) rotate(45deg);
-    background-color: #9e4bb7;
-}
-
-/* Hide the menu button on larger screens */
-@media (min-width: 769px) {
-    .menu-btn {
-        display: none;
-    }
+    background-color: #FF6B00;
 }
 
 /* Center the menu button in the header */
@@ -950,7 +813,7 @@ nav {
 .home-content h1 {
     font-size: 5rem; /* Adjust the font size as needed */
     margin-bottom: 1rem;
-    color: #9e4bb7;
+    color: #FF6B00;
 }
 
 .home-content p {
@@ -962,7 +825,7 @@ nav {
 .home-content .btn {
     display: inline-block;
     padding: 1rem 2rem;
-    background-color: #9e4bb7;
+    background-color: #FF6B00;
     color: black;
     font-size: 1.8rem;
     border-radius: 0.5rem;
@@ -985,7 +848,7 @@ nav {
 }
 
 .home-content .social-icons a {
-    color: #9e4bb7;
+    color: #FF6B00;
     font-size: 2rem;
     transition: color 0.4s ease;
     animation: fade-in 2s ease-in-out;
@@ -1007,14 +870,6 @@ nav {
     color: #000000;
 }
 
-@media (max-width: 768px) {
-    .home-content h1 {
-        font-size: 2.5rem; /* Adjust the font size as needed */
-        margin-bottom: 2rem;
-        color: #9e4bb7;
-    }
-}
-
 /* Footer Social Icons */
 .footer-section .social-icons {
     display: flex;
@@ -1031,17 +886,17 @@ nav {
     width: 4rem;
     height: 4rem;
     background-color: transparent;
-    border: 0.2rem solid #9e4bb7;
+    border: 0.2rem solid #FF6B00;
     font-size: 2rem;
     border-radius: 50%;
     transition: 0.3s ease;
-    color: #9e4bb7;
+    color: #FF6B00;
 }
 
 .footer-section .social-icons a:hover {
     color: black;
     transform: scale(1.3);
-    background-color: #9e4bb7;
+    background-color: #FF6B00;
 }
 
 .wrapper {
@@ -1096,7 +951,7 @@ nav {
 }
 
 .skills li, .interests li {
-    background-color: #9e4bb7;
+    background-color: #FF6B00;
     color: #fff;
     padding: 0.8rem 1.5rem;
     border-radius: 5px;
@@ -1138,7 +993,7 @@ section {
 .home-content h1 {
     font-size: 5rem; /* Adjust the font size as needed */
     margin-bottom: 1rem;
-    color: #9e4bb7;
+    color: #FF6B00;
 }
 
 .home-content p {
@@ -1150,7 +1005,7 @@ section {
 .home-content .btn {
     display: inline-block;
     padding: 1rem 2rem;
-    background-color: #9e4bb7;
+    background-color: #FF6B00;
     color: black;
     font-size: 1.8rem;
     border-radius: 0.5rem;
@@ -1173,7 +1028,7 @@ section {
 }
 
 .home-content .social-icons a {
-    color: #9e4bb7;
+    color: #FF6B00;
     font-size: 2rem;
     transition: color 0.4s ease;
     animation: fade-in 2s ease-in-out;
@@ -1195,14 +1050,6 @@ section {
     color: #000000;
 }
 
-@media (max-width: 768px) {
-    .home-content h1 {
-        font-size: 2.5rem; /* Adjust the font size as needed */
-        margin-bottom: 2rem;
-        color: #9e4bb7;
-    }
-}
-
 /* Footer Social Icons */
 .footer-section .social-icons {
     display: flex;
@@ -1219,18 +1066,18 @@ section {
     width: 4rem;
     height: 4rem;
     background-color: transparent;
-    border: 0.2rem solid #9e4bb7;
+    border: 0.2rem solid #FF6B00;
     font-size: 2rem;
     border-radius: 50%;
     margin: 0 1rem; /* Adjust spacing as needed */
     transition: 0.3s ease;
-    color: #9e4bb7;
+    color: #FF6B00;
 }
 
 .footer-section .social-icons a:hover {
     color: black;
     transform: scale(1.3);
-    background-color: #9e4bb7;
+    background-color: #FF6B00;
 }
 
 
@@ -1286,7 +1133,7 @@ section {
 }
 
 .skills li, .interests li {
-    background-color: #9e4bb7;
+    background-color: #FF6B00;
     color: #fff;
     padding: 0.8rem 1.5rem;
     border-radius: 5px;
@@ -1328,7 +1175,7 @@ section {
 .channels h2 {
     font-size: 4rem;
     margin-bottom: 2rem;
-    color: #9e4bb7;
+    color: #FF6B00;
 }
 
 .channel-list {
@@ -1444,98 +1291,11 @@ section {
 .linktree-button img {
     width: 93px; /* Set image width */
     height: 29px; /* Set image height */
-    border: 2px solid #9e4bb7; /* Add border with desired color */
+    border: 2px solid #FF6B00; /* Add border with desired color */
     border-radius: 10px; /* Optional: rounded corners for the border */
 }
 .linktree-button:hover {
-    border: 2px solid #9e4bb7; /* Add border with desired color */
-}
-
-@media (max-width: 768px) {
-    .home-content h1 {
-        font-size: 2.5rem; /* Adjust the font size as needed */
-        margin-bottom: 2rem;
-        color: #9e4bb7;
-    }
-    .home-content p {
-        font-size: 1.5rem; /* Adjust the font size as needed */
-        line-height: 1.6;
-        margin-bottom: 2rem;
-    }
-    .home-content .btn {
-        font-size: 1.5rem; /* Adjust the font size as needed */
-    }
-    .channel-item h3 {
-        font-size: 2rem; /* Increased font size for channel title */
-        margin-bottom: 1rem;
-        color: #ffffff;
-    }
-    .channel-item p {
-        font-size: 1.5rem; /* Increased font size for channel description */
-        line-height: 1.5;
-        margin-bottom: 1.5rem;
-    }
-    .subscribe-button {
-        font-size: 1.5rem; /* Increased font size for the button */
-    }
-    .follow-button {
-        font-size: 1.5rem; /* Font size */
-    }
-    .typing-animation {
-        font-size: 2rem; /* Adjust font size as needed */
-    }
-    .channel-list {
-        grid-template-columns: repeat(2, 1fr); /* 2 columns */
-        grid-template-rows: repeat(auto-fit, minmax(250px, 1fr)); /* Adjust as needed */
-    }
-    .channel-item {
-        width: 100%; /* Make channel items full width */
-    }
-    .donate-options {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 1rem;
-    }
-    .donate-button {
-        width: 100%; /* Make donate buttons full width */
-    }
-    .contact-form {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 1rem;
-    }
-    .contact-form input,
-    .contact-form textarea {
-        width: 100%; /* Make form inputs full width */
-    }
-    .contact-form button {
-        width: 100%; /* Make form button full width */
-    }
-    /* Additional styles for smaller screens */
-    .channel-item p {
-        word-wrap: break-word; /* Allow text to wrap */
-    }
-    .donate-button img {
-        width: 20px; /* Reduce logo size */
-        height: auto;
-    }
-    .linktree-button img {
-        width: 50px; /* Reduce logo size */
-        height: auto;
-    }
-    .about-me-title {
-        font-size: 3rem; /* Adjusted font size for mobile */
-    }
-
-    .about-me-text h3 {
-        font-size: 2.5rem; /* Adjusted font size for mobile */
-    }
-
-    .about-me-text p {
-        font-size: 1.5rem; /* Adjusted font size for mobile */
-    }
+    border: 2px solid #FF6B00; /* Add border with desired color */
 }
 
 .overlay {
@@ -1569,7 +1329,7 @@ section {
 }
 
 .popup h2 {
-    color: #9e4bb7; /* Match the website's color scheme */
+    color: #FF6B00; /* Match the website's color scheme */
     font-family: Tahoma, Arial, sans-serif;
     text-align: center; /* Center the title */
 }
@@ -1586,7 +1346,7 @@ section {
 }
 
 .popup .close:hover {
-    color: #9e4bb7;
+    color: #FF6B00;
 }
 
 .popup .content {
@@ -1640,14 +1400,6 @@ section {
     cursor: pointer;
 }
 
-@media screen and (max-width: 700px) {
-    .box {
-        width: 70%;
-    }
-    .popup {
-        width: 70%;
-    }
-}
 .menuHamburger {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 2rem;
@@ -1688,7 +1440,7 @@ section {
     height: 80px;
     border-radius: 50%;
     margin-bottom: 10px;
-    border: 2px solid #9e4bb7;
+    border: 2px solid #FF6B00;
 }
 
 .sidebar-header h3 {
@@ -1724,7 +1476,7 @@ section {
     width: 24px; /* Increased width */
     text-align: center;
     font-size: 20px; /* Increased font size */
-    color: #9e4bb7;
+    color: #FF6B00;
 }
 
 .sidebarMenu {
@@ -1747,12 +1499,12 @@ section {
     width: 20px;
     text-align: center;
     font-size: 18px;
-    color: #9e4bb7;
+    color: #FF6B00;
 }
 
 .sidebarMenu a:hover {
     background-color: #2a2a2a;
-    color: #9e4bb7;
+    color: #FF6B00;
 }
 
 .sidebarMenu .close {
@@ -1766,7 +1518,7 @@ section {
 }
 
 .sidebarMenu .close:hover {
-    color: #9e4bb7;
+    color: #FF6B00;
 }
 
 .sidebar-social {
@@ -1774,7 +1526,7 @@ section {
     justify-content: center;
     padding: 15px 0;
     border-top: 1px solid #333;
-    background-color: #9e4bb700;
+    background-color: #FF6B0000;
 }
 
 .sidebar-social a {
@@ -1791,7 +1543,7 @@ section {
 
 .sidebar-social a:hover {
     color: #fff;
-    background-color: #9e4bb700;
+    background-color: #FF6B0000;
     transform: scale(1.1);
 }
 
@@ -1845,12 +1597,12 @@ section {
 
 .sidebar-other .linktree-button i {
     margin-right: 10px;
-    color: #9e4bb7;
+    color: #FF6B00;
 }
 
 .sidebar-other .linktree-button:hover {
     background-color: #3a3a3a;
-    color: #9e4bb7;
+    color: #FF6B00;
 }
 
 /* Adjust the sidebar-nav to leave space for the new section */
@@ -1893,168 +1645,6 @@ h2 {
     font-size: 2rem; /* Base size */
 }
 
-/* Media Queries for Responsive Design */
-@media (max-width: 768px) {
-    body {
-        font-size: 14px; /* Adjust base font size for smaller screens */
-    }
-
-    h1 {
-        font-size: 2rem; /* Smaller font size for mobile */
-    }
-
-    h2 {
-        font-size: 1.5rem; /* Smaller font size for mobile */
-    }
-
-    .contact-form {
-        padding: 1rem; /* Reduce padding for smaller screens */
-    }
-
-    /* Adjust other elements for smaller screens */
-    .home-content h1 {
-        font-size: 2.5rem; /* Adjust the font size as needed */
-    }
-
-    .home-content p {
-        font-size: 1.5rem; /* Adjust the font size as needed */
-    }
-
-    .channel-item h3 {
-        font-size: 2rem; /* Increased font size for channel title */
-    }
-
-    .channel-item p {
-        font-size: 1.5rem; /* Increased font size for channel description */
-    }
-
-    .subscribe-button,
-    .follow-button {
-        font-size: 1.5rem; /* Increased font size for the button */
-    }
-
-    .typing-animation {
-        font-size: 2rem; /* Adjust font size as needed */
-    }
-
-    .channel-list {
-        grid-template-columns: repeat(2, 1fr); /* 2 columns */
-        grid-template-rows: repeat(auto-fit, minmax(250px, 1fr)); /* Adjust as needed */
-    }
-
-    .channel-item {
-        width: 100%; /* Make channel items full width */
-    }
-
-    .donate-button {
-        width: 100%; /* Make donate buttons full width */
-    }
-
-    .contact-form {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 1rem;
-    }
-
-    .contact-form input,
-    .contact-form textarea {
-        width: 100%; /* Make form inputs full width */
-    }
-
-    .contact-form button {
-        width: 100%; /* Make form button full width */
-    }
-}
-
-/* Additional Media Queries */
-@media (max-width: 480px) {
-    h1 {
-        font-size: 1.5rem; /* Further reduce font size for very small screens */
-    }
-}
-
-/* Media Queries for Mobile Responsiveness */
-@media (max-width: 768px) {
-    body {
-        font-size: 14px; /* Base font size for smaller screens */
-    }
-
-    h1 {
-        font-size: 2rem; /* Smaller font size for mobile */
-    }
-
-    h2 {
-        font-size: 1.5rem; /* Smaller font size for mobile */
-    }
-
-    .container {
-        padding: 10px; /* Reduce padding for smaller screens */
-    }
-
-    .channel-list {
-        grid-template-columns: repeat(2, 1fr); /* 2 columns on smaller screens */
-    }
-
-    .contact-form input,
-    .contact-form textarea {
-        width: 100%; /* Full width for form elements */
-        padding: 10px; /* Padding for form elements */
-    }
-
-    .donate-options {
-        width: 100%; /* Full width for donate options */
-    }
-
-    .footer-section {
-        padding: 15px; /* Reduce footer padding */
-    }
-
-    .popup {
-        width: 90%; /* Full width on mobile */
-        padding: 20px; /* Reduce padding */
-    }
-}
-
-@media (max-width: 480px) {
-    h1 {
-        font-size: 1.5rem; /* Further reduce font size */
-    }
-
-    .popup {
-        padding: 15px; /* Further reduce popup padding */
-    }
-}
-
-/* General Styles */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    text-decoration: none;
-    border: none;
-    outline: none;
-    font-family: 'Poppins', sans-serif;
-    -webkit-user-select: text;
-    user-select: text;
-}
-
-html {
-    font-size: 62.5%;
-}
-
-body {
-    width: 100%;
-    height: 100vh;
-    overflow-x: hidden;
-    background-color: #000000;
-    color: #fff;
-    font-family: 'Poppins', sans-serif;
-    -webkit-user-select: none;
-    user-select: none;
-}
 
 /* Header Styles */
 header {
@@ -2073,7 +1663,7 @@ header {
 
 .logo {
     font-size: 3rem;
-    color: #9e4bb7;
+    color: #FF6B00;
     font-weight: 800;
     cursor: pointer;
     transition: color 0.3s ease, transform 0.3s ease;
@@ -2097,7 +1687,7 @@ nav a {
 }
 
 nav a.active {
-    color: #9e4bb7;
+    color: #FF6B00;
 }
 
 /* Home Page Styles */
@@ -2163,7 +1753,7 @@ nav a.active {
 .btn {
     display: inline-block;
     padding: 1rem 2rem;
-    background-color: #9e4bb7;
+    background-color: #FF6B00;
     color: #fff;
     font-size: 1.8rem;
     border-radius: 0.5rem;
@@ -2192,18 +1782,18 @@ nav a.active {
     width: 5rem;
     height: 5rem;
     background-color: transparent;
-    border: 0.3rem solid #9e4bb7;
+    border: 0.3rem solid #FF6B00;
     font-size: 2.5rem;
     border-radius: 50%;
     margin: 0 1rem;
     transition: 0.3s ease;
-    color: #9e4bb7;
+    color: #FF6B00;
 }
 
 .social-icons a:hover {
     color: black;
     transform: scale(1.3);
-    background-color: #9e4bb7;
+    background-color: #FF6B00;
 }
 
 /* Footer Styles */
@@ -2238,115 +1828,7 @@ nav ul {
     padding: 0;
 }
 
-/* Mobile and Responsive Adjustments */
-@media (max-width: 768px) {
-    header {
-        font-size: calc(1rem + 1vw);
-    }
 
-    .logo {
-        font-size: 2.5rem;
-    }
-
-    nav a {
-        font-size: 1.5rem;
-    }
-
-    .home-content h1 {
-        font-size: 2.5rem;
-        margin-bottom: 2rem;
-    }
-
-    .home-content p {
-        font-size: 1.5rem;
-    }
-
-    .btn {
-        font-size: 1.5rem;
-    }
-
-    .social-icons a {
-        font-size: 2rem;
-    }
-
-    .channel-list {
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(auto-fit, minmax(250px, 1fr));
-    }
-
-    .channel-item {
-        width: 100%;
-    }
-
-    .donate-button,
-    .follow-button {
-        font-size: 1.5rem;
-    }
-}
-
-/* Very Small Screen Adjustments */
-@media (max-width: 480px) {
-    h1 {
-        font-size: 1.5rem;
-    }
-
-    .popup {
-        padding: 15px;
-    }
-
-    .footer-section {
-        padding: 15px;
-    }
-}
-
-@media (max-width: 576px) {
-    /* Adjust button font size and padding */
-    .btn, .donate-button, .follow-button {
-        font-size: 1.2rem; /* Smaller font size */
-        padding: 0.8rem 1.5rem; /* Reduced padding */
-    }
-
-    /* Adjust header and logo */
-    header {
-        padding: 0.8rem 5%;
-    }
-
-    .logo {
-        font-size: 2rem; /* Smaller logo font size */
-    }
-
-    /* Adjust navigation links */
-    nav a {
-        font-size: 1.2rem; /* Smaller font size for nav links */
-    }
-
-    /* Adjust text elements */
-    .home-content h1 {
-        font-size: 2rem; /* Smaller font size for headings */
-    }
-
-    .home-content p, .channel-item p {
-        font-size: 1.2rem; /* Smaller font size for paragraphs */
-    }
-
-    /* Adjust social icons */
-    .social-icons a {
-        width: 4rem; /* Smaller icon size */
-        height: 4rem;
-        font-size: 1.8rem; /* Smaller font size for icons */
-    }
-
-    /* Adjust grid layout for channels */
-    .channel-list {
-        grid-template-columns: 1fr; /* Single column layout */
-        gap: 20px; /* Reduced gap */
-    }
-
-    /* Adjust footer */
-    .footer-section {
-        padding: 2rem 5%; /* Reduced padding for footer */
-    }
-}
 
 /* Responsive Grid Layout */
 .channel-list {
@@ -2355,123 +1837,11 @@ nav ul {
     gap: 20px; /* Adjust as needed */
 }
 
-/* Media Queries for Mobile Responsiveness */
-@media (max-width: 768px) {
-    .home-content h1, .about-me-title {
-        font-size: 2.5rem;
-    }
-    .home-content p, .about-me-text p {
-        font-size: 1.5rem;
-    }
-    .channel-item h3 {
-        font-size: 2rem;
-    }
-    .channel-item p {
-        font-size: 1.5rem;
-    }
-    .subscribe-button, .follow-button, .btn {
-        font-size: 1.5rem;
-    }
-    .contact-form {
-        padding: 1rem;
-    }
-}
-
-@media (max-width: 480px) {
-    h1 {
-        font-size: 1.5rem;
-    }
-    .footer-section {
-        padding: 15px;
-    }
-}
-
-@media (max-width: 768px) {
-    .home-content h1, .about-me-title {
-        font-size: 2.5rem;
-    }
-    .home-content p, .about-me-text p {
-        font-size: 1.5rem;
-    }
-    .channel-item h3 {
-        font-size: 2rem;
-    }
-    .channel-item p {
-        font-size: 1.5rem;
-    }
-    .subscribe-button, .follow-button, .btn {
-        font-size: 1.5rem;
-    }
-    .contact-form {
-        padding: 1rem;
-    }
-    /* Add this line */
-    .channel-list {
-        grid-template-columns: 1fr; /* Single column layout */
-    }
-}
-
-@media (max-width: 992px) {
-    .channel-list {
-        grid-template-columns: repeat(2, 1fr); /* Two columns */
-    }
-}
-
-@media (max-width: 768px) {
-    .channel-list {
-        grid-template-columns: 1fr; /* Single column */
-    }
-}
-
-/* Add these styles to position the menu button on the right */
-@media (max-width: 768px) {
-    header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .menuHamburger {
-        position: absolute;
-        margin-left: 50%; /* Position it 10px from the right edge */
-        top: 50%;
-        transform: translateY(-50%); /* Center vertically */
-        z-index: 1001; /* Ensure it's above other elements */
-    }
-}
-
-@media (max-width: 480px) {
-    .home-content h1 {
-        font-size: 2rem; /* Reduce font size for smaller screens */
-        line-height: 1.2; /* Adjust line height */
-    }
-    .typing-text {
-        font-size: 1.5rem; /* Smaller font size for typing effect */
-        white-space: normal; /* Allow text to wrap */
-    }
-}
 
 /* Responsive Video */
 iframe {
     width: 100%;
     height: auto;
-}
-
-/* Media Queries for mobile screens */
-@media (max-width: 768px) {
-    header {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .nav-items {
-        display: block;
-        padding: 10px;
-    }
-
-    .sidebarMenu {
-        width: 80%;
-    }
 }
 
 /* Language Toggle Styling */
@@ -2494,4 +1864,352 @@ iframe {
 
 .lang-toggle button:hover {
     background-color: #555;
+}
+
+/* QR Code Styles */
+.qr-code-container {
+    margin: 2rem 0;
+    text-align: center;
+}
+
+.qr-toggle-btn {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background-color: #FF6B00;
+    color: #fff;
+    font-size: 1.8rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin: 0 1rem;
+    text-decoration: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+}
+
+.qr-toggle-btn:hover {
+    background-color: #7a3e9e;
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.qr-toggle-btn i {
+    margin-left: 10px;
+    transition: transform 0.3s ease;
+}
+
+.qr-code-wrapper {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+}
+
+.qr-code {
+    width: 200px;
+    height: 200px;
+    margin-top: 20px;
+}
+
+ .qr-code {
+     width: 200px;
+     height: 200px;
+     margin-top: 20px;
+     border: 5px solid #FF6B00; /* Added border to the QR code */
+     border-radius: 10px; /* Optional: rounded corners for the border */
+     transition: transform 0.3s ease; /* Added transition for hover effect */
+ }
+ 
+ .qr-code:hover {
+     transform: scale(1.05); /* Slightly enlarge the QR code on hover */
+ }
+
+/* Bank Information Popup Styles */
+.bank-info-popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.bank-info-content {
+    background-color: #1e1e1e;
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: left;
+    max-width: 80%;
+}
+
+.bank-info-content h3 {
+    color: #FF6B00;
+    margin-bottom: 1rem;
+}
+
+.bank-info-content p {
+    margin-bottom: 0.5rem;
+}
+
+.bank-info-content button {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: #FF6B00;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.bank-info-content button:hover {
+    background-color: #7a3e9e;
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+    .channel-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    html {
+        font-size: 55%;
+    }
+
+    header {
+        padding: 1rem 5%;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .logo {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+
+    nav {
+        margin-top: 1rem;
+    }
+
+    nav a {
+        font-size: 1.5rem;
+        margin-left: 1.5rem;
+    }
+
+    .menuHamburger {
+        display: block;
+        position: absolute;
+        top: 1.5rem;
+        right: 2rem;
+        font-size: 2.5rem;
+        cursor: pointer;
+        z-index: 1001;
+    }
+
+    .nav-items {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #1e1e1e;
+        padding: 1rem 0;
+        text-align: center;
+    }
+
+    .nav-items.active {
+        display: block;
+    }
+
+    .nav-items a {
+        display: block;
+        padding: 1rem 0;
+    }
+
+    .home-content,
+    .about-me-content,
+    .videos,
+    .donate,
+    .contact {
+        padding: 3rem 10%;
+    }
+
+    .home-content h1,
+    .about-me-title,
+    .videos h2,
+    .donate h2,
+    .contact h2 {
+        font-size: 3rem;
+    }
+
+    .home-content p,
+    .about-me-text p,
+    .videos p,
+    .donate p {
+        font-size: 1.6rem;
+    }
+
+    .btn,
+    .donate-button,
+    .follow-button,
+    .contact-form button {
+        font-size: 1.6rem;
+        padding: 0.8rem 1.5rem;
+    }
+
+    .social-icons a {
+        width: 4rem;
+        height: 4rem;
+        font-size: 2rem;
+    }
+
+    .about-me-image {
+        width: 250px;
+        height: 250px;
+    }
+
+    .channel-list {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .stat-item span {
+        font-size: 2.5rem;
+    }
+
+    .stat-item p {
+        font-size: 1.4rem;
+    }
+
+    .video {
+        width: 90vw;
+        height: 50vw;
+    }
+
+    .contact-form {
+        padding: 2rem;
+    }
+
+    .sidebarMenu {
+        width: 80%;
+    }
+
+    .qr-code {
+        width: 150px;
+        height: 150px;
+    }
+
+    .qr-toggle-btn {
+        width: 100%;
+        margin: 1rem 0;
+    }
+
+    .bank-info-content {
+        max-width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    html {
+        font-size: 50%;
+    }
+
+    .home-content h1,
+    .about-me-title,
+    .videos h2,
+    .donate h2,
+    .contact h2 {
+        font-size: 2.5rem;
+    }
+
+    .home-content p,
+    .about-me-text p,
+    .videos p,
+    .donate p {
+        font-size: 1.4rem;
+    }
+
+    .btn,
+    .donate-button,
+    .follow-button,
+    .contact-form button {
+        font-size: 1.4rem;
+        padding: 0.7rem 1.2rem;
+    }
+
+    .social-icons a {
+        width: 3.5rem;
+        height: 3.5rem;
+        font-size: 1.8rem;
+    }
+
+    .about-me-image {
+        width: 200px;
+        height: 200px;
+    }
+
+    .stat-item span {
+        font-size: 2rem;
+    }
+
+    .stat-item p {
+        font-size: 1.2rem;
+    }
+
+    .video {
+        width: 100vw;
+        height: 56.25vw;
+    }
+
+    .qr-code {
+        width: 120px;
+        height: 120px;
+    }
+}
+
+@media (max-width: 992px) {
+    .channel-list {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    html {
+      font-size: 55%;
+    }
+  
+    header {
+      padding: 1rem 5%;
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .logo {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+  
+    nav {
+      margin-top: 1rem;
+    }
+  
+    nav a {
+      font-size: 1.5rem;
+      margin-left: 1.5rem;
+    }
+  
+  }
+  
+  @media (max-width: 480px) {
+    html {
+      font-size: 50%;
+    }
 }
