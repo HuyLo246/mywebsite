@@ -134,7 +134,7 @@ nav a.active {
 }
 
 .btn:hover {
-    background-color: #7a3e9e;
+    background-color: #FF6B00;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Increased box shadow on hover */
 }
 
@@ -521,7 +521,7 @@ nav ul {
 }
 
 .donate-button:hover {
-    background-color: #7a3e9e;
+    background-color: #FF6B00;
 }
 
 .donate-options .donate-button {
@@ -545,7 +545,7 @@ nav ul {
 }
 
 .donate-options .donate-button:hover {
-    background-color: #7a3e9e; /* Darker shade of purple */
+    background-color: #FF6B00; /* Darker shade of purple */
     transform: scale(1.05); /* Slightly enlarge on hover */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
 }
@@ -611,7 +611,7 @@ nav a:hover {
     background-color: #1e1e1e;
     padding: 3rem;
     border-radius: 15px;
-    box-shadow: 0 4px 20px rgba(158, 75, 183, 0.3);
+    box-shadow: 0 4px 20px rgba(183, 133, 75, 0.3);
 }
 
 .contact-form form {
@@ -636,8 +636,8 @@ nav a:hover {
 
 .contact-form input:focus,
 .contact-form textarea:focus {
-    border-color: #c17ed9;
-    box-shadow: 0 0 10px rgba(158, 75, 183, 0.5);
+    border-color: #d9b27e;
+    box-shadow: 0 0 10px rgba(183, 136, 75, 0.5);
     outline: none;
 }
 
@@ -666,7 +666,7 @@ nav a:hover {
 }
 
 .contact-form button:hover {
-    background-color: #c17ed9;
+    background-color: #d9aa7e;
     transform: translateY(-2px);
 }
 
@@ -762,7 +762,7 @@ nav {
 }
 
 .home-content .btn:hover {
-    background-color: #7a3e9e;
+    background-color: #FF6B00;
 }
 
 .home-content .social-icons {
@@ -942,7 +942,7 @@ section {
 }
 
 .home-content .btn:hover {
-    background-color: #7a3e9e;
+    background-color: #FF6B00;
 }
 
 .home-content .social-icons {
@@ -1690,7 +1690,7 @@ nav a.active {
 }
 
 .btn:hover {
-    background-color: #7a3e9e;
+    background-color: #FF6B00;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
@@ -1820,7 +1820,7 @@ iframe {
 }
 
 .qr-toggle-btn:hover {
-    background-color: #7a3e9e;
+    background-color: #FF6B00;
     transform: scale(1.05);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
@@ -1898,7 +1898,7 @@ iframe {
 }
 
 .bank-info-content button:hover {
-    background-color: #7a3e9e;
+    background-color: #FF6B00;
 }
 
 /* Responsive Styles */
