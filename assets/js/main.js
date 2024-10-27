@@ -517,26 +517,15 @@ document.addEventListener('DOMContentLoaded', function() {
     const sidebarMenu = document.querySelector('.sidebarMenu');
     const body = document.body;
 
-    menuHamburger.addEventListener('click', function() {
-        sidebarMenu.classList.toggle('active');
-        body.classList.toggle('sidebar-open');
-    });
+    // Create overlay element
+    const overlay = document.createElement('div');
+    overlay.classList.add('sidebar-overlay');
+    document.body.appendChild(overlay);
 
     // Close sidebar when clicking outside
-    document.addEventListener('click', function(event) {
-        if (!sidebarMenu.contains(event.target) && !menuHamburger.contains(event.target)) {
-            sidebarMenu.classList.remove('active');
-            body.classList.remove('sidebar-open');
-        }
-    });
-
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
-        });
+    overlay.addEventListener('click', function() {
+        sidebarMenu.classList.remove('active');
+        body.classList.remove('sidebar-open');
+        overlay.classList.remove('active');
     });
 });
