@@ -509,6 +509,34 @@ function typeText(element, text, index = 0) {
 
 // Call this function in your DOMContentLoaded event listener
 document.addEventListener('DOMContentLoaded', () => {
-  // ... (other existing code)
   setupTypingAnimation();
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const menuHamburger = document.querySelector('.menuHamburger');
+    const sidebarMenu = document.querySelector('.sidebarMenu');
+    const body = document.body;
+
+    menuHamburger.addEventListener('click', function() {
+        sidebarMenu.classList.toggle('active');
+        body.classList.toggle('sidebar-open');
+    });
+
+    // Close sidebar when clicking outside
+    document.addEventListener('click', function(event) {
+        if (!sidebarMenu.contains(event.target) && !menuHamburger.contains(event.target)) {
+            sidebarMenu.classList.remove('active');
+            body.classList.remove('sidebar-open');
+        }
+    });
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
 });

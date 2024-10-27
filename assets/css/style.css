@@ -1975,15 +1975,42 @@ iframe {
 }
 
 /* Responsive Styles */
+@media (max-width: 1200px) {
+    html {
+        font-size: 58%;
+    }
+
+    .channel-list {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
 @media (max-width: 992px) {
+    html {
+        font-size: 56%;
+    }
+
     .channel-list {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    .home-content h1,
+    .about-me-title,
+    .videos h2,
+    .donate h2,
+    .contact h2 {
+        font-size: 3.5rem;
+    }
+
+    .video {
+        width: 45vw;
+        height: 25vw;
     }
 }
 
 @media (max-width: 768px) {
     html {
-        font-size: 55%;
+        font-size: 54%;
     }
 
     header {
@@ -1993,17 +2020,13 @@ iframe {
     }
 
     .logo {
-        font-size: 2.5rem;
+        font-size: 2.8rem;
         margin-bottom: 1rem;
     }
 
     nav {
         margin-top: 1rem;
-    }
-
-    nav a {
-        font-size: 1.5rem;
-        margin-left: 1.5rem;
+        display: none;
     }
 
     .menuHamburger {
@@ -2017,23 +2040,26 @@ iframe {
     }
 
     .nav-items {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 80%;
+        height: 100vh;
         background-color: #1e1e1e;
-        padding: 1rem 0;
-        text-align: center;
+        padding: 2rem;
+        transition: 0.5s ease-in-out;
+        overflow-y: auto;
     }
 
     .nav-items.active {
-        display: block;
+        left: 0;
     }
 
     .nav-items a {
         display: block;
         padding: 1rem 0;
+        font-size: 1.8rem;
+        margin: 1rem 0;
     }
 
     .home-content,
@@ -2041,7 +2067,43 @@ iframe {
     .videos,
     .donate,
     .contact {
-        padding: 3rem 10%;
+        padding: 3rem 8%;
+    }
+
+    .social-icons a {
+        width: 4.5rem;
+        height: 4.5rem;
+        font-size: 2.2rem;
+    }
+
+    .about-me-image {
+        width: 280px;
+        height: 280px;
+    }
+
+    .channel-list {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+
+    .video {
+        width: 90vw;
+        height: 50vw;
+    }
+
+    .contact-form {
+        padding: 2.5rem;
+        width: 90%;
+    }
+
+    .sidebarMenu {
+        width: 80%;
+    }
+}
+
+@media (max-width: 576px) {
+    html {
+        font-size: 52%;
     }
 
     .home-content h1,
@@ -2056,15 +2118,15 @@ iframe {
     .about-me-text p,
     .videos p,
     .donate p {
-        font-size: 1.6rem;
+        font-size: 1.5rem;
     }
 
     .btn,
     .donate-button,
     .follow-button,
     .contact-form button {
-        font-size: 1.6rem;
-        padding: 0.8rem 1.5rem;
+        font-size: 1.5rem;
+        padding: 0.8rem 1.3rem;
     }
 
     .social-icons a {
@@ -2074,39 +2136,26 @@ iframe {
     }
 
     .about-me-image {
-        width: 250px;
-        height: 250px;
-    }
-
-    .channel-list {
-        grid-template-columns: 1fr;
-        gap: 2rem;
+        width: 240px;
+        height: 240px;
     }
 
     .stat-item span {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
     }
 
     .stat-item p {
-        font-size: 1.4rem;
+        font-size: 1.3rem;
     }
 
     .video {
-        width: 90vw;
-        height: 50vw;
-    }
-
-    .contact-form {
-        padding: 2rem;
-    }
-
-    .sidebarMenu {
-        width: 80%;
+        width: 100vw;
+        height: 56.25vw;
     }
 
     .qr-code {
-        width: 150px;
-        height: 150px;
+        width: 180px;
+        height: 180px;
     }
 
     .qr-toggle-btn {
@@ -2115,7 +2164,8 @@ iframe {
     }
 
     .bank-info-content {
-        max-width: 90%;
+        max-width: 95%;
+        padding: 1.5rem;
     }
 }
 
@@ -2124,27 +2174,50 @@ iframe {
         font-size: 50%;
     }
 
+    .logo {
+        font-size: 2.5rem;
+    }
+
     .home-content h1,
     .about-me-title,
     .videos h2,
     .donate h2,
     .contact h2 {
-        font-size: 2.5rem;
+        font-size: 2.8rem;
     }
 
-    .home-content p,
-    .about-me-text p,
-    .videos p,
-    .donate p {
-        font-size: 1.4rem;
+    .social-icons a {
+        width: 3.8rem;
+        height: 3.8rem;
+        font-size: 1.9rem;
     }
 
-    .btn,
-    .donate-button,
-    .follow-button,
-    .contact-form button {
-        font-size: 1.4rem;
-        padding: 0.7rem 1.2rem;
+    .about-me-image {
+        width: 220px;
+        height: 220px;
+    }
+
+    .qr-code {
+        width: 160px;
+        height: 160px;
+    }
+}
+
+@media (max-width: 380px) {
+    html {
+        font-size: 48%;
+    }
+
+    .logo {
+        font-size: 2.3rem;
+    }
+
+    .home-content h1,
+    .about-me-title,
+    .videos h2,
+    .donate h2,
+    .contact h2 {
+        font-size: 2.6rem;
     }
 
     .social-icons a {
@@ -2158,61 +2231,83 @@ iframe {
         height: 200px;
     }
 
-    .stat-item span {
-        font-size: 2rem;
-    }
-
-    .stat-item p {
-        font-size: 1.2rem;
-    }
-
-    .video {
-        width: 100vw;
-        height: 56.25vw;
-    }
-
     .qr-code {
-        width: 120px;
-        height: 120px;
+        width: 140px;
+        height: 140px;
     }
 }
 
-@media (max-width: 992px) {
+/* Landscape mode adjustments */
+@media (max-height: 500px) and (orientation: landscape) {
+    .home-content {
+        padding-top: 10vh;
+    }
+
+    .about-me-content,
+    .videos,
+    .donate,
+    .contact {
+        padding-top: 15vh;
+    }
+
+    .nav-items {
+        overflow-y: scroll;
+    }
+}
+
+/* High-resolution screens */
+@media (min-width: 1400px) {
+    html {
+        font-size: 62.5%;
+    }
+
+    .container {
+        max-width: 1320px;
+    }
+
     .channel-list {
-      grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(4, 1fr);
     }
-  }
-  
-  @media (max-width: 768px) {
-    html {
-      font-size: 55%;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #121212;
+        color: #ffffff;
     }
-  
-    header {
-      padding: 1rem 5%;
-      flex-direction: column;
-      text-align: center;
+
+    .home-overlay {
+        background-color: rgba(0, 0, 0, 0.7);
     }
-  
-    .logo {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
+}
+
+/* Print styles */
+@media print {
+    .nav-items,
+    .social-icons,
+    .menuHamburger,
+    .btn,
+    .donate-button,
+    .follow-button,
+    .contact-form button {
+        display: none !important;
     }
-  
-    nav {
-      margin-top: 1rem;
+
+    body {
+        font-size: 12pt;
+        line-height: 1.5;
+        background: #fff !important;
+        color: #000 !important;
     }
-  
-    nav a {
-      font-size: 1.5rem;
-      margin-left: 1.5rem;
-    }
-  
-  }
-  
-  @media (max-width: 480px) {
-    html {
-      font-size: 50%;
+
+    .home-content,
+    .about-me-content,
+    .videos,
+    .donate,
+    .contact {
+        padding: 0;
+        margin: 20pt 0;
     }
 }
 
