@@ -6,16 +6,22 @@
     <link rel="icon" type="image/png" href="/assets/img/icon.png">
     <link rel="shortcut icon" type="image/png" href="/assets/img/icon.png">
     <script>
-        // Remove trailing slash and redirect
-        if (window.location.pathname.endsWith('/')) {
-            window.location.href = window.location.href.slice(0, -1);
-        } else {
-            // If no trailing slash, redirect to main page
+        // Get the current path
+        var path = window.location.pathname;
+        
+        // Remove trailing slash if it exists
+        if (path.endsWith('/')) {
+            path = path.slice(0, -1);
+            window.location.href = window.location.origin + path;
+        } else if (path === '/404.html' || path === '/404') {
+            // If on 404 page, redirect to main page
             window.location.href = '/huylo246';
         }
     </script>
+    <!-- Add a meta refresh as fallback -->
+    <meta http-equiv="refresh" content="1; url=/huylo246">
 </head>
 <body>
     <p>Redirecting...</p>
 </body>
-</html> 
+</html>
