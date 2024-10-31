@@ -1,0 +1,14 @@
+RewriteEngine On
+
+# Remove .html extension
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.html -f
+RewriteRule ^(.*)$ $1.html [NC,L]
+
+# Redirect /indexvn to /vn
+RewriteRule ^indexvn\.html$ /vn [R=301,L]
+RewriteRule ^vn$ /indexvn.html [L]
+
+# Redirect /index to /en
+RewriteRule ^index\.html$ /en [R=301,L]
+RewriteRule ^en$ /index.html [L]
