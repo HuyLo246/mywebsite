@@ -6,32 +6,16 @@
     <link rel="icon" type="image/png" href="/assets/img/icon.png">
     <link rel="shortcut icon" type="image/png" href="/assets/img/icon.png">
     <script>
-        // Get the current path and remove trailing slash
-        var path = window.location.pathname;
-        if (path.endsWith('/')) {
-            path = path.slice(0, -1);
-        }
-        
-        // Define valid paths and their redirects
-        const redirects = {
-            '/404.html': '/huylo246',
-            '/404': '/huylo246',
-            '/huylo246-vi-en/': '/huylo246-vi-en',
-            '/huylo246/': '/huylo246'
-        };
-
-        // Check if path needs redirection
-        if (redirects.hasOwnProperty(path)) {
-            window.location.href = redirects[path];
+        // Remove trailing slash and redirect
+        if (window.location.pathname.endsWith('/')) {
+            window.location.href = window.location.href.slice(0, -1);
         } else {
-            // Default redirect to main page
+            // If no trailing slash, redirect to main page
             window.location.href = '/huylo246';
         }
     </script>
-    <!-- Add a meta refresh as fallback -->
-    <meta http-equiv="refresh" content="1; url=/huylo246">
 </head>
 <body>
-    <p style="text-align: center; margin-top: 20px;">Redirecting...</p>
+    <p>Redirecting...</p>
 </body>
-</html>
+</html> 
