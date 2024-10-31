@@ -528,27 +528,4 @@ document.addEventListener('DOMContentLoaded', function() {
         body.classList.remove('sidebar-open');
         overlay.classList.remove('active');
     });
-    
-    // Update the switchLanguage function
-    function switchLanguage(lang) {
-      if (isSwitchingLanguage) return;
-      isSwitchingLanguage = true;
-
-      showTransitionOverlay();
-
-      // Store current scroll position and section
-      const pageState = {
-          scrollPosition: window.pageYOffset,
-          activeSection: getCurrentSection()
-      };
-      localStorage.setItem('pageState', JSON.stringify(pageState));
-
-      // Determine the correct redirect URL
-      const redirectUrl = lang === 'en' ? '/huylo246-vi-en' : '/huylo246';
-      
-      // Add a small delay for smooth transition
-      setTimeout(() => {
-          window.location.href = redirectUrl;
-      }, 500);
-    }
 });
