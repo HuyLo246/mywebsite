@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Redirecting...</title>
+    <script>
+        // Remove trailing slash and redirect
+        if (window.location.pathname.endsWith('/')) {
+            window.location.href = window.location.href.slice(0, -1);
+        } else {
+            // If no trailing slash, redirect to main page
+            window.location.href = '/huylo246';
+        }
+    </script>
+</head>
+<body>
+    <p>Redirecting...</p>
+</body>
+</html> 
