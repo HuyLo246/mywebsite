@@ -5,10 +5,10 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.html -f
 RewriteRule ^(.*)$ $1.html [NC,L]
 
-# Redirect /indexvn to /vn
-RewriteRule ^indexvn\.html$ /vn [R=301,L]
-RewriteRule ^vn$ /indexvn.html [L]
+# Redirect for main English version
+RewriteRule ^index\.html$ /huylo246/ [R=301,L]
+RewriteRule ^huylo246$ /huylo246/ [R=301,L]
 
-# Redirect /index to /en
-RewriteRule ^index\.html$ /en [R=301,L]
-RewriteRule ^en$ /index.html [L]
+# Redirect for Vietnamese version
+RewriteRule ^indexvn\.html$ /huylo246-vi-en/ [R=301,L]
+RewriteRule ^huylo246-vi-en$ /huylo246-vi-en/ [R=301,L]
