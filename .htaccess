@@ -1,5 +1,9 @@
 RewriteEngine On
 
+# Remove trailing slashes
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)/$ /$1 [L,R=301]
+
 # Remove .html extension
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.html -f
@@ -7,8 +11,8 @@ RewriteRule ^(.*)$ $1.html [NC,L]
 
 # Redirect for main English version
 RewriteRule ^index\.html$ /huylo246 [R=301,L]
-RewriteRule ^huylo246$ /huylo246 [R=301,L]
+RewriteRule ^huylo246/$ /huylo246 [R=301,L]
 
 # Redirect for Vietnamese version
 RewriteRule ^indexvn\.html$ /huylo246-vi-en [R=301,L]
-RewriteRule ^huylo246-vi-en$ /huylo246-vi-en [R=301,L]
+RewriteRule ^huylo246-vi-en/$ /huylo246-vi-en [R=301,L]
