@@ -243,54 +243,69 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function switchLanguage(lang) {
-  // Prevent default behavior
-  event.preventDefault();
-  
-  // Store current scroll position
-  localStorage.setItem('scrollPosition', window.pageYOffset);
-  
-  // Determine the new URL without trailing slash
-  const newUrl = lang === 'en' ? '/huylo246' : '/huylo246-vi-en';
-  
   // Add fade-out effect
   document.body.style.opacity = '0';
-  
-  // Wait for fade-out animation
+  document.body.style.transition = 'opacity 0.5s ease';
+
+  // Wait for fade-out to complete before changing page
   setTimeout(() => {
-    // Navigate to new URL
-    window.location.href = newUrl;
-  }, 500);
+    // Store the current scroll position and the clicked section id
+    const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+    const currentSection = getCurrentSection();
+    
+    // Store the information in localStorage
+    localStorage.setItem('scrollPosition', scrollPosition);
+    localStorage.setItem('currentSection', currentSection);
+    
+    // Determine the new page URL
+    const newPage = lang === 'en' ? 'index.html' : 'indexvn.html';
+    
+    // Navigate to the new page
+    window.location.href = newPage;
+  }, 500); // This timeout should match the transition duration
 }
 
-// Restore scroll position on page load
-document.addEventListener('DOMContentLoaded', () => {
-  // Set initial opacity
-  document.body.style.opacity = '0';
-  
-  // Get stored scroll position
-  const scrollPosition = localStorage.getItem('scrollPosition');
-  
-  if (scrollPosition) {
-    // Restore scroll position
-    window.scrollTo(0, parseInt(scrollPosition));
-    // Clear stored position
-    localStorage.removeItem('scrollPosition');
+function getCurrentSection() {
+  const sections = document.querySelectorAll('section');
+  for (let section of sections) {
+    const rect = section.getBoundingClientRect();
+    if (rect.top >= 0 && rect.top <= window.innerHeight / 2) {
+      return section.id;
+    }
   }
-  
-  // Fade in the page
+  return null;
+}
+
+// Function to restore scroll position and fade in after page load
+function restoreScrollPosition() {
+  const scrollPosition = localStorage.getItem('scrollPosition');
+  const currentSection = localStorage.getItem('currentSection');
+
+  // Set initial opacity to 0
+  document.body.style.opacity = '0';
+  document.body.style.transition = 'opacity 0.5s ease';
+
+  if (currentSection) {
+    const section = document.getElementById(currentSection);
+    if (section) {
+      section.scrollIntoView({ behavior: 'instant' });
+    }
+  } else if (scrollPosition) {
+    window.scrollTo(0, parseInt(scrollPosition));
+  }
+
+  // Clear the stored data
+  localStorage.removeItem('scrollPosition');
+  localStorage.removeItem('currentSection');
+
+  // Add fade-in effect after a short delay
   setTimeout(() => {
     document.body.style.opacity = '1';
-  }, 100);
-});
+  }, 50);
+}
 
-// Add CSS transition for opacity
-document.head.insertAdjacentHTML('beforeend', `
-    <style>
-        body {
-            transition: opacity 0.5s ease;
-        }
-    </style>
-`);
+// Call restoreScrollPosition when the page loads
+window.addEventListener('load', restoreScrollPosition);
 
 // Initialize functions
 setupNavLinks();
