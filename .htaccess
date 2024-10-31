@@ -6,9 +6,9 @@ RewriteCond %{REQUEST_FILENAME}\.html -f
 RewriteRule ^(.*)$ $1.html [NC,L]
 
 # Redirect for main English version
-RewriteRule ^index\.html$ /huylo246/ [R=301,L]
-RewriteRule ^huylo246$ /huylo246/ [R=301,L]
+RewriteRule ^index\.html$ /huylo246 [R=301,L]
+RewriteRule ^huylo246$ /huylo246 [R=301,L]
 
 # Redirect for Vietnamese version
-RewriteRule ^indexvn\.html$ /huylo246-vi-en/ [R=301,L]
-RewriteRule ^huylo246-vi-en$ /huylo246-vi-en/ [R=301,L]
+RewriteRule ^indexvn\.html$ /huylo246-vi-en [R=301,L]
+RewriteRule ^huylo246-vi-en$ /huylo246-vi-en [R=301,L]
