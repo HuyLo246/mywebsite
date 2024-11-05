@@ -243,220 +243,93 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function switchLanguage(lang) {
-  // Add fade-out effect
-  document.body.style.opacity = '0';
-  document.body.style.transition = 'opacity 0.5s ease';
+  if (isSwitchingLanguage) return;
+  isSwitchingLanguage = true;
 
-  // Wait for fade-out to complete before changing page
+  showTransitionOverlay();
+
+  // Capture detailed page state
+  const pageState = capturePageState();
+  localStorage.setItem('pageState', JSON.stringify(pageState));
+
+  // Use relative paths without leading slash
   setTimeout(() => {
-    // Store the current scroll position and the clicked section id
-    const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
-    const currentSection = getCurrentSection();
-    
-    // Store the information in localStorage
-    localStorage.setItem('scrollPosition', scrollPosition);
-    localStorage.setItem('currentSection', currentSection);
-    
-    // Determine the new page URL
-    const newPage = lang === 'en' ? 'index.html' : 'indexvn.html';
-    
-    // Navigate to the new page
-    window.location.href = newPage;
-  }, 500); // This timeout should match the transition duration
-}
-
-function getCurrentSection() {
-  const sections = document.querySelectorAll('section');
-  for (let section of sections) {
-    const rect = section.getBoundingClientRect();
-    if (rect.top >= 0 && rect.top <= window.innerHeight / 2) {
-      return section.id;
-    }
-  }
-  return null;
-}
-
-// Function to restore scroll position and fade in after page load
-function restoreScrollPosition() {
-  const scrollPosition = localStorage.getItem('scrollPosition');
-  const currentSection = localStorage.getItem('currentSection');
-
-  // Set initial opacity to 0
-  document.body.style.opacity = '0';
-  document.body.style.transition = 'opacity 0.5s ease';
-
-  if (currentSection) {
-    const section = document.getElementById(currentSection);
-    if (section) {
-      section.scrollIntoView({ behavior: 'instant' });
-    }
-  } else if (scrollPosition) {
-    window.scrollTo(0, parseInt(scrollPosition));
-  }
-
-  // Clear the stored data
-  localStorage.removeItem('scrollPosition');
-  localStorage.removeItem('currentSection');
-
-  // Add fade-in effect after a short delay
-  setTimeout(() => {
-    document.body.style.opacity = '1';
-  }, 50);
-}
-
-// Call restoreScrollPosition when the page loads
-window.addEventListener('load', restoreScrollPosition);
-
-// Initialize functions
-setupNavLinks();
-setupScrollActiveLinks();
-setupVideoToggle();
-
-// Global variables
-let isSwitchingLanguage = false;
-let transitionOverlay;
-
-// Create and append transition overlay
-function createTransitionOverlay() {
-    transitionOverlay = document.createElement('div');
-    transitionOverlay.className = 'transition-overlay';
-    document.body.appendChild(transitionOverlay);
-    
-    const spinner = document.createElement('div');
-    spinner.className = 'spinner';
-    transitionOverlay.appendChild(spinner);
-}
-
-// Show transition overlay with custom message
-function showTransitionOverlay(message = '. . .') {
-    transitionOverlay.querySelector('.spinner').textContent = message;
-    transitionOverlay.style.opacity = '1';
-    transitionOverlay.style.visibility = 'visible';
-}
-
-// Hide transition overlay
-function hideTransitionOverlay() {
-    transitionOverlay.style.opacity = '0';
-    setTimeout(() => {
-        transitionOverlay.style.visibility = 'hidden';
-    }, 500);
-}
-
-function switchLanguage(lang) {
-    if (isSwitchingLanguage) return;
-    isSwitchingLanguage = true;
-
-    showTransitionOverlay();
-
-    // Capture detailed page state
-    const pageState = capturePageState();
-    localStorage.setItem('pageState', JSON.stringify(pageState));
-
-    // Simulate network delay for smoother transition
-    setTimeout(() => {
-        window.location.href = lang === 'en' ? 'index.html' : 'indexvn.html';
-    }, 1000);
+    const currentPath = window.location.pathname;
+    const newPath = lang === 'en' ? 'index.html' : 'indexvn.html';
+    window.location.href = newPath;
+  }, 1000);
 }
 
 function capturePageState() {
-    const sections = document.querySelectorAll('section');
-    const viewportHeight = window.innerHeight;
-    const scrollPosition = window.pageYOffset;
+  const sections = document.querySelectorAll('section');
+  const viewportHeight = window.innerHeight;
+  const scrollPosition = window.pageYOffset;
 
-    let activeSection = null;
-    let activeSectionProgress = 0;
+  let activeSection = null;
+  let activeSectionProgress = 0;
 
-    for (let section of sections) {
-        const rect = section.getBoundingClientRect();
-        const sectionTop = rect.top + scrollPosition;
-        const sectionBottom = sectionTop + rect.height;
+  // Find the currently visible section
+  for (let section of sections) {
+    const rect = section.getBoundingClientRect();
+    const sectionTop = rect.top + scrollPosition;
+    const sectionBottom = sectionTop + rect.height;
 
-        if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
-            activeSection = section.id;
-            activeSectionProgress = (scrollPosition - sectionTop) / rect.height;
-            break;
-        }
+    if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+      activeSection = section.id;
+      // Calculate how far through the section we are (0-1)
+      activeSectionProgress = (scrollPosition - sectionTop) / rect.height;
+      break;
     }
+  }
 
-    return {
-        scrollPosition,
-        activeSection,
-        activeSectionProgress,
-        expandedElements: captureExpandedElements(),
-        formData: captureFormData()
-    };
-}
-
-function captureExpandedElements() {
-    // Capture states of expandable elements (e.g., accordions)
-    const expandableElements = document.querySelectorAll('.expandable');
-    return Array.from(expandableElements).map(el => ({
-        id: el.id,
-        expanded: el.classList.contains('expanded')
-    }));
-}
-
-function captureFormData() {
-    // Capture form input data
-    const forms = document.querySelectorAll('form');
-    const formData = {};
-    forms.forEach(form => {
-        const formInputs = form.querySelectorAll('input, textarea, select');
-        formInputs.forEach(input => {
-            formData[input.id] = input.value;
-        });
-    });
-    return formData;
+  return {
+    scrollPosition,
+    activeSection,
+    activeSectionProgress
+  };
 }
 
 function restorePageState() {
-    const pageState = JSON.parse(localStorage.getItem('pageState'));
-    if (!pageState) return;
+  const pageState = JSON.parse(localStorage.getItem('pageState'));
+  if (!pageState) return;
 
-    // Restore scroll position
-    if (pageState.activeSection) {
-        const section = document.getElementById(pageState.activeSection);
-        if (section) {
-            const sectionRect = section.getBoundingClientRect();
-            const targetScrollPosition = sectionRect.top + window.pageYOffset + (sectionRect.height * pageState.activeSectionProgress);
-            window.scrollTo(0, targetScrollPosition);
-        }
-    } else {
-        window.scrollTo(0, pageState.scrollPosition);
+  // Restore scroll position with section awareness
+  if (pageState.activeSection) {
+    const section = document.getElementById(pageState.activeSection);
+    if (section) {
+      const sectionRect = section.getBoundingClientRect();
+      const targetScrollPosition = sectionRect.top + window.pageYOffset + 
+        (sectionRect.height * pageState.activeSectionProgress);
+      window.scrollTo({
+        top: targetScrollPosition,
+        behavior: 'instant' // Use instant to prevent smooth scrolling
+      });
     }
-
-    // Restore expanded elements
-    pageState.expandedElements.forEach(el => {
-        const element = document.getElementById(el.id);
-        if (element) {
-            element.classList.toggle('expanded', el.expanded);
-        }
+  } else {
+    window.scrollTo({
+      top: pageState.scrollPosition,
+      behavior: 'instant'
     });
+  }
 
-    // Restore form data
-    Object.entries(pageState.formData).forEach(([id, value]) => {
-        const input = document.getElementById(id);
-        if (input) input.value = value;
-    });
+  // Clear stored state
+  localStorage.removeItem('pageState');
 
-    // Clear stored state
-    localStorage.removeItem('pageState');
-
-    // Fade in content
-    document.body.style.opacity = '1';
-    hideTransitionOverlay();
+  // Fade in content
+  document.body.style.opacity = '1';
+  hideTransitionOverlay();
 }
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
-    createTransitionOverlay();
-    document.body.style.opacity = '0';
-    
-    // Restore page state when the DOM is fully loaded
-    restorePageState();
+  createTransitionOverlay();
+  document.body.style.opacity = '0';
+  
+  // Restore page state when the DOM is fully loaded
+  restorePageState();
 
-    // Re-enable language switching after navigation
-    isSwitchingLanguage = false;
+  // Re-enable language switching after navigation
+  isSwitchingLanguage = false;
 });
 
 // Prevent scroll during initial load
@@ -464,17 +337,17 @@ document.body.style.overflow = 'hidden';
 
 // Re-enable scrolling after a short delay
 setTimeout(() => {
-    document.body.style.overflow = '';
+  document.body.style.overflow = '';
 }, 100);
 
 // Add smooth scrolling for internal links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-        });
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    document.querySelector(this.getAttribute('href')).scrollIntoView({
+      behavior: 'smooth'
     });
+  });
 });
 
 // Add this function to your existing main.js file
@@ -582,10 +455,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Update paths to be relative instead of absolute
 document.querySelectorAll('a[href^="/"]').forEach(anchor => {
-    anchor.href = anchor.href.replace(/^\//, '');
+    // Remove the leading slash and 'huylo246/' if present
+    anchor.href = anchor.href.replace(/^\/(?:huylo246\/)?/, '');
 });
 
-// Update language switcher to use relative paths
+// Update language switcher paths
 function switchLanguage(lang) {
     if (isSwitchingLanguage) return;
     isSwitchingLanguage = true;
@@ -595,8 +469,10 @@ function switchLanguage(lang) {
     const pageState = capturePageState();
     localStorage.setItem('pageState', JSON.stringify(pageState));
 
-    // Use relative paths
+    // Use relative paths without leading slash
     setTimeout(() => {
-        window.location.href = lang === 'en' ? 'index.html' : 'indexvn.html';
+        const currentPath = window.location.pathname;
+        const newPath = lang === 'en' ? 'index.html' : 'indexvn.html';
+        window.location.href = newPath;
     }, 1000);
 }
