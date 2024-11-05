@@ -547,7 +547,7 @@ if (bitcoinDonateBtn && bitcoinPopup && closeBitcoinPopup) {
         });
     });
 
-    closeBitcoinPopup.addEventListener('click', function() {
+    closeBitcoinPopup.addEventListener('click', function() { // Ensure close button works
         anime({
             targets: '.bitcoin-popup-content',
             scale: [1, 0.9],
