@@ -529,3 +529,49 @@ document.addEventListener('DOMContentLoaded', function() {
         overlay.classList.remove('active');
     });
 });
+
+// Bitcoin donation popup functionality
+const bitcoinDonateBtn = document.getElementById('bitcoinDonateBtn'); // Ensure this ID matches your HTML
+const bitcoinPopup = document.getElementById('bitcoinPopup'); // Ensure this ID matches your HTML
+const closeBitcoinPopup = document.getElementById('closeBitcoinPopup'); // Ensure this ID matches your HTML
+
+if (bitcoinDonateBtn && bitcoinPopup && closeBitcoinPopup) {
+    bitcoinDonateBtn.addEventListener('click', function() {
+        bitcoinPopup.style.display = 'flex'; // Show the popup
+        anime({
+            targets: '.bitcoin-popup-content',
+            scale: [0.9, 1],
+            opacity: [0, 1],
+            easing: 'easeOutCubic',
+            duration: 300
+        });
+    });
+
+    closeBitcoinPopup.addEventListener('click', function() {
+        anime({
+            targets: '.bitcoin-popup-content',
+            scale: [1, 0.9],
+            opacity: [1, 0],
+            easing: 'easeInCubic',
+            duration: 300,
+            complete: function() {
+                bitcoinPopup.style.display = 'none'; // Hide the popup
+            }
+        });
+    });
+
+    bitcoinPopup.addEventListener('click', function(e) {
+        if (e.target === bitcoinPopup) {
+            anime({
+                targets: '.bitcoin-popup-content',
+                scale: [1, 0.9],
+                opacity: [1, 0],
+                easing: 'easeInCubic',
+                duration: 300,
+                complete: function() {
+                    bitcoinPopup.style.display = 'none'; // Hide the popup
+                }
+            });
+        }
+    });
+}
