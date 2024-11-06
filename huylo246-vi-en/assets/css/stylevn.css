@@ -1231,14 +1231,16 @@ section {
     bottom: 0;
     left: 0;
     right: 0;
-    background: rgba(0, 0, 0, 0.8); /* Darker overlay for better contrast */
-    transition: opacity 500ms;
+    background: rgba(0, 0, 0, 0.8);
+    transition: opacity 300ms ease-in-out, visibility 300ms ease-in-out;
     visibility: hidden;
     opacity: 0;
-    display: flex; /* Use flexbox to center the popup */
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
 }
+
 .overlay:target {
     visibility: visible;
     opacity: 1;
@@ -1253,6 +1255,8 @@ section {
     position: relative;
     transition: all 0.3s ease-in-out; /* Faster transition for better UX */
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Added shadow for depth */
+    transform: scale(0.9);
+    opacity: 0;
 }
 
 .popup h2 {

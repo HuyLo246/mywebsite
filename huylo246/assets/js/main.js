@@ -427,52 +427,59 @@ function switchLanguage(lang) {
     }, 1000);
 }
 
+// Bitcoin donation popup functionality
 document.addEventListener('DOMContentLoaded', function() {
-  // Bitcoin donation popup functionality
-  const bitcoinButton = document.querySelector('.bitcoin-button');
-  const donatePopup = document.getElementById('donateform');
+    const bitcoinButtons = document.querySelectorAll('.bitcoin-button');
+    const donatePopup = document.getElementById('donateform');
+    const closeBtn = donatePopup?.querySelector('.close');
 
-  if (bitcoinButton && donatePopup) {
-      bitcoinButton.addEventListener('click', function(e) {
-          e.preventDefault();
-          // Remove href navigation
-          donatePopup.style.display = 'flex';
-          anime({
-              targets: donatePopup.querySelector('.popup'),
-              scale: [0.9, 1],
-              opacity: [0, 1],
-              easing: 'easeOutCubic',
-              duration: 300
-          });
-      });
+    bitcoinButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (donatePopup) {
+                donatePopup.style.visibility = 'visible';
+                donatePopup.style.opacity = '1';
+                anime({
+                    targets: donatePopup.querySelector('.popup'),
+                    scale: [0.9, 1],
+                    opacity: [0, 1],
+                    easing: 'easeOutCubic',
+                    duration: 300
+                });
+            }
+        });
+    });
 
-      // Close button functionality
-      const closeBtn = donatePopup.querySelector('.close');
-      if (closeBtn) {
-          closeBtn.addEventListener('click', function(e) {
-              e.preventDefault();
-              closePopup();
-          });
-      }
+    // Close button functionality
+    if (closeBtn) {
+        closeBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            closePopup();
+        });
+    }
 
-      // Close when clicking outside
-      donatePopup.addEventListener('click', function(e) {
-          if (e.target === donatePopup) {
-              closePopup();
-          }
-      });
+    // Close when clicking outside
+    if (donatePopup) {
+        donatePopup.addEventListener('click', function(e) {
+            if (e.target === donatePopup) {
+                closePopup();
+            }
+        });
+    }
 
-      function closePopup() {
-          anime({
-              targets: donatePopup.querySelector('.popup'),
-              scale: [1, 0.9],
-              opacity: [1, 0],
-              easing: 'easeInCubic',
-              duration: 300,
-              complete: function() {
-                  donatePopup.style.display = 'none';
-              }
-          });
-      }
-  }
+    function closePopup() {
+        if (donatePopup) {
+            anime({
+                targets: donatePopup.querySelector('.popup'),
+                scale: [1, 0.9],
+                opacity: [1, 0],
+                easing: 'easeInCubic',
+                duration: 300,
+                complete: function() {
+                    donatePopup.style.visibility = 'hidden';
+                    donatePopup.style.opacity = '0';
+                }
+            });
+        }
+    }
 });
