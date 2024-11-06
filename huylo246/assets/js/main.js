@@ -568,6 +568,14 @@ function setupNavLinks() {
     const scrollY = window.scrollY;
     const windowHeight = window.innerHeight;
     
+    // If at the top of the page, activate home link
+    if (scrollY < 100) {
+      navLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === '#home');
+      });
+      return;
+    }
+    
     sections.forEach(section => {
       const sectionTop = section.offsetTop - 100;
       const sectionHeight = section.offsetHeight;
@@ -584,7 +592,11 @@ function setupNavLinks() {
   }, 100);
 
   window.addEventListener('scroll', setActiveLink);
-  setActiveLink();
+  
+  // Set initial active state for home
+  navLinks.forEach(link => {
+    link.classList.toggle('active', link.getAttribute('href') === '#home');
+  });
 }
 
 // Enhanced sidebar functionality with animations
@@ -735,3 +747,90 @@ function getCurrentSection() {
   
   return currentSection;
 }
+
+function captureScrollPosition() {
+  const sections = document.querySelectorAll('section');
+  const scrollPosition = window.pageYOffset;
+  const viewportHeight = window.innerHeight;
+
+  // Find the current section and calculate progress
+  let currentSection = null;
+  let sectionProgress = 0;
+
+  sections.forEach(section => {
+    const rect = section.getBoundingClientRect();
+    const sectionTop = rect.top + scrollPosition;
+    const sectionBottom = sectionTop + rect.height;
+
+    if (scrollPosition >= sectionTop - viewportHeight/2 && 
+        scrollPosition < sectionBottom - viewportHeight/2) {
+      currentSection = section.id;
+      // Calculate progress through section (0 to 1)
+      sectionProgress = (scrollPosition - sectionTop) / (rect.height - viewportHeight);
+    }
+  });
+
+  return {
+    section: currentSection,
+    progress: sectionProgress,
+    timestamp: Date.now()
+  };
+}
+
+function switchLanguage(lang) {
+  if (isSwitchingLanguage) return;
+  isSwitchingLanguage = true;
+
+  // Save scroll position state
+  const scrollState = captureScrollPosition();
+  localStorage.setItem('scrollState', JSON.stringify(scrollState));
+
+  // Animate transition
+  anime({
+    targets: 'body',
+    opacity: [1, 0],
+    duration: 500,
+    easing: 'easeInOutQuad',
+    complete: () => {
+      window.location.href = lang === 'en' ? 'index.html' : 'indexvn.html';
+    }
+  });
+}
+
+function restoreScrollPosition() {
+  const scrollState = JSON.parse(localStorage.getItem('scrollState'));
+  
+  if (scrollState && Date.now() - scrollState.timestamp < 5000) {
+    const section = document.getElementById(scrollState.section);
+    
+    if (section) {
+      const rect = section.getBoundingClientRect();
+      const sectionTop = rect.top + window.pageYOffset;
+      const viewportHeight = window.innerHeight;
+      
+      // Calculate target scroll position
+      const targetScroll = sectionTop + 
+        ((rect.height - viewportHeight) * scrollState.progress);
+      
+      // Smooth scroll to position
+      window.scrollTo({
+        top: targetScroll,
+        behavior: 'instant'
+      });
+    }
+    
+    // Clear stored state
+    localStorage.removeItem('scrollState');
+  }
+}
+
+// Update the DOMContentLoaded event listener
+document.addEventListener('DOMContentLoaded', () => {
+  // ... existing initialization code ...
+  
+  // Add scroll position restoration
+  restoreScrollPosition();
+  
+  // Re-enable language switching
+  isSwitchingLanguage = false;
+});
