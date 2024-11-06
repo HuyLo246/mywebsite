@@ -488,6 +488,7 @@ nav ul {
     background-color: #000000;
     color: #fff;
     min-height: 100vh; /* Set minimum height to match home section */
+    transition: all 0.3s ease;
 }
 
 .donate h2 {
@@ -522,6 +523,9 @@ nav ul {
 
 .donate-button:hover {
     background-color: #FF6B00;
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(255, 107, 0, 0.4);
+    transition: all 0.3s ease;
 }
 
 .donate-options .donate-button {
@@ -2300,7 +2304,7 @@ html, body {
 }
 
 /* Add glowing effects to buttons */
-.btn, .donate-button, .subscribe-button, .follow-button {
+.btn, .subscribe-button, .follow-button {
   position: relative;
   overflow: hidden;
   background: linear-gradient(45deg, #FF6B00, #ff6b6b);
@@ -2309,7 +2313,7 @@ html, body {
   transition: all 0.3s ease;
 }
 
-.btn:hover, .donate-button:hover, .subscribe-button:hover, .follow-button:hover {
+.btn:hover, .subscribe-button:hover, .follow-button:hover {
   transform: translateY(-2px);
   box-shadow: 0 0 25px rgba(255, 107, 0, 0.5);
 }
