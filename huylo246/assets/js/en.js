@@ -403,56 +403,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Bitcoin donation popup functionality
-document.addEventListener('DOMContentLoaded', function() {
-    const bitcoinDonateBtn = document.querySelector('.bitcoin-donate-btn');
-    const bitcoinPopup = document.getElementById('bitcoinPopup');
-    const closeBitcoinPopup = document.getElementById('closeBitcoinPopup');
-
-    if (bitcoinDonateBtn && bitcoinPopup && closeBitcoinPopup) {
-        bitcoinDonateBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            bitcoinPopup.style.display = 'flex';
-            anime({
-                targets: '#bitcoinPopup .bitcoin-popup-content',
-                scale: [0.9, 1],
-                opacity: [0, 1],
-                easing: 'easeOutCubic',
-                duration: 300,
-                begin: function() {
-                    bitcoinPopup.style.opacity = '1';
-                }
-            });
-        });
-
-        function closePopup() {
-            anime({
-                targets: '#bitcoinPopup .bitcoin-popup-content',
-                scale: [1, 0.9],
-                opacity: [1, 0],
-                easing: 'easeInCubic',
-                duration: 300,
-                complete: function() {
-                    bitcoinPopup.style.display = 'none';
-                }
-            });
-        }
-
-        closeBitcoinPopup.addEventListener('click', closePopup);
-        bitcoinPopup.addEventListener('click', function(e) {
-            if (e.target === bitcoinPopup) {
-                closePopup();
-            }
-        });
-    } else {
-        console.warn('Bitcoin donation elements not found:', {
-            button: bitcoinDonateBtn,
-            popup: bitcoinPopup,
-            closeButton: closeBitcoinPopup
-        });
-    }
-});
-
 // Update paths to be relative instead of absolute
 document.querySelectorAll('a[href^="/"]').forEach(anchor => {
     // Remove the leading slash and 'huylo246/' if present
