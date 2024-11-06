@@ -520,3 +520,29 @@ document.addEventListener('DOMContentLoaded', function() {
       }
   }
 });
+
+// Add loading animation
+window.addEventListener('load', () => {
+  const loader = document.querySelector('.loading-animation');
+  if (loader) {
+    loader.style.opacity = '0';
+    setTimeout(() => {
+      loader.style.display = 'none';
+    }, 500);
+  }
+});
+
+// Add smooth reveal animations on scroll
+const revealElements = document.querySelectorAll('.reveal');
+const revealOnScroll = () => {
+  revealElements.forEach(element => {
+    const elementTop = element.getBoundingClientRect().top;
+    const windowHeight = window.innerHeight;
+    
+    if (elementTop < windowHeight - 100) {
+      element.classList.add('active');
+    }
+  });
+};
+
+window.addEventListener('scroll', revealOnScroll);
