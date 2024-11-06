@@ -1315,20 +1315,46 @@ section {
     color: #FFA500; /* Match icon color with text */
 }
 
+/* Bitcoin Address Container Styles */
+.bitcoin-address-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin: 2rem 0;
+}
+
 .bitcoin-address {
-    background-color: white;
-    padding: 10px;
-    border-radius: 5px;
-    display: inline-block;
-    position: relative; /* Ensure relative positioning */
-    width: calc(100% - 40px); /* Adjust width to account for icon */
-    margin-right: 10px;
+    color: #fff;
+    font-family: monospace;
+    font-size: 1.4rem;
+    margin-right: 1rem;
+    word-break: break-all;
 }
 
 .copy-icon {
-    position: absolute;
-    right: 20px; /* Move to the right */
+    color: #FF6B00;
     cursor: pointer;
+    font-size: 2rem;
+    transition: color 0.3s ease;
+    padding: 0.5rem;
+}
+
+.copy-icon:hover {
+    color: #d95a00;
+}
+
+/* Copy Success Animation */
+@keyframes copySuccess {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+.copy-success {
+    animation: copySuccess 0.3s ease-in-out;
 }
 
 .menuHamburger {
