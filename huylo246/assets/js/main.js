@@ -19,27 +19,45 @@ function copyToClipboard(text) {
     });
 }
 
-// Navigation link functionality
+// Navigation link functionality - Updated version
 function setupNavLinks() {
-  document.querySelectorAll('.nav-items a').forEach(link => {
-    link.addEventListener('click', () => {
-      document.querySelectorAll('.nav-items a').forEach(l => l.classList.remove('active'));
+  const navLinks = document.querySelectorAll('.nav-items a');
+  
+  navLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      // Remove active class from all links
+      navLinks.forEach(l => l.classList.remove('active'));
+      
+      // Add active class to clicked link
       link.classList.add('active');
+      
+      // If it's a hash link (internal navigation)
+      if (link.getAttribute('href').startsWith('#')) {
+        e.preventDefault();
+        const targetId = link.getAttribute('href').substring(1);
+        const targetElement = document.getElementById(targetId);
+        if (targetElement) {
+          targetElement.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
     });
   });
 }
 
-// Active link on scroll
+// Active link on scroll - Updated version
 function setupScrollActiveLinks() {
   const sections = document.querySelectorAll('section');
   const navLinks = document.querySelectorAll('.nav-items a');
 
   window.addEventListener('scroll', () => {
     let current = '';
+    const scrollPosition = window.pageYOffset;
+
     sections.forEach(section => {
-      const sectionTop = section.offsetTop;
+      const sectionTop = section.offsetTop - 100; // Added offset for better detection
       const sectionHeight = section.clientHeight;
-      if (pageYOffset >= sectionTop - sectionHeight / 3) {
+      
+      if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
         current = section.getAttribute('id');
       }
     });
@@ -427,59 +445,58 @@ function switchLanguage(lang) {
     }, 1000);
 }
 
-// Bitcoin donation popup functionality
 document.addEventListener('DOMContentLoaded', function() {
-    const bitcoinButtons = document.querySelectorAll('.bitcoin-button');
-    const donatePopup = document.getElementById('donateform');
-    const closeBtn = donatePopup?.querySelector('.close');
+  // Bitcoin donation popup functionality
+  const bitcoinButton = document.querySelector('.bitcoin-button');
+  const donatePopup = document.getElementById('donateform');
 
-    bitcoinButtons.forEach(button => {
-        button.addEventListener('click', function(e) {
-            e.preventDefault();
-            if (donatePopup) {
-                donatePopup.style.visibility = 'visible';
-                donatePopup.style.opacity = '1';
-                anime({
-                    targets: donatePopup.querySelector('.popup'),
-                    scale: [0.9, 1],
-                    opacity: [0, 1],
-                    easing: 'easeOutCubic',
-                    duration: 300
-                });
-            }
-        });
-    });
+  if (bitcoinButton && donatePopup) {
+      bitcoinButton.addEventListener('click', function(e) {
+          e.preventDefault();
+          // Remove href navigation
+          donatePopup.style.display = 'flex';
+          anime({
+              targets: donatePopup.querySelector('.popup'),
+              scale: [0.9, 1],
+              opacity: [0, 1],
+              easing: 'easeOutCubic',
+              duration: 300
+          });
+      });
 
-    // Close button functionality
-    if (closeBtn) {
-        closeBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            closePopup();
-        });
-    }
+      // Close button functionality
+      const closeBtn = donatePopup.querySelector('.close');
+      if (closeBtn) {
+          closeBtn.addEventListener('click', function(e) {
+              e.preventDefault();
+              closePopup();
+          });
+      }
 
-    // Close when clicking outside
-    if (donatePopup) {
-        donatePopup.addEventListener('click', function(e) {
-            if (e.target === donatePopup) {
-                closePopup();
-            }
-        });
-    }
+      // Close when clicking outside
+      donatePopup.addEventListener('click', function(e) {
+          if (e.target === donatePopup) {
+              closePopup();
+          }
+      });
 
-    function closePopup() {
-        if (donatePopup) {
-            anime({
-                targets: donatePopup.querySelector('.popup'),
-                scale: [1, 0.9],
-                opacity: [1, 0],
-                easing: 'easeInCubic',
-                duration: 300,
-                complete: function() {
-                    donatePopup.style.visibility = 'hidden';
-                    donatePopup.style.opacity = '0';
-                }
-            });
-        }
-    }
+      function closePopup() {
+          anime({
+              targets: donatePopup.querySelector('.popup'),
+              scale: [1, 0.9],
+              opacity: [1, 0],
+              easing: 'easeInCubic',
+              duration: 300,
+              complete: function() {
+                  donatePopup.style.display = 'none';
+              }
+          });
+      }
+  }
+});
+
+// Make sure to call both setup functions when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+  setupNavLinks();
+  setupScrollActiveLinks();
 });
