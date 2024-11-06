@@ -546,3 +546,192 @@ const revealOnScroll = () => {
 };
 
 window.addEventListener('scroll', revealOnScroll);
+
+// Enhanced scroll handling with throttle
+function throttle(func, limit) {
+  let inThrottle;
+  return function(...args) {
+    if (!inThrottle) {
+      func.apply(this, args);
+      inThrottle = true;
+      setTimeout(() => inThrottle = false, limit);
+    }
+  };
+}
+
+// Enhanced setupNavLinks with smooth scrolling and better performance
+function setupNavLinks() {
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-items a');
+  
+  const setActiveLink = throttle(() => {
+    const scrollY = window.scrollY;
+    const windowHeight = window.innerHeight;
+    
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop - 100;
+      const sectionHeight = section.offsetHeight;
+      const sectionId = section.getAttribute('id');
+      const isVisible = (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) ||
+                       (sectionTop >= scrollY && sectionTop < scrollY + windowHeight);
+
+      if (isVisible) {
+        navLinks.forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === `#${sectionId}`);
+        });
+      }
+    });
+  }, 100);
+
+  window.addEventListener('scroll', setActiveLink);
+  setActiveLink();
+}
+
+// Enhanced sidebar functionality with animations
+function setupSidebar() {
+  const menuHamburger = document.querySelector('.menuHamburger');
+  const sidebarMenu = document.querySelector('.sidebarMenu');
+  const overlay = document.createElement('div');
+  overlay.classList.add('sidebar-overlay');
+  document.body.appendChild(overlay);
+
+  function toggleSidebar(show) {
+    const action = show ? 'add' : 'remove';
+    sidebarMenu.classList[action]('active');
+    document.body.classList[action]('sidebar-open');
+    overlay.classList[action]('active');
+    
+    anime({
+      targets: sidebarMenu,
+      translateX: show ? ['100%', '0'] : ['0', '100%'],
+      duration: 300,
+      easing: 'easeInOutQuad'
+    });
+  }
+
+  menuHamburger?.addEventListener('click', () => toggleSidebar(true));
+  overlay?.addEventListener('click', () => toggleSidebar(false));
+  
+  // Close sidebar on ESC key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && sidebarMenu.classList.contains('active')) {
+      toggleSidebar(false);
+    }
+  });
+}
+
+// Enhanced language switching with better state management
+let isSwitchingLanguage = false;
+
+function switchLanguage(lang) {
+  if (isSwitchingLanguage) return;
+  isSwitchingLanguage = true;
+
+  const pageState = {
+    scrollPosition: window.pageYOffset,
+    activeSection: getCurrentSection(),
+    timestamp: Date.now()
+  };
+
+  localStorage.setItem('pageState', JSON.stringify(pageState));
+
+  anime({
+    targets: 'body',
+    opacity: [1, 0],
+    duration: 500,
+    easing: 'easeInOutQuad',
+    complete: () => {
+      window.location.href = lang === 'en' ? 'index.html' : 'indexvn.html';
+    }
+  });
+}
+
+// Enhanced animations for elements
+function setupAnimations() {
+  const animatedElements = document.querySelectorAll('[data-animate]');
+  
+  const observerOptions = {
+    threshold: 0.2,
+    rootMargin: '50px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const element = entry.target;
+        const animation = element.dataset.animate;
+        
+        anime({
+          targets: element,
+          ...getAnimationConfig(animation),
+          duration: 800,
+          easing: 'easeOutQuad'
+        });
+        
+        observer.unobserve(element);
+      }
+    });
+  }, observerOptions);
+
+  animatedElements.forEach(element => observer.observe(element));
+}
+
+// Initialize everything when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+  setupNavLinks();
+  setupScrollActiveLinks();
+  setupVideoToggle();
+  setupSidebar();
+  setupAnimations();
+  setupTypingAnimation();
+  
+  // Restore page state if needed
+  const pageState = JSON.parse(localStorage.getItem('pageState'));
+  if (pageState && Date.now() - pageState.timestamp < 5000) {
+    window.scrollTo(0, pageState.scrollPosition);
+    localStorage.removeItem('pageState');
+  }
+
+  // Initialize AOS with enhanced config
+  AOS.init({
+    duration: 800,
+    easing: 'ease-in-out',
+    once: true,
+    mirror: false,
+    disable: window.innerWidth < 768
+  });
+});
+
+// Helper function for animation configs
+function getAnimationConfig(type) {
+  const configs = {
+    fadeIn: {
+      opacity: [0, 1],
+      translateY: [20, 0]
+    },
+    slideIn: {
+      translateX: [-100, 0],
+      opacity: [0, 1]
+    },
+    scaleIn: {
+      scale: [0.5, 1],
+      opacity: [0, 1]
+    }
+  };
+  return configs[type] || configs.fadeIn;
+}
+
+// Helper function to get current section
+function getCurrentSection() {
+  const sections = document.querySelectorAll('section[id]');
+  let currentSection = '';
+  
+  sections.forEach(section => {
+    const rect = section.getBoundingClientRect();
+    if (rect.top <= 100 && rect.bottom >= 100) {
+      currentSection = section.id;
+    }
+  });
+  
+  return currentSection;
+}
