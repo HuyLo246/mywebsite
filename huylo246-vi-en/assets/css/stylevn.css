@@ -2298,3 +2298,145 @@ body {
 html, body {
     scroll-behavior: auto !important;
 }
+
+/* Add glowing effects to buttons */
+.btn, .donate-button, .subscribe-button, .follow-button {
+    box-shadow: 0 0 15px rgba(0, 123, 255, 0.3);
+    transition: all 0.3s ease;
+  }
+  
+  .btn:hover, .donate-button:hover, .subscribe-button:hover, .follow-button:hover {
+    box-shadow: 0 0 25px rgba(0, 123, 255, 0.5);
+    transform: translateY(-2px);
+  }
+  
+  /* Add subtle hover effects to nav items */
+  .nav-items a {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .nav-items a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: #007bff;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+  }
+  
+  .nav-items a:hover::after {
+    width: 100%;
+  }
+  
+  /* Add card-like effects to sections */
+  section {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  section:hover {
+    transform: translateY(-5px);
+  }
+  
+  /* Enhanced social icons */
+  .social-icons a {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .social-icons a::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0) 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .social-icons a:hover::before {
+    opacity: 1;
+  }
+  
+  /* Add floating animation to profile images */
+  .about-me-image img, .channel-item img {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
+  }
+  
+  /* Enhanced scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: rgba(0, 123, 255, 0.5);
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.3);
+  }
+  
+  /* Text gradient effects */
+  h1, h2, h3 {
+    background: linear-gradient(45deg, #007bff, #00ff88);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Enhanced form inputs */
+  input, textarea {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  input:focus, textarea:focus {
+    box-shadow: 0 4px 20px rgba(0, 123, 255, 0.3);
+    transform: translateY(-2px);
+  }
+  
+  /* Add smooth page transitions */
+  body {
+    opacity: 0;
+    animation: fadeIn 0.5s ease-in forwards;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
