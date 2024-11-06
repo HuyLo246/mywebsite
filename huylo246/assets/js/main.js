@@ -26,12 +26,44 @@ function copyToClipboard(text) {
 
 // Navigation link functionality
 function setupNavLinks() {
-  document.querySelectorAll('.nav-items a').forEach(link => {
-    link.addEventListener('click', () => {
-      document.querySelectorAll('.nav-items a').forEach(l => l.classList.remove('active'));
-      link.classList.add('active');
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-items a');
+
+  // Add click event listeners to nav links
+  navLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+      // Remove active class from all links
+      navLinks.forEach(link => link.classList.remove('active'));
+      // Add active class to clicked link
+      this.classList.add('active');
     });
   });
+
+  // Update active state on scroll
+  function setActiveLink() {
+    const scrollY = window.scrollY;
+
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop - 100; // Adjust offset as needed
+      const sectionHeight = section.offsetHeight;
+      const sectionId = section.getAttribute('id');
+
+      if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === `#${sectionId}`) {
+            link.classList.add('active');
+          }
+        });
+      }
+    });
+  }
+
+  // Add scroll event listener
+  window.addEventListener('scroll', setActiveLink);
+  
+  // Set initial active state
+  setActiveLink();
 }
 
 // Active link on scroll
