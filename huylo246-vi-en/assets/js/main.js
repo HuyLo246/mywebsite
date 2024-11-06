@@ -429,49 +429,64 @@ function switchLanguage(lang) {
 
 // Bitcoin donation popup functionality
 document.addEventListener('DOMContentLoaded', function() {
-  const bitcoinButton = document.querySelector('.bitcoin-button');
-  const donatePopup = document.getElementById('donateform');
-  const closePopupBtn = donatePopup.querySelector('.close');
+    const bitcoinButton = document.querySelector('.bitcoin-button');
+    const donatePopup = document.getElementById('donateform');
+    
+    if (bitcoinButton && donatePopup) {
+        // Show popup when clicking Bitcoin button
+        bitcoinButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            donatePopup.style.display = 'flex';
+            anime({
+                targets: donatePopup.querySelector('.popup'),
+                scale: [0.9, 1],
+                opacity: [0, 1],
+                easing: 'easeOutCubic',
+                duration: 300
+            });
+        });
 
-  bitcoinButton.addEventListener('click', function(e) {
-    e.preventDefault();
-    donatePopup.style.display = 'flex';
-    anime({
-      targets: donatePopup.querySelector('.popup'),
-      scale: [0.9, 1],
-      opacity: [0, 1],
-      easing: 'easeOutCubic',
-      duration: 300
-    });
-  });
-
-  closePopupBtn.addEventListener('click', function(e) {
-    e.preventDefault();
-    anime({
-      targets: donatePopup.querySelector('.popup'),
-      scale: [1, 0.9],
-      opacity: [1, 0],
-      easing: 'easeInCubic',
-      duration: 300,
-      complete: function() {
-        donatePopup.style.display = 'none';
-      }
-    });
-  });
-
-  // Close popup when clicking outside
-  donatePopup.addEventListener('click', function(e) {
-    if (e.target === donatePopup) {
-      anime({
-        targets: donatePopup.querySelector('.popup'),
-        scale: [1, 0.9],
-        opacity: [1, 0],
-        easing: 'easeInCubic',
-        duration: 300,
-        complete: function() {
-          donatePopup.style.display = 'none';
+        // Close popup when clicking X button
+        const closeBtn = donatePopup.querySelector('.close');
+        if (closeBtn) {
+            closeBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                anime({
+                    targets: donatePopup.querySelector('.popup'),
+                    scale: [1, 0.9],
+                    opacity: [1, 0],
+                    easing: 'easeInCubic',
+                    duration: 300,
+                    complete: function() {
+                        donatePopup.style.display = 'none';
+                    }
+                });
+            });
         }
-      });
+
+        // Close popup when clicking outside
+        donatePopup.addEventListener('click', function(e) {
+            if (e.target === donatePopup) {
+                anime({
+                    targets: donatePopup.querySelector('.popup'),
+                    scale: [1, 0.9],
+                    opacity: [1, 0],
+                    easing: 'easeInCubic',
+                    duration: 300,
+                    complete: function() {
+                        donatePopup.style.display = 'none';
+                    }
+                });
+            }
+        });
     }
-  });
+
+    // Bitcoin address copy functionality
+    const bitcoinAddress = document.getElementById('bitcoin-address');
+    if (bitcoinAddress) {
+        bitcoinAddress.addEventListener('click', function() {
+            const address = this.textContent;
+            copyToClipboard(address);
+        });
+    }
 });

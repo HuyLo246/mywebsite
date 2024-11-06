@@ -2268,3 +2268,41 @@ body {
 html, body {
     scroll-behavior: auto !important;
 }
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.popup {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    position: relative;
+    width: 90%;
+    max-width: 500px;
+    opacity: 0;
+    transform: scale(0.9);
+}
+
+.popup .close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #333;
+    text-decoration: none;
+}
+
+.popup .content {
+    text-align: center;
+}
