@@ -19,45 +19,27 @@ function copyToClipboard(text) {
     });
 }
 
-// Navigation link functionality - Updated version
+// Navigation link functionality
 function setupNavLinks() {
-  const navLinks = document.querySelectorAll('.nav-items a');
-  
-  navLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-      // Remove active class from all links
-      navLinks.forEach(l => l.classList.remove('active'));
-      
-      // Add active class to clicked link
+  document.querySelectorAll('.nav-items a').forEach(link => {
+    link.addEventListener('click', () => {
+      document.querySelectorAll('.nav-items a').forEach(l => l.classList.remove('active'));
       link.classList.add('active');
-      
-      // If it's a hash link (internal navigation)
-      if (link.getAttribute('href').startsWith('#')) {
-        e.preventDefault();
-        const targetId = link.getAttribute('href').substring(1);
-        const targetElement = document.getElementById(targetId);
-        if (targetElement) {
-          targetElement.scrollIntoView({ behavior: 'smooth' });
-        }
-      }
     });
   });
 }
 
-// Active link on scroll - Updated version
+// Active link on scroll
 function setupScrollActiveLinks() {
   const sections = document.querySelectorAll('section');
   const navLinks = document.querySelectorAll('.nav-items a');
 
   window.addEventListener('scroll', () => {
     let current = '';
-    const scrollPosition = window.pageYOffset;
-
     sections.forEach(section => {
-      const sectionTop = section.offsetTop - 100; // Added offset for better detection
+      const sectionTop = section.offsetTop;
       const sectionHeight = section.clientHeight;
-      
-      if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+      if (pageYOffset >= sectionTop - sectionHeight / 3) {
         current = section.getAttribute('id');
       }
     });
@@ -493,10 +475,4 @@ document.addEventListener('DOMContentLoaded', function() {
           });
       }
   }
-});
-
-// Make sure to call both setup functions when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-  setupNavLinks();
-  setupScrollActiveLinks();
 });
