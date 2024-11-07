@@ -607,7 +607,12 @@ function setupSidebar() {
   overlay.classList.add('sidebar-overlay');
   document.body.appendChild(overlay);
 
+  let isAnimating = false; // Add flag to prevent multiple animations
+
   function toggleSidebar(show) {
+    if (isAnimating) return; // Prevent multiple animations
+    isAnimating = true;
+
     const action = show ? 'add' : 'remove';
     sidebarMenu.classList[action]('active');
     document.body.classList[action]('sidebar-open');
@@ -617,7 +622,10 @@ function setupSidebar() {
       targets: sidebarMenu,
       translateX: show ? ['100%', '0'] : ['0', '100%'],
       duration: 300,
-      easing: 'easeInOutQuad'
+      easing: 'easeInOutQuad',
+      complete: () => {
+        isAnimating = false; // Reset flag when animation completes
+      }
     });
   }
 
@@ -627,6 +635,7 @@ function setupSidebar() {
   // Close sidebar on ESC key
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && sidebarMenu.classList.contains('active')) {
+      e.preventDefault(); // Prevent default ESC behavior
       toggleSidebar(false);
     }
   });
