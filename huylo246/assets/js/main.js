@@ -112,27 +112,40 @@ function setupVideoToggle() {
 const menuHamburger = document.querySelector('.menuHamburger');
 const sidebarMenu = document.querySelector('.sidebarMenu');
 const closeSidebar = document.querySelector('.sidebarMenu .close');
+const overlay = document.createElement('div');
+overlay.classList.add('sidebar-overlay');
+document.body.appendChild(overlay);
+
+function closeSidebarMenu() {
+  sidebarMenu.classList.remove('active');
+  document.body.classList.remove('sidebar-open');
+  overlay.classList.remove('active');
+}
 
 menuHamburger.addEventListener('click', () => {
   sidebarMenu.classList.add('active');
+  document.body.classList.add('sidebar-open');
+  overlay.classList.add('active');
 });
 
-closeSidebar.addEventListener('click', () => {
-  sidebarMenu.classList.remove('active');
+closeSidebar.addEventListener('click', (e) => {
+  e.preventDefault();
+  closeSidebarMenu();
 });
 
-// Close sidebar when clicking outside of it
-document.addEventListener('click', (e) => {
-  if (!sidebarMenu.contains(e.target) && e.target !== menuHamburger) {
-    sidebarMenu.classList.remove('active');
+// Close sidebar when clicking outside
+overlay.addEventListener('click', closeSidebarMenu);
+
+// Close sidebar when pressing ESC
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && sidebarMenu.classList.contains('active')) {
+    closeSidebarMenu();
   }
 });
 
 // Close sidebar when a menu item is clicked
 sidebarMenu.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', () => {
-    sidebarMenu.classList.remove('active');
-  });
+  link.addEventListener('click', closeSidebarMenu);
 });
 
 // Contact form submission
@@ -607,12 +620,7 @@ function setupSidebar() {
   overlay.classList.add('sidebar-overlay');
   document.body.appendChild(overlay);
 
-  let isAnimating = false; // Add flag to prevent multiple animations
-
   function toggleSidebar(show) {
-    if (isAnimating) return; // Prevent multiple animations
-    isAnimating = true;
-
     const action = show ? 'add' : 'remove';
     sidebarMenu.classList[action]('active');
     document.body.classList[action]('sidebar-open');
@@ -622,10 +630,7 @@ function setupSidebar() {
       targets: sidebarMenu,
       translateX: show ? ['100%', '0'] : ['0', '100%'],
       duration: 300,
-      easing: 'easeInOutQuad',
-      complete: () => {
-        isAnimating = false; // Reset flag when animation completes
-      }
+      easing: 'easeInOutQuad'
     });
   }
 
@@ -635,7 +640,6 @@ function setupSidebar() {
   // Close sidebar on ESC key
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && sidebarMenu.classList.contains('active')) {
-      e.preventDefault(); // Prevent default ESC behavior
       toggleSidebar(false);
     }
   });
