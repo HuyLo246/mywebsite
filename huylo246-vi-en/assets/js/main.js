@@ -652,21 +652,30 @@ function switchLanguage(lang) {
   if (isSwitchingLanguage) return;
   isSwitchingLanguage = true;
 
-  const pageState = {
-    scrollPosition: window.pageYOffset,
-    activeSection: getCurrentSection(),
+  // Save current scroll position and section info
+  const currentPosition = {
+    scrollY: window.scrollY,
+    section: getCurrentSection(),
     timestamp: Date.now()
   };
+  localStorage.setItem('languageSwitchState', JSON.stringify(currentPosition));
 
-  localStorage.setItem('pageState', JSON.stringify(pageState));
-
+  // Animate transition
   anime({
     targets: 'body',
     opacity: [1, 0],
     duration: 500,
     easing: 'easeInOutQuad',
     complete: () => {
-      window.location.href = lang === 'en' ? 'index.html' : 'indexvn.html';
+      // Use relative paths and maintain the current directory structure
+      const currentPath = window.location.pathname;
+      const isInViEnFolder = currentPath.includes('huylo246-vi-en');
+      
+      if (lang === 'en') {
+        window.location.href = isInViEnFolder ? '../huylo246/index.html' : 'index.html';
+      } else {
+        window.location.href = isInViEnFolder ? 'index.html' : '../huylo246-vi-en/index.html';
+      }
     }
   });
 }
@@ -844,6 +853,22 @@ document.addEventListener('DOMContentLoaded', () => {
   // Add scroll position restoration
   restoreScrollPosition();
   
+  // Restore scroll position after language switch
+  const switchState = JSON.parse(localStorage.getItem('languageSwitchState'));
+  if (switchState && Date.now() - switchState.timestamp < 5000) {
+    // Wait for page elements to load
+    setTimeout(() => {
+      if (switchState.section) {
+        const targetSection = document.getElementById(switchState.section);
+        if (targetSection) {
+          targetSection.scrollIntoView();
+        }
+      }
+      window.scrollTo(0, switchState.scrollY);
+      localStorage.removeItem('languageSwitchState');
+    }, 100);
+  }
+
   // Re-enable language switching
   isSwitchingLanguage = false;
 });
