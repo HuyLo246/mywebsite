@@ -1186,11 +1186,6 @@ section {
     background-color: #00f1f1; /* TikTok-like color */
 }
 
-.follow-button:hover {
-    background-color: #00b3b3; /* Darker shade on hover */
-    transform: scale(1.05); /* Slightly enlarge on hover */
-    border: 2px solid #fff; /* White border on hover */
-}
 
 /* Typing Animation for h3 */
 .typing-animation {
@@ -2307,15 +2302,15 @@ html, body {
 .btn, .subscribe-button, .follow-button {
   position: relative;
   overflow: hidden;
-  background: linear-gradient(45deg, #FF6B00, #ff6b6b);
+  background: linear-gradient(45deg, #FF6B00, #ff6b6b); /* Updated gradient colors */
   border: none;
-  box-shadow: 0 0 15px rgba(255, 107, 0, 0.3);
+  box-shadow: 0 0 15px rgba(255, 107, 0, 0.3); /* Updated shadow color */
   transition: all 0.3s ease;
 }
 
 .btn:hover, .subscribe-button:hover, .follow-button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 0 25px rgba(255, 107, 0, 0.5);
+  box-shadow: 0 0 25px rgba(255, 107, 0, 0.5); /* Updated shadow color */
 }
 
 /* Add glowing effect to social icons */
@@ -2336,7 +2331,7 @@ html, body {
   right: -5px;
   bottom: -5px;
   border-radius: 50%;
-  background: linear-gradient(45deg, #FF6B00, #ff6b6b);
+  background: linear-gradient(45deg, #FF6B00, #ff6b6b); /* Updated gradient colors */
   z-index: -1;
   opacity: 0;
   transition: opacity 0.3s ease;
@@ -2349,10 +2344,15 @@ html, body {
 /* Add glowing text effect to headings */
 h1, h2, h3 {
   position: relative;
-  text-shadow: 0 0 10px rgba(255, 107, 0, 0.3);
+  text-shadow: 0 0 10px rgba(255, 107, 0, 0.3); /* Updated shadow color */
 }
 
 /* Add hover effect to nav items */
+.nav-items a {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
 .nav-items a::after {
   content: '';
   position: absolute;
@@ -2360,8 +2360,12 @@ h1, h2, h3 {
   left: 0;
   width: 0;
   height: 2px;
-  background: linear-gradient(45deg, #FF6B00, #ff6b6b);
+  background: linear-gradient(45deg, #FF6B00, #ff6b6b); /* Updated gradient colors */
   transition: width 0.3s ease;
+}
+
+.nav-items a:hover::after {
+  width: 100%;
 }
 
 /* Add card hover effects */
@@ -2372,7 +2376,7 @@ h1, h2, h3 {
 
 .channel-item:hover, .video-item:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(255, 107, 0, 0.2);
+  box-shadow: 0 8px 25px rgba(255, 107, 0, 0.2); /* Updated shadow color */
 }
 
 /* Add glowing border effect to images */
@@ -2382,8 +2386,8 @@ h1, h2, h3 {
 }
 
 .about-me-image img:hover, .channel-item img:hover {
-  border-color: #FF6B00;
-  box-shadow: 0 0 20px rgba(255, 107, 0, 0.3);
+  border-color: #FF6B00; /* Updated border color */
+  box-shadow: 0 0 20px rgba(255, 107, 0, 0.3); /* Updated shadow color */
 }
 
 /* Add loading animation */
@@ -2404,7 +2408,7 @@ h1, h2, h3 {
   width: 50px;
   height: 50px;
   border: 3px solid #333;
-  border-top: 3px solid #FF6B00;
+  border-top: 3px solid #FF6B00; /* Updated border color */
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }

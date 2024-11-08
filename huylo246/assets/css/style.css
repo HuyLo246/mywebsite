@@ -1258,12 +1258,6 @@ section {
     background-color: #00f1f1; /* TikTok-like color */
 }
 
-.follow-button:hover {
-    background-color: #00b3b3; /* Darker shade on hover */
-    transform: scale(1.05); /* Slightly enlarge on hover */
-    border: 2px solid #fff; /* White border on hover */
-}
-
 /* Typing Animation for h3 */
 .typing-animation {
     width: 100%;
