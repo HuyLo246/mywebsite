@@ -11,6 +11,21 @@ AOS.init({
   once: true, // Animation happens only once
 });
 
+// Add this at the beginning of your main.js
+document.addEventListener('DOMContentLoaded', function() {
+  // Hide loading animation once content is loaded
+  const loadingAnimation = document.querySelector('.loading-animation');
+  if (loadingAnimation) {
+      // Small delay to ensure smooth transition
+      setTimeout(() => {
+          loadingAnimation.style.opacity = '0';
+          setTimeout(() => {
+              loadingAnimation.style.display = 'none';
+          }, 300);
+      }, 500);
+  }
+});
+
 // Copy to clipboard function
 function copyToClipboard(text) {
   navigator.clipboard.writeText(text)
@@ -553,7 +568,6 @@ window.addEventListener('load', () => {
     }, 500);
   }
 });
-
 // Add smooth reveal animations on scroll
 const revealElements = document.querySelectorAll('.reveal');
 const revealOnScroll = () => {
