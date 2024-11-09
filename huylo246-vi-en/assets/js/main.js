@@ -27,60 +27,52 @@ function copyToClipboard(text) {
 function setupNavLinks() {
   const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('.nav-items a');
-
-  // Add click event listeners to nav links
-  navLinks.forEach(link => {
-    link.addEventListener('click', function(e) {
-      e.preventDefault();
-      // Remove active class from all links
-      navLinks.forEach(link => link.classList.remove('active'));
-      // Add active class to clicked link
-      this.classList.add('active');
-      
-      // Smooth scroll to section
-      const targetId = this.getAttribute('href').substring(1);
-      const targetSection = document.getElementById(targetId);
-      if (targetSection) {
-        targetSection.scrollIntoView({ behavior: 'smooth' });
-      }
-    });
-  });
-
-  // Update active state on scroll with throttle
+  
   const setActiveLink = throttle(() => {
     const scrollY = window.scrollY;
     const windowHeight = window.innerHeight;
     
-    // Special case for top of page
-    if (scrollY < 50) {
-      navLinks.forEach(link => {
-        link.classList.toggle('active', link.getAttribute('href') === '#home');
-      });
-      return;
-    }
+    // Find the section that takes up the most space in the viewport
+    let maxVisibleSection = null;
+    let maxVisibleHeight = 0;
 
-    // Find the current section in view
     sections.forEach(section => {
       const rect = section.getBoundingClientRect();
-      const sectionTop = section.offsetTop - 100;
-      const sectionBottom = sectionTop + section.offsetHeight;
-      const sectionId = section.getAttribute('id');
+      const visibleHeight = Math.min(rect.bottom, windowHeight) - Math.max(rect.top, 0);
       
-      // Check if section is in viewport
-      if (scrollY >= sectionTop && scrollY < sectionBottom) {
-        navLinks.forEach(link => {
-          const href = link.getAttribute('href');
-          link.classList.toggle('active', href === `#${sectionId}`);
-        });
+      if (visibleHeight > maxVisibleHeight) {
+        maxVisibleHeight = visibleHeight;
+        maxVisibleSection = section;
       }
     });
-  }, 100); // Throttle to run at most every 100ms
+
+    // Update active state based on the most visible section
+    if (maxVisibleSection) {
+      const sectionId = maxVisibleSection.getAttribute('id');
+      navLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === `#${sectionId}`);
+      });
+    }
+  }, 100);
 
   // Add scroll event listener
   window.addEventListener('scroll', setActiveLink);
   
   // Set initial active state
   setActiveLink();
+
+  // Add click event listeners to nav links
+  navLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href').substring(1);
+      const targetSection = document.getElementById(targetId);
+      
+      if (targetSection) {
+        targetSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
 }
 
 // Video toggle functionality
@@ -574,34 +566,46 @@ function setupNavLinks() {
     const scrollY = window.scrollY;
     const windowHeight = window.innerHeight;
     
-    // If at the top of the page, activate home link
-    if (scrollY < 100) {
-      navLinks.forEach(link => {
-        link.classList.toggle('active', link.getAttribute('href') === '#home');
-      });
-      return;
-    }
-    
-    sections.forEach(section => {
-      const sectionTop = section.offsetTop - 100;
-      const sectionHeight = section.offsetHeight;
-      const sectionId = section.getAttribute('id');
-      const isVisible = (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) ||
-                       (sectionTop >= scrollY && sectionTop < scrollY + windowHeight);
+    // Find the section that takes up the most space in the viewport
+    let maxVisibleSection = null;
+    let maxVisibleHeight = 0;
 
-      if (isVisible) {
-        navLinks.forEach(link => {
-          link.classList.toggle('active', link.getAttribute('href') === `#${sectionId}`);
-        });
+    sections.forEach(section => {
+      const rect = section.getBoundingClientRect();
+      const visibleHeight = Math.min(rect.bottom, windowHeight) - Math.max(rect.top, 0);
+      
+      if (visibleHeight > maxVisibleHeight) {
+        maxVisibleHeight = visibleHeight;
+        maxVisibleSection = section;
       }
     });
+
+    // Update active state based on the most visible section
+    if (maxVisibleSection) {
+      const sectionId = maxVisibleSection.getAttribute('id');
+      navLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === `#${sectionId}`);
+      });
+    }
   }, 100);
 
+  // Add scroll event listener
   window.addEventListener('scroll', setActiveLink);
   
-  // Set initial active state for home
+  // Set initial active state
+  setActiveLink();
+
+  // Add click event listeners to nav links
   navLinks.forEach(link => {
-    link.classList.toggle('active', link.getAttribute('href') === '#home');
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href').substring(1);
+      const targetSection = document.getElementById(targetId);
+      
+      if (targetSection) {
+        targetSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
   });
 }
 
