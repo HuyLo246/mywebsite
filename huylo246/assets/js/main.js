@@ -1,51 +1,12 @@
 // Initialize functions
 setupNavLinks();
-setupScrollActiveLinks();
 setupVideoToggle();
-setActiveLink();
 
 // Initialize AOS (Animate On Scroll)
 AOS.init({
   duration: 800, // Duration of animations
   easing: 'ease-in-out', // Easing function
   once: true, // Animation happens only once
-});
-
-// Loading screen handler
-window.addEventListener('load', function() {
-  document.body.classList.add('loaded');
-  const loader = document.querySelector('.loading-animation');
-  if (loader) {
-    loader.classList.add('hidden');
-    setTimeout(() => {
-      loader.remove();
-    }, 500);
-  }
-});
-
-// Prevent loader from showing if page is loaded from back/forward cache
-window.addEventListener('pageshow', function(event) {
-  if (event.persisted) {
-      const loader = document.querySelector('.loading-animation');
-      if (loader) {
-          loader.remove();
-      }
-  }
-});
-
-// Add this at the beginning of your main.js
-document.addEventListener('DOMContentLoaded', function() {
-  // Hide loading animation once content is loaded
-  const loadingAnimation = document.querySelector('.loading-animation');
-  if (loadingAnimation) {
-      // Small delay to ensure smooth transition
-      setTimeout(() => {
-          loadingAnimation.style.opacity = '0';
-          setTimeout(() => {
-              loadingAnimation.style.display = 'none';
-          }, 300);
-      }, 500);
-  }
 });
 
 // Copy to clipboard function
@@ -70,70 +31,54 @@ function setupNavLinks() {
   // Add click event listeners to nav links
   navLinks.forEach(link => {
     link.addEventListener('click', function(e) {
+      e.preventDefault();
+      
       // Remove active class from all links
       navLinks.forEach(link => link.classList.remove('active'));
       // Add active class to clicked link
       this.classList.add('active');
+      
+      // Smooth scroll to target section
+      const targetId = this.getAttribute('href').substring(1);
+      const targetSection = document.getElementById(targetId);
+      if (targetSection) {
+        targetSection.scrollIntoView({ behavior: 'smooth' });
+      }
     });
   });
 
   // Update active state on scroll
-  function setActiveLink() {
+  const setActiveLink = throttle(() => {
     const scrollY = window.scrollY;
+    const windowHeight = window.innerHeight;
+
+    // Special case for top of page (Home section)
+    if (scrollY < 100) {
+      navLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === '#home');
+      });
+      return;
+    }
 
     sections.forEach(section => {
-      const sectionTop = section.offsetTop - 100; // Adjust offset as needed
+      const rect = section.getBoundingClientRect();
+      const sectionTop = section.offsetTop - 100;
       const sectionHeight = section.offsetHeight;
       const sectionId = section.getAttribute('id');
 
       if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
         navLinks.forEach(link => {
-          link.classList.remove('active');
-          if (link.getAttribute('href') === `#${sectionId}`) {
-            link.classList.add('active');
-          }
+          link.classList.toggle('active', link.getAttribute('href') === `#${sectionId}`);
         });
       }
     });
-  }
+  }, 100);
 
   // Add scroll event listener
   window.addEventListener('scroll', setActiveLink);
   
   // Set initial active state
   setActiveLink();
-
-  // Add click event listeners to nav links for manual activation
-  navLinks.forEach(link => {
-    link.addEventListener('click', function() {
-      navLinks.forEach(link => link.classList.remove('active'));
-      this.classList.add('active');
-    });
-  });
-}
-
-// Active link on scroll
-function setupScrollActiveLinks() {
-  const sections = document.querySelectorAll('section');
-  const navLinks = document.querySelectorAll('.nav-items a');
-
-  window.addEventListener('scroll', () => {
-    let current = '';
-    sections.forEach(section => {
-      const sectionTop = section.offsetTop;
-      const sectionHeight = section.clientHeight;
-      if (pageYOffset >= sectionTop - sectionHeight / 3) {
-        current = section.getAttribute('id');
-      }
-    });
-
-    navLinks.forEach(link => {
-      link.classList.remove('active');
-      if (link.getAttribute('href') === '#' + current) {
-        link.classList.add('active');
-      }
-    });
-  });
 }
 
 // Video toggle functionality
@@ -590,6 +535,7 @@ window.addEventListener('load', () => {
     }, 500);
   }
 });
+
 // Add smooth reveal animations on scroll
 const revealElements = document.querySelectorAll('.reveal');
 const revealOnScroll = () => {
@@ -608,26 +554,16 @@ window.addEventListener('scroll', revealOnScroll);
 // Enhanced scroll handling with throttle
 function throttle(func, limit) {
   let inThrottle;
-  let lastFunc;
-  let lastRan;
   return function(...args) {
     if (!inThrottle) {
       func.apply(this, args);
-      lastRan = Date.now();
       inThrottle = true;
-    } else {
-      clearTimeout(lastFunc);
-      lastFunc = setTimeout(() => {
-        if ((Date.now() - lastRan) >= limit) {
-          func.apply(this, args);
-          lastRan = Date.now();
-        }
-      }, limit - (Date.now() - lastRan));
+      setTimeout(() => inThrottle = false, limit);
     }
   };
 }
 
-// Improved setupNavLinks with better performance and smoother animations
+// Enhanced setupNavLinks with smooth scrolling and better performance
 function setupNavLinks() {
   const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('.nav-items a');
@@ -635,36 +571,26 @@ function setupNavLinks() {
   const setActiveLink = throttle(() => {
     const scrollY = window.scrollY;
     const windowHeight = window.innerHeight;
-    let currentSection = '';
     
-    // Special case for top of page
+    // If at the top of the page, activate home link
     if (scrollY < 100) {
-      currentSection = 'home';
-    } else {
-      // Find current section using Intersection Observer API
-      sections.forEach(section => {
-        const rect = section.getBoundingClientRect();
-        if (rect.top <= windowHeight/2 && rect.bottom >= windowHeight/2) {
-          currentSection = section.id;
-        }
+      navLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === '#home');
       });
+      return;
     }
     
-    // Update active states with smooth transitions
-    navLinks.forEach(link => {
-      const href = link.getAttribute('href').substring(1);
-      if (href === currentSection) {
-        if (!link.classList.contains('active')) {
-          link.classList.add('active');
-          anime({
-            targets: link,
-            scale: [1, 1.1, 1],
-            duration: 300,
-            easing: 'easeOutElastic(1, .5)'
-          });
-        }
-      } else {
-        link.classList.remove('active');
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop - 100;
+      const sectionHeight = section.offsetHeight;
+      const sectionId = section.getAttribute('id');
+      const isVisible = (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) ||
+                       (sectionTop >= scrollY && sectionTop < scrollY + windowHeight);
+
+      if (isVisible) {
+        navLinks.forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === `#${sectionId}`);
+        });
       }
     });
   }, 100);
@@ -674,14 +600,6 @@ function setupNavLinks() {
   // Set initial active state for home
   navLinks.forEach(link => {
     link.classList.toggle('active', link.getAttribute('href') === '#home');
-  });
-
-  // Add click event listeners to nav links for manual activation
-  navLinks.forEach(link => {
-    link.addEventListener('click', function() {
-      navLinks.forEach(link => link.classList.remove('active'));
-      this.classList.add('active');
-    });
   });
 }
 
@@ -725,25 +643,30 @@ function switchLanguage(lang) {
   if (isSwitchingLanguage) return;
   isSwitchingLanguage = true;
 
-  const state = {
-    scrollPosition: window.scrollY,
+  // Save current scroll position and section info
+  const currentPosition = {
+    scrollY: window.scrollY,
     section: getCurrentSection(),
-    timestamp: Date.now(),
-    viewportHeight: window.innerHeight,
-    devicePixelRatio: window.devicePixelRatio
+    timestamp: Date.now()
   };
-  
-  localStorage.setItem('languageSwitchState', JSON.stringify(state));
+  localStorage.setItem('languageSwitchState', JSON.stringify(currentPosition));
 
-  // Smooth transition animation
+  // Animate transition
   anime({
     targets: 'body',
     opacity: [1, 0],
     duration: 500,
     easing: 'easeInOutQuad',
     complete: () => {
-      const newPath = lang === 'en' ? 'index.html' : 'indexvn.html';
-      window.location.href = newPath;
+      // Use relative paths and maintain the current directory structure
+      const currentPath = window.location.pathname;
+      const isInViEnFolder = currentPath.includes('huylo246-vi-en');
+      
+      if (lang === 'en') {
+        window.location.href = isInViEnFolder ? '../huylo246/index.html' : 'index.html';
+      } else {
+        window.location.href = isInViEnFolder ? 'index.html' : '../huylo246-vi-en/index.html';
+      }
     }
   });
 }
@@ -781,7 +704,6 @@ function setupAnimations() {
 // Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
   setupNavLinks();
-  setupScrollActiveLinks();
   setupVideoToggle();
   setupSidebar();
   setupAnimations();
@@ -939,84 +861,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Re-enable language switching
   isSwitchingLanguage = false;
-
-  function setupNavLinks() {
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-items a');
-    
-    const setActiveLink = throttle(() => {
-      const scrollY = window.scrollY;
-      const windowHeight = window.innerHeight;
-      let found = false;
-      
-      // If at the top of the page, activate home link
-      if (scrollY < 100) {
-        navLinks.forEach(link => {
-          link.classList.toggle('active', link.getAttribute('href') === '#home');
-        });
-        return;
-      }
-      
-      sections.forEach(section => {
-        const sectionTop = section.offsetTop - 100;
-        const sectionHeight = section.offsetHeight;
-        const sectionId = section.getAttribute('id');
-        
-        // Adjusted visibility check
-        if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
-          found = true;
-          navLinks.forEach(link => {
-            link.classList.toggle('active', link.getAttribute('href') === `#${sectionId}`);
-          });
-        }
-      });
-      
-      // If no section is active, deactivate all links
-      if (!found) {
-        navLinks.forEach(link => link.classList.remove('active'));
-      }
-    }, 100);
-  
-    window.addEventListener('scroll', setActiveLink);
-    
-    // Single click event listener for nav links
-    navLinks.forEach(link => {
-      link.addEventListener('click', function(e) {
-        e.preventDefault();
-        
-        // Remove active class from all links
-        navLinks.forEach(l => l.classList.remove('active'));
-        
-        // Add active class to clicked link
-        this.classList.add('active');
-        
-        // Smooth scroll to target section
-        const targetId = this.getAttribute('href').substring(1);
-        const targetSection = document.getElementById(targetId);
-        if (targetSection) {
-          targetSection.scrollIntoView({ behavior: 'smooth' });
-        }
-      });
-    });
-  }
-});
-
-// Add at the beginning of your main.js
-window.addEventListener('load', function() {
-    document.body.classList.add('loaded');
-    
-    // Initialize AOS after content is loaded
-    if (typeof AOS !== 'undefined') {
-        AOS.init({
-            duration: 1000,
-            once: true
-        });
-    }
-});
-
-// Handle page visibility changes
-document.addEventListener('visibilitychange', function() {
-    if (document.visibilityState === 'visible') {
-        document.body.classList.add('loaded');
-    }
 });
