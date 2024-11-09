@@ -2432,7 +2432,7 @@ h1, h2, h3 {
 }
 
 /* Enhanced Button Styles */
-.btn, .donate-button, .follow-button {
+.btn, .follow-button {
     position: relative;
     overflow: hidden;
     background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
@@ -2504,27 +2504,6 @@ section[data-aos].aos-animate {
     transform: scale(1.05);
     filter: brightness(1.1);
     box-shadow: 0 0 20px rgba(255, 107, 0, 0.3);
-}
-
-/* Enhanced Navigation Menu */
-.nav-items a {
-    position: relative;
-    overflow: hidden;
-}
-
-.nav-items a::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: #FF6B00;
-    transition: width 0.3s ease;
-}
-
-.nav-items a:hover::after {
-    width: 100%;
 }
 
 /* Enhanced Loading Animation */

@@ -32,13 +32,12 @@ function setupNavLinks() {
   navLinks.forEach(link => {
     link.addEventListener('click', function(e) {
       e.preventDefault();
-      
       // Remove active class from all links
       navLinks.forEach(link => link.classList.remove('active'));
       // Add active class to clicked link
       this.classList.add('active');
       
-      // Smooth scroll to target section
+      // Smooth scroll to section
       const targetId = this.getAttribute('href').substring(1);
       const targetSection = document.getElementById(targetId);
       if (targetSection) {
@@ -47,32 +46,35 @@ function setupNavLinks() {
     });
   });
 
-  // Update active state on scroll
+  // Update active state on scroll with throttle
   const setActiveLink = throttle(() => {
     const scrollY = window.scrollY;
     const windowHeight = window.innerHeight;
-
-    // Special case for top of page (Home section)
-    if (scrollY < 100) {
+    
+    // Special case for top of page
+    if (scrollY < 50) {
       navLinks.forEach(link => {
         link.classList.toggle('active', link.getAttribute('href') === '#home');
       });
       return;
     }
 
+    // Find the current section in view
     sections.forEach(section => {
       const rect = section.getBoundingClientRect();
       const sectionTop = section.offsetTop - 100;
-      const sectionHeight = section.offsetHeight;
+      const sectionBottom = sectionTop + section.offsetHeight;
       const sectionId = section.getAttribute('id');
-
-      if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+      
+      // Check if section is in viewport
+      if (scrollY >= sectionTop && scrollY < sectionBottom) {
         navLinks.forEach(link => {
-          link.classList.toggle('active', link.getAttribute('href') === `#${sectionId}`);
+          const href = link.getAttribute('href');
+          link.classList.toggle('active', href === `#${sectionId}`);
         });
       }
     });
-  }, 100);
+  }, 100); // Throttle to run at most every 100ms
 
   // Add scroll event listener
   window.addEventListener('scroll', setActiveLink);
