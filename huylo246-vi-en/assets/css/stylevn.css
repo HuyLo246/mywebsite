@@ -278,44 +278,45 @@ nav a.active {
     margin-bottom: 3rem; /* Increased margin for better spacing */
 }
 
-/* Updated Stats Styles */
 .stats {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
-    margin: 2rem 0;
-    padding: 1rem;
-    width: 100%;
-    max-width: 800px;
+    margin-bottom: 4rem; /* Increased margin for more space */
+    gap: 2rem; /* Add gap between stat items */
+    padding: 2rem; /* Add padding for better spacing */
+    height: 120px;
 }
 
 .stat-item {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    padding: 0.5rem;
-    text-align: center;
-    transition: transform 0.3s ease;
+    justify-content: center; /* Center content vertically within stat-item */
+    transition: transform 0.3s ease; /* Add transition for pop-in effect */
+    padding: 1rem 2rem; /* Add padding */
+    border-radius: 10px; /* Add rounded corners to the stat items */
+    color: #fff; /* Set text color to white */
+    text-align: center; /* Center text within stat-item */
+    height: 80px; /* Set a lower height for the stat-item */
 }
 
 .stat-item span {
-    font-size: 2.4rem;
-    font-weight: 600;
+    font-size: 3rem;
+    font-weight: 700;
     color: #FF6B00;
-    margin-bottom: 0.5rem;
 }
 
 .stat-item p {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
+    font-weight: 500;
     color: #fff;
-    margin: 0;
-    opacity: 0.8;
 }
 
-/* Add hover effect */
+/* Pop-in effect on hover */
 .stat-item:hover {
-    transform: scale(1.1);
+    transform: scale(1.1); /* Slightly enlarge on hover */
 }
 
 /* Responsive adjustments */
