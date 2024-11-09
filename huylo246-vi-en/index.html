@@ -3,12 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Chào mừng đến với trang web của HuyLo246 - YouTuber, TikToker, Lập Trình Viên, và Nhà Thiết Kế Web">
-    <meta name="keywords" content="HuyLo246, YouTube, TikTok, lập trình, thiết kế web">
-    <meta name="author" content="HuyLo246">
-    <meta name="theme-color" content="#000000">
-    <link rel="preload" href="assets/css/stylevn.css" as="style">
-    <link rel="preload" href="assets/js/main.js" as="script">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="assets/css/stylevn.css">
@@ -27,38 +21,9 @@
     <title>HuyLo246 Vi En</title>
 </head>
 <body>
-    <noscript>
-        <div class="noscript-message">
-            Vui lòng bật JavaScript để xem trang web này đúng cách.
-        </div>
-    </noscript>
     <div class="loading-animation">
         <div class="loading-spinner"></div>
     </div>
-    <script>
-        // Content loading handler
-        document.addEventListener('DOMContentLoaded', function() {
-            // Show body content
-            document.body.classList.add('loaded');
-            
-            // Handle loader
-            const loader = document.querySelector('.loading-animation');
-            if (loader) {
-                setTimeout(() => {
-                    loader.style.opacity = '0';
-                    loader.style.visibility = 'hidden';
-                    setTimeout(() => loader.remove(), 300);
-                }, 500);
-            }
-        });
-
-        // Fallback
-        setTimeout(function() {
-            document.body.classList.add('loaded');
-            const loader = document.querySelector('.loading-animation');
-            if (loader) loader.remove();
-        }, 2000);
-    </script>
     <div class="lang-toggle">
         <button id="lang-en" onclick="window.location.href='/huylo246'">VN</button>
     </div>
