@@ -13,22 +13,13 @@ AOS.init({
 
 // Loading screen handler
 window.addEventListener('load', function() {
+  document.body.classList.add('loaded');
   const loader = document.querySelector('.loading-animation');
   if (loader) {
-      // Add hidden class to trigger transition
-      loader.classList.add('hidden');
-      
-      // Remove loader from DOM after transition
-      loader.addEventListener('transitionend', function() {
-          loader.remove();
-      });
-      
-      // Fallback if transition doesn't fire
-      setTimeout(() => {
-          if (loader.parentElement) {
-              loader.remove();
-          }
-      }, 1000);
+    loader.classList.add('hidden');
+    setTimeout(() => {
+      loader.remove();
+    }, 500);
   }
 });
 
