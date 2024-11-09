@@ -2,6 +2,7 @@
 setupNavLinks();
 setupScrollActiveLinks();
 setupVideoToggle();
+setActiveLink();
 
 // Initialize AOS (Animate On Scroll)
 AOS.init({
@@ -64,6 +65,14 @@ function setupNavLinks() {
   
   // Set initial active state
   setActiveLink();
+
+  // Add click event listeners to nav links for manual activation
+  navLinks.forEach(link => {
+    link.addEventListener('click', function() {
+      navLinks.forEach(link => link.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
 }
 
 // Active link on scroll
@@ -563,16 +572,26 @@ window.addEventListener('scroll', revealOnScroll);
 // Enhanced scroll handling with throttle
 function throttle(func, limit) {
   let inThrottle;
+  let lastFunc;
+  let lastRan;
   return function(...args) {
     if (!inThrottle) {
       func.apply(this, args);
+      lastRan = Date.now();
       inThrottle = true;
-      setTimeout(() => inThrottle = false, limit);
+    } else {
+      clearTimeout(lastFunc);
+      lastFunc = setTimeout(() => {
+        if ((Date.now() - lastRan) >= limit) {
+          func.apply(this, args);
+          lastRan = Date.now();
+        }
+      }, limit - (Date.now() - lastRan));
     }
   };
 }
 
-// Enhanced setupNavLinks with smooth scrolling and better performance
+// Improved setupNavLinks with better performance and smoother animations
 function setupNavLinks() {
   const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('.nav-items a');
@@ -580,26 +599,36 @@ function setupNavLinks() {
   const setActiveLink = throttle(() => {
     const scrollY = window.scrollY;
     const windowHeight = window.innerHeight;
+    let currentSection = '';
     
-    // If at the top of the page, activate home link
+    // Special case for top of page
     if (scrollY < 100) {
-      navLinks.forEach(link => {
-        link.classList.toggle('active', link.getAttribute('href') === '#home');
+      currentSection = 'home';
+    } else {
+      // Find current section using Intersection Observer API
+      sections.forEach(section => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top <= windowHeight/2 && rect.bottom >= windowHeight/2) {
+          currentSection = section.id;
+        }
       });
-      return;
     }
     
-    sections.forEach(section => {
-      const sectionTop = section.offsetTop - 100;
-      const sectionHeight = section.offsetHeight;
-      const sectionId = section.getAttribute('id');
-      const isVisible = (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) ||
-                       (sectionTop >= scrollY && sectionTop < scrollY + windowHeight);
-
-      if (isVisible) {
-        navLinks.forEach(link => {
-          link.classList.toggle('active', link.getAttribute('href') === `#${sectionId}`);
-        });
+    // Update active states with smooth transitions
+    navLinks.forEach(link => {
+      const href = link.getAttribute('href').substring(1);
+      if (href === currentSection) {
+        if (!link.classList.contains('active')) {
+          link.classList.add('active');
+          anime({
+            targets: link,
+            scale: [1, 1.1, 1],
+            duration: 300,
+            easing: 'easeOutElastic(1, .5)'
+          });
+        }
+      } else {
+        link.classList.remove('active');
       }
     });
   }, 100);
@@ -609,6 +638,14 @@ function setupNavLinks() {
   // Set initial active state for home
   navLinks.forEach(link => {
     link.classList.toggle('active', link.getAttribute('href') === '#home');
+  });
+
+  // Add click event listeners to nav links for manual activation
+  navLinks.forEach(link => {
+    link.addEventListener('click', function() {
+      navLinks.forEach(link => link.classList.remove('active'));
+      this.classList.add('active');
+    });
   });
 }
 
@@ -652,30 +689,25 @@ function switchLanguage(lang) {
   if (isSwitchingLanguage) return;
   isSwitchingLanguage = true;
 
-  // Save current scroll position and section info
-  const currentPosition = {
-    scrollY: window.scrollY,
+  const state = {
+    scrollPosition: window.scrollY,
     section: getCurrentSection(),
-    timestamp: Date.now()
+    timestamp: Date.now(),
+    viewportHeight: window.innerHeight,
+    devicePixelRatio: window.devicePixelRatio
   };
-  localStorage.setItem('languageSwitchState', JSON.stringify(currentPosition));
+  
+  localStorage.setItem('languageSwitchState', JSON.stringify(state));
 
-  // Animate transition
+  // Smooth transition animation
   anime({
     targets: 'body',
     opacity: [1, 0],
     duration: 500,
     easing: 'easeInOutQuad',
     complete: () => {
-      // Use relative paths and maintain the current directory structure
-      const currentPath = window.location.pathname;
-      const isInViEnFolder = currentPath.includes('huylo246-vi-en');
-      
-      if (lang === 'en') {
-        window.location.href = isInViEnFolder ? '../huylo246/index.html' : 'index.html';
-      } else {
-        window.location.href = isInViEnFolder ? 'index.html' : '../huylo246-vi-en/index.html';
-      }
+      const newPath = lang === 'en' ? 'index.html' : 'indexvn.html';
+      window.location.href = newPath;
     }
   });
 }
@@ -871,4 +903,64 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Re-enable language switching
   isSwitchingLanguage = false;
+
+  function setupNavLinks() {
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-items a');
+    
+    const setActiveLink = throttle(() => {
+      const scrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
+      let found = false;
+      
+      // If at the top of the page, activate home link
+      if (scrollY < 100) {
+        navLinks.forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === '#home');
+        });
+        return;
+      }
+      
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 100;
+        const sectionHeight = section.offsetHeight;
+        const sectionId = section.getAttribute('id');
+        
+        // Adjusted visibility check
+        if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+          found = true;
+          navLinks.forEach(link => {
+            link.classList.toggle('active', link.getAttribute('href') === `#${sectionId}`);
+          });
+        }
+      });
+      
+      // If no section is active, deactivate all links
+      if (!found) {
+        navLinks.forEach(link => link.classList.remove('active'));
+      }
+    }, 100);
+  
+    window.addEventListener('scroll', setActiveLink);
+    
+    // Single click event listener for nav links
+    navLinks.forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        // Remove active class from all links
+        navLinks.forEach(l => l.classList.remove('active'));
+        
+        // Add active class to clicked link
+        this.classList.add('active');
+        
+        // Smooth scroll to target section
+        const targetId = this.getAttribute('href').substring(1);
+        const targetSection = document.getElementById(targetId);
+        if (targetSection) {
+          targetSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  }
 });
