@@ -11,6 +11,37 @@ AOS.init({
   once: true, // Animation happens only once
 });
 
+// Loading screen handler
+window.addEventListener('load', function() {
+  const loader = document.querySelector('.loading-animation');
+  if (loader) {
+      // Add hidden class to trigger transition
+      loader.classList.add('hidden');
+      
+      // Remove loader from DOM after transition
+      loader.addEventListener('transitionend', function() {
+          loader.remove();
+      });
+      
+      // Fallback if transition doesn't fire
+      setTimeout(() => {
+          if (loader.parentElement) {
+              loader.remove();
+          }
+      }, 1000);
+  }
+});
+
+// Prevent loader from showing if page is loaded from back/forward cache
+window.addEventListener('pageshow', function(event) {
+  if (event.persisted) {
+      const loader = document.querySelector('.loading-animation');
+      if (loader) {
+          loader.remove();
+      }
+  }
+});
+
 // Add this at the beginning of your main.js
 document.addEventListener('DOMContentLoaded', function() {
   // Hide loading animation once content is loaded

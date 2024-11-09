@@ -2461,7 +2461,7 @@ h1, h2, h3 {
   box-shadow: 0 0 20px rgba(158, 75, 183, 0.3);
 }
 
-/* Update loading animation styles */
+/* Add loading animation */
 .loading-animation {
     position: fixed;
     top: 0;
@@ -2473,21 +2473,28 @@ h1, h2, h3 {
     justify-content: center;
     align-items: center;
     z-index: 9999;
-    transition: opacity 0.3s ease;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.loading-animation.hidden {
+    opacity: 0;
+    visibility: hidden;
 }
 
 .loading-spinner {
-    width: 50px;
-    height: 50px;
-    border: 3px solid #1e1e1e;
-    border-top: 3px solid #FF6B00;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
+  width: 50px;
+  height: 50px;
+  border: 3px solid #333;
+  border-top: 3px solid #9e4bb7;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 /* Enhanced Animation Keyframes */
