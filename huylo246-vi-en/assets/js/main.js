@@ -1009,3 +1009,23 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
+// Add at the beginning of your main.js
+window.addEventListener('load', function() {
+    document.body.classList.add('loaded');
+    
+    // Initialize AOS after content is loaded
+    if (typeof AOS !== 'undefined') {
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+    }
+});
+
+// Handle page visibility changes
+document.addEventListener('visibilitychange', function() {
+    if (document.visibilityState === 'visible') {
+        document.body.classList.add('loaded');
+    }
+});

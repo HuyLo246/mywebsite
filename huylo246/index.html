@@ -42,27 +42,46 @@
         <div class="noscript-message">
             Please enable JavaScript to view this website properly.
         </div>
-    </noscript>
-    <div class="loading-animation" aria-hidden="true">
-        <div class="loading-spinner"></div>
+        <noscript>
+            <div class="noscript-message">
+                Vui lòng bật JavaScript để xem trang web này đúng cách.
+            </div>
+        </noscript>
+        <div class="loading-animation">
+            <div class="loading-spinner"></div>
+        </div>
         <script>
-            // Fallback timeout to force-remove loader after 5 seconds
-            setTimeout(function() {
-                var loader = document.querySelector('.loading-animation');
+            // Content loading handler
+            document.addEventListener('DOMContentLoaded', function() {
+                // Show body content
+                document.body.classList.add('loaded');
+                
+                // Handle loader
+                const loader = document.querySelector('.loading-animation');
                 if (loader) {
-                    loader.remove();
+                    setTimeout(() => {
+                        loader.style.opacity = '0';
+                        loader.style.visibility = 'hidden';
+                        setTimeout(() => loader.remove(), 300);
+                    }, 500);
                 }
-            }, 5000);
+            });
+    
+            // Fallback
+            setTimeout(function() {
+                document.body.classList.add('loaded');
+                const loader = document.querySelector('.loading-animation');
+                if (loader) loader.remove();
+            }, 2000);
         </script>
-    </div>
-    <div class="lang-toggle" role="navigation" aria-label="Language selection">
-        <button id="lang-en" onclick="window.location.href='/huylo246-vi-en'" aria-label="Switch to English">EN</button>
-    </div>
-    <header id="header" data-aos="fade-down">
-        <div class="menuHamburger">&#9776;</div>
-        <div class="sidebarMenu">
-            <div class="sidebar-header">
-                <img src="assets/img/profile.jpg" alt="Profile Picture" class="sidebar-profile">
+        <div class="lang-toggle">
+            <button id="lang-en" onclick="window.location.href='/huylo246'">VN</button>
+        </div>
+        <header id="header" data-aos="fade-down">
+            <div class="menuHamburger">&#9776;</div>
+            <div class="sidebarMenu">
+                <div class="sidebar-header">
+                    <img src="assets/img/profile2.png" alt="Hình ảnh hồ sơ" class="sidebar-profile">
                 <h3>HuyLo246</h3>
             </div>
             <div class="close">&times;</div>

@@ -34,16 +34,31 @@
     </noscript>
     <div class="loading-animation">
         <div class="loading-spinner"></div>
-        <script>
-            // Fallback timeout to force-remove loader after 5 seconds
-            setTimeout(function() {
-                var loader = document.querySelector('.loading-animation');
-                if (loader) {
-                    loader.remove();
-                }
-            }, 5000);
-        </script>
     </div>
+    <script>
+        // Content loading handler
+        document.addEventListener('DOMContentLoaded', function() {
+            // Show body content
+            document.body.classList.add('loaded');
+            
+            // Handle loader
+            const loader = document.querySelector('.loading-animation');
+            if (loader) {
+                setTimeout(() => {
+                    loader.style.opacity = '0';
+                    loader.style.visibility = 'hidden';
+                    setTimeout(() => loader.remove(), 300);
+                }, 500);
+            }
+        });
+
+        // Fallback
+        setTimeout(function() {
+            document.body.classList.add('loaded');
+            const loader = document.querySelector('.loading-animation');
+            if (loader) loader.remove();
+        }, 2000);
+    </script>
     <div class="lang-toggle">
         <button id="lang-en" onclick="window.location.href='/huylo246'">VN</button>
     </div>

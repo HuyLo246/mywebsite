@@ -37,6 +37,15 @@ body {
     overflow-x: hidden;
 }
 
+body {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+body.loaded {
+    opacity: 1;
+}
+
 /* Header Styles */
 header {
     position: fixed; /* Keep header fixed */
