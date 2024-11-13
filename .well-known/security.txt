@@ -1,0 +1,4 @@
+Contact: mailto:huylo4660@gmail.com
+Expires: 2025-12-31T23:59:59.000Z
+Preferred-Languages: en, vi
+Policy: https://two-four-six.port0.org/security-policy

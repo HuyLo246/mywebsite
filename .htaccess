@@ -16,3 +16,40 @@ RewriteRule ^huylo246/$ /huylo246 [R=301,L]
 # Redirect for Vietnamese version
 RewriteRule ^indexvn\.html$ /huylo246-vi-en [R=301,L]
 RewriteRule ^huylo246-vi-en/$ /huylo246-vi-en [R=301,L]
+
+# Prevent directory listing
+Options -Indexes
+
+# Protect against hotlinking
+RewriteCond %{HTTP_REFERER} !^$
+RewriteCond %{HTTP_REFERER} !^http(s)?://(www\.)?two-four-six.port0.org [NC]
+RewriteRule \.(jpg|jpeg|png|gif|webp)$ - [NC,F,L]
+
+# Disable file downloads for specific file types
+<FilesMatch "\.(git|gitignore|env|md|json|lock|config|yml|yaml)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Protection against script injections
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+    Header set Content-Security-Policy "default-src 'self' 'unsafe-inline' 'unsafe-eval' *.googleapis.com *.gstatic.com *.google-analytics.com *.googletagmanager.com *.google.com *.youtube.com *.tiktok.com; img-src 'self' data: *.googleapis.com *.gstatic.com *.google-analytics.com; style-src 'self' 'unsafe-inline' *.googleapis.com *.gstatic.com; font-src 'self' data: *.googleapis.com *.gstatic.com;"
+</IfModule>
+
+# Prevent access to sensitive files
+<FilesMatch "^(LICENSE|README.md|package.json|package-lock.json|composer.json|composer.lock|\.(git|env|config|yml|yaml))">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Custom error pages
+ErrorDocument 403 /403.html
+ErrorDocument 404 /404.html
+
+# Force HTTPS
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
