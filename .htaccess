@@ -36,7 +36,7 @@ RewriteRule \.(jpg|jpeg|png|gif|webp)$ - [NC,F,L]
     Header set X-Content-Type-Options "nosniff"
     Header set X-Frame-Options "SAMEORIGIN"
     Header set X-XSS-Protection "1; mode=block"
-    Header set Content-Security-Policy "default-src 'self' 'unsafe-inline' 'unsafe-eval' *.googleapis.com *.gstatic.com *.google-analytics.com *.googletagmanager.com *.google.com *.youtube.com *.tiktok.com; img-src 'self' data: *.googleapis.com *.gstatic.com *.google-analytics.com; style-src 'self' 'unsafe-inline' *.googleapis.com *.gstatic.com; font-src 'self' data: *.googleapis.com *.gstatic.com;"
+    Header set Content-Security-Policy "default-src 'self' 'unsafe-inline' 'unsafe-eval' *.googleapis.com *.gstatic.com *.google-analytics.com *.googletagmanager.com *.google.com *.youtube.com *.tiktok.com *.afraid.org *.port0.org; img-src 'self' data: *.googleapis.com *.gstatic.com *.google-analytics.com; style-src 'self' 'unsafe-inline' *.googleapis.com *.gstatic.com; font-src 'self' data: *.googleapis.com *.gstatic.com; connect-src 'self' *.afraid.org *.port0.org sync.afraid.org;"
 </IfModule>
 
 # Prevent access to sensitive files
