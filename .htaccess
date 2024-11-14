@@ -65,3 +65,10 @@ RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
     Order allow,deny
     Deny from all
 </FilesMatch>
+
+# Add XML content type
+<FilesMatch "\.xml$">
+    Header set Content-Type "application/xml"
+    Order Allow,Deny
+    Allow from all
+</FilesMatch>
