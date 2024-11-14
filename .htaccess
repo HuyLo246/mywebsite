@@ -53,3 +53,15 @@ ErrorDocument 404 /404.html
 RewriteEngine On
 RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Allow access to sitemap
+<Files "sitemap.xml">
+    Order Allow,Deny
+    Allow from all
+</Files>
+
+# Remove any XML blocking rules
+<FilesMatch "\.(git|gitignore|env|md|json|lock|config|yml|yaml)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>

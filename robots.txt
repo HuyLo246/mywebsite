@@ -11,8 +11,15 @@ Disallow: /assets/css/
 Disallow: /.git/
 Disallow: /.github/
 Disallow: /*.json$
+Disallow: /*.xml$
 Disallow: /*.txt$
 Disallow: /*.md$
+Disallow: /README.md
+Disallow: /LICENSE
+Disallow: /.htaccess
+Disallow: /cgi-bin/
+Disallow: /tmp/
+Disallow: /temp/
 
 # Block specific file types
 Disallow: /*.sql$
