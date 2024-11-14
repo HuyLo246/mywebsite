@@ -3,6 +3,7 @@ User-agent: *
 Allow: /
 Allow: /huylo246/
 Allow: /huylo246-vi-en/
+Allow: /sitemap.xml
 
 # Block utility and development files
 Disallow: /assets/js/
@@ -10,15 +11,8 @@ Disallow: /assets/css/
 Disallow: /.git/
 Disallow: /.github/
 Disallow: /*.json$
-Disallow: /*.xml$
 Disallow: /*.txt$
 Disallow: /*.md$
-Disallow: /README.md
-Disallow: /LICENSE
-Disallow: /.htaccess
-Disallow: /cgi-bin/
-Disallow: /tmp/
-Disallow: /temp/
 
 # Block specific file types
 Disallow: /*.sql$
