@@ -1,5 +1,10 @@
 RewriteEngine On
 
+# Add this section near the top, before other rules
+<IfModule mod_mime.c>
+    AddType application/xml .xml
+</IfModule>
+
 # Remove trailing slashes
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)/$ /$1 [L,R=301]
@@ -56,6 +61,8 @@ RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 # Allow access to sitemap
 <Files "sitemap.xml">
+    Header set Content-Type "application/xml; charset=UTF-8"
+    Header set X-Robots-Tag "noindex"
     Order Allow,Deny
     Allow from all
 </Files>
