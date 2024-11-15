@@ -117,9 +117,8 @@ class GameModal {
       closeButton.innerHTML = '×';
       closeButton.addEventListener('click', () => this.closeModal());
       
-      const gameFrame = document.createElement('iframe');
       gameFrame.className = 'game-frame';
-      gameFrame.src = '/assets/jump/jump.gzip/index.html';
+    gameFrame.src = 'assets/jump/jump.gzip/index.html';
       
       gameContainer.appendChild(closeButton);
       gameContainer.appendChild(gameFrame);
