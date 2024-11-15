@@ -1089,3 +1089,43 @@ document.addEventListener('DOMContentLoaded', function() {
       }
   });
 });
+
+// Game Popup Handler
+document.addEventListener('DOMContentLoaded', function() {
+  const gamePopupBtn = document.getElementById('gamePopupBtn');
+  const gamePopup = document.getElementById('gamePopup');
+  const closeGame = document.getElementById('closeGame');
+  const gameFrame = document.getElementById('gameFrame');
+
+  if (gamePopupBtn && gamePopup && closeGame && gameFrame) {
+      // Open game popup
+      gamePopupBtn.addEventListener('click', function() {
+          gamePopup.style.display = 'block';
+          document.body.style.overflow = 'hidden';
+          // Force iframe reload
+          gameFrame.src = gameFrame.src;
+      });
+
+      // Close game popup
+      closeGame.addEventListener('click', function() {
+          gamePopup.style.display = 'none';
+          document.body.style.overflow = 'auto';
+      });
+
+      // Close on outside click
+      gamePopup.addEventListener('click', function(event) {
+          if (event.target === gamePopup) {
+              gamePopup.style.display = 'none';
+              document.body.style.overflow = 'auto';
+          }
+      });
+
+      // ESC key to close
+      document.addEventListener('keydown', function(event) {
+          if (event.key === 'Escape' && gamePopup.style.display === 'block') {
+              gamePopup.style.display = 'none';
+              document.body.style.overflow = 'auto';
+          }
+      });
+  }
+});
