@@ -2633,3 +2633,138 @@ section[data-aos].aos-animate {
         page-break-inside: avoid;
     }
 }
+
+/* Game Popup Trigger Button */
+.game-popup-trigger {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 999;
+}
+
+.game-button {
+    background: #FF6B00;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(255, 107, 0, 0.3);
+    transition: all 0.3s ease;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.game-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 15px rgba(255, 107, 0, 0.4);
+}
+
+.game-icon {
+    width: 35px;
+    height: 35px;
+    transition: transform 0.3s ease;
+}
+
+.game-button:hover .game-icon {
+    transform: rotate(360deg);
+}
+
+.game-tooltip {
+    position: absolute;
+    right: 70px;
+    background: #000000;
+    color: #FF6B00;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.game-button:hover .game-tooltip {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Game Popup */
+.game-popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+}
+
+.game-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 800px;
+    background: #1e1e1e;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(255, 107, 0, 0.3);
+}
+
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 2px solid #FF6B00;
+}
+
+.game-header h2 {
+    color: #FF6B00;
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.close-game {
+    background: none;
+    border: none;
+    color: #FF6B00;
+    font-size: 28px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-game:hover {
+    color: #ff8533;
+}
+
+.game-frame-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+}
+
+.game-frame-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 0 0 10px 10px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { transform: translate(-50%, -40%); opacity: 0; }
+    to { transform: translate(-50%, -50%); opacity: 1; }
+}

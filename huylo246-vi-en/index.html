@@ -363,5 +363,23 @@
             <a href="https://youtu.be/xvFZjo5PgG0?si=vLrNY-9DPkZ8M6rq" class="secret-link" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="700">Liên kết bí mt</a>
         </div>
     </footer>
+    <div class="game-popup-trigger">
+        <button class="game-button" id="gamePopupBtn" data-aos="zoom-in">
+            <img src="assets/img/game-icon.png" alt="Play Game" class="game-icon">
+            <span class="game-tooltip">Chơi Game Jump!</span>
+        </button>
+    </div>
+
+    <div class="game-popup" id="gamePopup">
+        <div class="game-container">
+            <div class="game-header">
+                <h2>Game Jump</h2>
+                <button class="close-game" id="closeGame">&times;</button>
+            </div>
+            <div class="game-frame-container">
+                <iframe id="gameFrame" src="game/index.html" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
