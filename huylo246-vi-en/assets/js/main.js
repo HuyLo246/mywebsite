@@ -868,3 +868,32 @@ document.addEventListener('DOMContentLoaded', () => {
   // Re-enable language switching
   isSwitchingLanguage = false;
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+  const gamePopupBtn = document.getElementById('gamePopupBtn');
+  const gamePopup = document.getElementById('gamePopup');
+  const closeGame = document.getElementById('closeGame');
+  const gameFrame = document.getElementById('gameFrame');
+
+  gamePopupBtn.addEventListener('click', function() {
+      gamePopup.style.display = 'block';
+      document.body.style.overflow = 'hidden';
+      // Force iframe reload when opening to ensure fresh game state
+      gameFrame.src = gameFrame.src;
+  });
+
+  closeGame.addEventListener('click', function() {
+      gamePopup.style.display = 'none';
+      document.body.style.overflow = 'auto';
+      // Optional: Pause game when closing popup
+      gameFrame.contentWindow.postMessage('pause', '*');
+  });
+
+  // Close popup when clicking outside
+  gamePopup.addEventListener('click', function(event) {
+      if (event.target === gamePopup) {
+          gamePopup.style.display = 'none';
+          document.body.style.overflow = 'auto';
+      }
+  });
+});
