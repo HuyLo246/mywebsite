@@ -1029,39 +1029,63 @@ module.exports = {
     },
 };
 
+// Game Popup Implementation
 document.addEventListener('DOMContentLoaded', function() {
   const gamePopupBtn = document.getElementById('gamePopupBtn');
   const gamePopup = document.getElementById('gamePopup');
   const closeGame = document.getElementById('closeGame');
   const gameFrame = document.getElementById('gameFrame');
 
+  if (!gamePopupBtn || !gamePopup || !closeGame || !gameFrame) {
+      console.error('Game popup elements not found');
+      return;
+  }
+
+  let unityInstance = null;
+
   gamePopupBtn.addEventListener('click', function() {
       gamePopup.style.display = 'block';
       document.body.style.overflow = 'hidden';
-      // Force iframe reload when opening to ensure fresh game state
-      gameFrame.src = gameFrame.src;
+      
+      // Reset iframe source to force reload
+      const currentSrc = gameFrame.src;
+      gameFrame.src = '';
+      gameFrame.src = currentSrc;
   });
 
   closeGame.addEventListener('click', function() {
       gamePopup.style.display = 'none';
       document.body.style.overflow = 'auto';
-      // Optional: Pause game when closing popup
-      gameFrame.contentWindow.postMessage('pause', '*');
+      if (unityInstance) {
+          unityInstance.Quit();
+      }
   });
 
-  // Close popup when clicking outside
   gamePopup.addEventListener('click', function(event) {
       if (event.target === gamePopup) {
           gamePopup.style.display = 'none';
           document.body.style.overflow = 'auto';
+          if (unityInstance) {
+              unityInstance.Quit();
+          }
       }
   });
-});
 
-// Add this to your existing game popup event listeners
-document.addEventListener('keydown', function(event) {
-  if (event.key === 'Escape' && gamePopup.style.display === 'block') {
-      gamePopup.style.display = 'none';
-      document.body.style.overflow = 'auto';
-  }
+  // Add ESC key support
+  document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape' && gamePopup.style.display === 'block') {
+          gamePopup.style.display = 'none';
+          document.body.style.overflow = 'auto';
+          if (unityInstance) {
+              unityInstance.Quit();
+          }
+      }
+  });
+
+  // Handle Unity instance
+  window.addEventListener('message', function(event) {
+      if (event.data.type === 'unityInstance') {
+          unityInstance = event.data.instance;
+      }
+  });
 });
