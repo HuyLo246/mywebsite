@@ -1057,3 +1057,11 @@ document.addEventListener('DOMContentLoaded', function() {
       }
   });
 });
+
+// Add this to your existing game popup event listeners
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'Escape' && gamePopup.style.display === 'block') {
+      gamePopup.style.display = 'none';
+      document.body.style.overflow = 'auto';
+  }
+});
