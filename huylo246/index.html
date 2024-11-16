@@ -372,5 +372,21 @@
             <a href="https://youtu.be/xvFZjo5PgG0?si=vLrNY-9DPkZ8M6rq" class="secret-link" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="700">Secret Link</a>
         </div>
     </footer>
+    <button id="openGameBtn" class="game-button">Play Game</button>
+    <div id="gamePopup" class="game-popup">
+        <div class="game-content">
+            <span class="close">&times;</span>
+            <iframe src="game.gzip/index.html" frameborder="0"></iframe>
+        </div>
+    </div>
+    <script>
+    document.getElementById('openGameBtn').addEventListener('click', function() {
+        document.getElementById('gamePopup').style.display = 'block';
+    });
+
+    document.querySelector('.close').addEventListener('click', function() {
+        document.getElementById('gamePopup').style.display = 'none';
+    });
+    </script>
 </body>
 </html>
