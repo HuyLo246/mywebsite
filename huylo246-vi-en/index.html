@@ -12,7 +12,6 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <link rel="preload" href="assets/css/stylevn.css" as="style">
     <link rel="preload" href="assets/js/main.js" as="script">
-    <script src="assets/jump/game-modal.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="assets/css/stylevn.css">
@@ -37,8 +36,6 @@
     <meta http-equiv="Expires" content="0">
     <meta name="robots" content="noarchive">
     <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
-    <link rel="stylesheet" href="/assets/jump/styles.css">
-    <script src="/assets/jump/game-modal.js" defer></script>
 </head>
 <body>
     <noscript>
@@ -366,46 +363,5 @@
             <a href="https://youtu.be/xvFZjo5PgG0?si=vLrNY-9DPkZ8M6rq" class="secret-link" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="700">Liên kết bí mt</a>
         </div>
     </footer>
-    <div class="game-popup-trigger">
-        <button class="game-button" id="gamePopupBtn">
-            <img src="assets/img/controller-icon.png" alt="Play Game" class="game-icon">
-            <span class="game-tooltip">Play Jump Game!</span>
-        </button>
-    </div>
-
-    <div class="game-popup" id="gamePopup">
-        <div class="game-container">
-            <div class="game-header">
-                <h2>Jump Game</h2>
-                <button class="close-game" id="closeGame">&times;</button>
-            </div>
-            <div class="game-frame-container">
-                <iframe id="gameFrame" 
-                        src="assets/jump/game/index.html" 
-                        frameborder="0"
-                        scrolling="no"
-                        allowfullscreen="true">
-                </iframe>
-            </div>
-        </div>
-    </div>
-    <script src="/assets/jump/game-modal.js"></script>
-    <script>
-        // Initialize game modal after DOM content is loaded
-        document.addEventListener('DOMContentLoaded', () => {
-            const gameModal = new GameModal();
-            
-            // Remove loading screen after a short delay
-            setTimeout(() => {
-                const loadingAnimation = document.querySelector('.loading-animation');
-                if (loadingAnimation) {
-                    loadingAnimation.style.opacity = '0';
-                    setTimeout(() => {
-                        loadingAnimation.style.display = 'none';
-                    }, 500);
-                }
-            }, 1000);
-        });
-    </script>
 </body>
 </html>
