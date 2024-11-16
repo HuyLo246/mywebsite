@@ -372,21 +372,46 @@
             <a href="https://youtu.be/xvFZjo5PgG0?si=vLrNY-9DPkZ8M6rq" class="secret-link" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="700">Secret Link</a>
         </div>
     </footer>
-    <button id="openGameBtn" class="game-button">Play Game</button>
-    <div id="gamePopup" class="game-popup">
-        <div class="game-content">
-            <span class="close">&times;</span>
-            <iframe src="game.gzip/index.html" frameborder="0"></iframe>
+    <div class="game-popup-trigger">
+        <button class="game-button" id="gamePopupBtn">
+            <img src="assets/img/controller-icon.png" alt="Play Game" class="game-icon">
+            <span class="game-tooltip">Play Jump Game!</span>
+        </button>
+    </div>
+
+    <div class="game-popup" id="gamePopup">
+        <div class="game-container">
+            <div class="game-header">
+                <h2>Jump Game</h2>
+                <button class="close-game" id="closeGame">&times;</button>
+            </div>
+            <div class="game-frame-container">
+                <iframe id="gameFrame" 
+                        src="assets/jump/game/index.html" 
+                        frameborder="0"
+                        scrolling="no"
+                        allowfullscreen="true">
+                </iframe>
+            </div>
         </div>
     </div>
+    <script src="/assets/jump/game-modal.js"></script>
     <script>
-    document.getElementById('openGameBtn').addEventListener('click', function() {
-        document.getElementById('gamePopup').style.display = 'block';
-    });
-
-    document.querySelector('.close').addEventListener('click', function() {
-        document.getElementById('gamePopup').style.display = 'none';
-    });
+        // Initialize game modal after DOM content is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            const gameModal = new GameModal();
+            
+            // Remove loading screen after a short delay
+            setTimeout(() => {
+                const loadingAnimation = document.querySelector('.loading-animation');
+                if (loadingAnimation) {
+                    loadingAnimation.style.opacity = '0';
+                    setTimeout(() => {
+                        loadingAnimation.style.display = 'none';
+                    }, 500);
+                }
+            }, 1000);
+        });
     </script>
 </body>
 </html>
