@@ -307,7 +307,7 @@
     <div class="divider" data-aos="fade-up"></div>
     <section class="contact" id="contact" data-aos="fade-up">
         <div class="contact-intro">
-            <h2 data-aos="fade-right">Liên Hệ Với Tôi</h2>
+            <h2 data-aos="fade-right">Liên Hệ Với T��i</h2>
             <p data-aos="fade-left">Điền vào biểu mẫu dưới đây và tôi sẽ trả lời bạn sớm nhất có thể.</p>
         </div>
         <div class="contact-form" data-aos="zoom-in" data-aos-delay="300">
@@ -378,7 +378,7 @@
             </div>
             <div class="game-frame-container">
                 <iframe id="gameFrame" 
-                        src="assets/jump/game/index.html" 
+                        src="assets/jump/game/file.gzip/index.html" 
                         frameborder="0"
                         scrolling="no"
                         allowfullscreen="true">
@@ -386,13 +386,11 @@
             </div>
         </div>
     </div>
-    <script src="/assets/jump/game-modal.js"></script>
+    <script src="assets/jump/game/game-modal.js"></script>
     <script>
-        // Initialize game modal after DOM content is loaded
         document.addEventListener('DOMContentLoaded', () => {
             const gameModal = new GameModal();
             
-            // Remove loading screen after a short delay
             setTimeout(() => {
                 const loadingAnimation = document.querySelector('.loading-animation');
                 if (loadingAnimation) {
