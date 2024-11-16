@@ -57,6 +57,11 @@ class GameModal {
           padding: 20px;
           border-radius: 10px;
           box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+          width: 1000px;
+          height: 640px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
         }
   
         .close-button {
@@ -85,6 +90,9 @@ class GameModal {
           border: none;
           width: 960px;
           height: 600px;
+          background: #1F1F20;
+          display: block;
+          margin: 0 auto;
         }
   
         @media (max-width: 1000px) {
