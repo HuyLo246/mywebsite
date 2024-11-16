@@ -1027,6 +1027,7 @@ module.exports = {
         warnings: true,
         publicPath: false,
     },
+<<<<<<< HEAD
 };
 
 // Game Popup Implementation
@@ -1186,3 +1187,6 @@ class GameModal {
     document.body.style.overflow = 'auto';
   }
 }
+=======
+};
+>>>>>>> parent of f37ebe1 (js)

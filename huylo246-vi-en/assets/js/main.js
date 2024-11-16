@@ -867,6 +867,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Re-enable language switching
   isSwitchingLanguage = false;
+<<<<<<< HEAD
 });
 
 // Disable right-click
@@ -1186,3 +1187,6 @@ class GameModal {
     document.body.style.overflow = 'auto';
   }
 }
+=======
+});
+>>>>>>> parent of f37ebe1 (js)
