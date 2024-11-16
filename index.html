@@ -14,7 +14,7 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6663683058658571"
     crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/assets/jump/styles.css">
-    <script src="/assets/jump/game-modal.js" defer></script>
+<script src="/assets/jump/game-modal.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-PNMYVL2N1K"></script>
@@ -81,38 +81,5 @@
     <div class="redirect-message">
         <p>Please wait while you're redirected to <a href="huylo246">HuyLo246</a>...</p>
     </div>
-
-    <!-- Game Button -->
-    <div class="game-popup-trigger">
-        <button class="game-button" id="gamePopupBtn">
-            <img src="assets/img/controller-icon.png" alt="Play Game" class="game-icon">
-            <span class="game-tooltip">Play Jump Game!</span>
-        </button>
-    </div>
-
-    <!-- Game Modal -->
-    <div class="game-popup" id="gamePopup">
-        <div class="game-container">
-            <div class="game-header">
-                <h2>Jump Game</h2>
-                <button class="close-game" id="closeGame">&times;</button>
-            </div>
-            <div class="game-frame-container">
-                <iframe id="gameFrame" 
-                        src="/assets/jump/jump.gzip/index.html" 
-                        frameborder="0"
-                        scrolling="no"
-                        allowfullscreen="true"
-                        style="width: 100%; height: 100%;">
-                </iframe>
-            </div>
-        </div>
-    </div>
-
-    <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        new GameModal();
-      });
-    </script>
 </body>
 </html>
