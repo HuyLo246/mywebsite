@@ -4,6 +4,8 @@ class GameModal {
         this.openBtn = document.getElementById('gamePopupBtn');
         this.closeBtn = document.getElementById('closeGame');
         this.gameFrame = document.getElementById('gameFrame');
+        this.gameLoaded = false;
+        this.gameUrl = 'assets/jump/game/file.gzip/index.html';
         
         this.init();
     }
@@ -21,13 +23,23 @@ class GameModal {
     openModal() {
         this.modal.style.display = 'flex';
         document.body.style.overflow = 'hidden';
+        
+        if (!this.gameLoaded) {
+            this.loadGame();
+        }
+    }
+
+    loadGame() {
+        this.gameFrame.src = this.gameUrl;
+        this.gameLoaded = true;
     }
 
     closeModal() {
         this.modal.style.display = 'none';
         document.body.style.overflow = 'auto';
-        // Reload iframe to stop game
-        this.gameFrame.src = this.gameFrame.src;
+        // Reset the game when closing
+        this.gameFrame.src = '';
+        this.gameLoaded = false;
     }
 }
 
