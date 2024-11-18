@@ -2681,19 +2681,30 @@ section[data-aos].aos-animate {
 
 .game-controls {
     display: flex;
-    gap: 10px;
+    gap: 8px;
     align-items: center;
-    flex-direction: row-reverse; /* Reverses the order of buttons */
 }
 
-.close-game {
+.minimize-button, .close-game {
     background: none;
     border: none;
     color: white;
-    font-size: 24px;
     cursor: pointer;
     padding: 5px;
-    transition: opacity 0.3s;
+    transition: opacity 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 24px; /* Fixed height for alignment */
+}
+
+.minimize-button i {
+    font-size: 16px;
+}
+
+.close-game {
+    font-size: 24px;
+    line-height: 16px; /* Match the minimize icon height */
 }
 
 .close-game:hover {
@@ -2737,18 +2748,6 @@ section[data-aos].aos-animate {
     33% { content: '..'; }
     66% { content: '...'; }
     100% { content: '.'; }
-}
-
-.minimize-button {
-    background: none;
-    border: none;
-    color: white;
-    cursor: pointer;
-    padding: 5px;
-    transition: opacity 0.3s ease;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .minimize-button:hover {
