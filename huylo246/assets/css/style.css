@@ -2736,24 +2736,6 @@ section[data-aos].aos-animate {
     align-items: center;
 }
 
-.sound-toggle {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 20px;
-    cursor: pointer;
-    padding: 5px;
-    transition: opacity 0.3s;
-}
-
-.sound-toggle:hover {
-    opacity: 0.8;
-}
-
-.sound-toggle i {
-    pointer-events: none;
-}
-
 .close-game {
     background: none;
     border: none;
@@ -2805,4 +2787,35 @@ section[data-aos].aos-animate {
     33% { content: '..'; }
     66% { content: '...'; }
     100% { content: '.'; }
+}
+
+.game-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.game-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px -1px rgba(0, 0, 0, 0.15), 0 3px 6px -1px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
+}
+
+.game-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.06);
+}
+
+.game-button i {
+    font-size: 18px;
 }
