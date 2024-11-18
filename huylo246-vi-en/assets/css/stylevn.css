@@ -2582,7 +2582,7 @@ section[data-aos].aos-animate {
 }
 
 .game-container {
-    background: #1F1F20; /* Match the canvas background color */
+    background: #333;
     width: 540px;
     height: 960px;
     position: relative;
@@ -2591,19 +2591,63 @@ section[data-aos].aos-animate {
     max-height: 90vh;
     margin: auto;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-    display: flex;
-    flex-direction: column;
 }
 
 .game-frame-container {
     width: 100%;
-    height: calc(100% - 50px); /* Adjust for header height */
+    height: calc(100% - 50px);
     position: relative;
     overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #1F1F20; /* Match the canvas background color */
+}
+
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background: #222;
+    color: white;
+}
+
+.game-controls {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    justify-content: flex-end; /* Align buttons to the right */
+}
+
+.minimize-button, .close-game {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 5px;
+    transition: opacity 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.minimize-button {
+    height: 20px;
+    transform: translateY(2px);
+}
+
+.minimize-button i {
+    font-size: 14px;
+}
+
+.close-game {
+    font-size: 24px;
+    line-height: 24px;
+    height: 24px;
+}
+
+.minimize-button:hover, .close-game:hover {
+    opacity: 0.8;
 }
 
 #unity-canvas {
@@ -2611,7 +2655,6 @@ section[data-aos].aos-animate {
     height: 100% !important;
     max-height: calc(90vh - 50px);
     aspect-ratio: 9/16;
-    background: #1F1F20; /* Match container background */
 }
 
 .loading-overlay {
@@ -2644,18 +2687,6 @@ section[data-aos].aos-animate {
     33% { content: '..'; }
     66% { content: '...'; }
     100% { content: '.'; }
-}
-
-.minimize-button {
-    background: none;
-    border: none;
-    color: white;
-    cursor: pointer;
-    padding: 5px;
-    transition: opacity 0.3s ease;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .minimize-button:hover {
@@ -2738,58 +2769,4 @@ section[data-aos].aos-animate {
     border-width: 6px 0 6px 6px;
     border-style: solid;
     border-color: transparent transparent transparent var(--primary-color, #6366f1);
-}
-
-/* Game popup controls */
-.game-controls {
-    display: flex;
-    gap: 4px;
-    align-items: center;
-    justify-content: flex-end; /* Align buttons to the right */
-}
-
-.minimize-button, .close-game {
-    background: none;
-    border: none;
-    color: white;
-    cursor: pointer;
-    padding: 5px;
-    transition: opacity 0.3s ease;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.close-game {
-    font-size: 20px;
-    height: 20px;
-    transform: translateY(2px);
-}
-
-.minimize-button {
-    font-size: 24px;
-    line-height: 24px;
-    height: 24px;
-}
-
-.minimize-button i {
-    font-size: 16px;
-}
-
-.minimize-button:hover, .close-game:hover {
-    opacity: 0.8;
-}
-
-.game-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 15px;
-    background: #1F1F20;
-}
-
-.game-header h2 {
-    margin: 0;
-    color: white;
-    font-size: 18px;
 }
