@@ -2634,12 +2634,12 @@ section[data-aos].aos-animate {
 
 .game-container {
     background: #fff;
-    width: 90%;
-    max-width: 1080px;
-    height: 90vh;
+    width: 360px;  /* One-third of 1080px */
+    height: 640px; /* One-third of 1920px */
     position: relative;
     border-radius: 8px;
     overflow: hidden;
+    max-height: 80vh;
 }
 
 .game-header {
@@ -2664,4 +2664,9 @@ section[data-aos].aos-animate {
     height: calc(100% - 50px);
     position: relative;
     overflow: hidden;
+}
+
+#unity-canvas {
+    width: 100% !important;
+    height: 100% !important;
 }

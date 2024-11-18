@@ -40,6 +40,8 @@ class GameModal {
                 companyName: "HuyLo246",
                 productName: "Jump",
                 productVersion: "1.0.0",
+                matchWebGLToCanvasSize: true,
+                devicePixelRatio: 1
             }).then(() => {
                 console.log('Game loaded successfully');
                 this.gameLoaded = true;
