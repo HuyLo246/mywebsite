@@ -2582,7 +2582,7 @@ section[data-aos].aos-animate {
 }
 
 .game-container {
-    background: #333;
+    background: #1F1F20; /* Match the canvas background color */
     width: 540px;
     height: 960px;
     position: relative;
@@ -2591,64 +2591,19 @@ section[data-aos].aos-animate {
     max-height: 90vh;
     margin: auto;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
 }
 
 .game-frame-container {
     width: 100%;
-    height: calc(100% - 50px);
+    height: calc(100% - 50px); /* Adjust for header height */
     position: relative;
     overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.game-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background: #222;
-    color: white;
-}
-
-.game-controls {
-    display: flex;
-    gap: 4px;
-    align-items: center;
-    justify-content: flex-end;
-}
-
-.minimize-button, .close-game {
-    background: none;
-    border: none;
-    color: white;
-    cursor: pointer;
-    padding: 5px;
-    transition: opacity 0.3s ease;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.close-game {
-    font-size: 20px;
-    height: 20px;
-    transform: translateY(2px);
-}
-
-.minimize-button {
-    font-size: 24px;
-    line-height: 24px;
-    height: 24px;
-}
-
-.minimize-button i {
-    font-size: 16px;
-}
-
-.minimize-button:hover, .close-game:hover {
-    opacity: 0.8;
+    background: #1F1F20; /* Match the canvas background color */
 }
 
 #unity-canvas {
@@ -2656,6 +2611,7 @@ section[data-aos].aos-animate {
     height: 100% !important;
     max-height: calc(90vh - 50px);
     aspect-ratio: 9/16;
+    background: #1F1F20; /* Match container background */
 }
 
 .loading-overlay {
@@ -2802,26 +2758,28 @@ section[data-aos].aos-animate {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+}
+
+.close-game {
+    font-size: 20px;
     height: 20px;
     transform: translateY(2px);
-    font-size: 14px;
+}
+
+.minimize-button {
+    font-size: 24px;
+    line-height: 24px;
+    height: 24px;
 }
 
 .minimize-button i {
     font-size: 16px;
 }
 
-.close-game {
-    font-size: 24px;
-    line-height: 24px;
-    height: 24px;
-}
-
 .minimize-button:hover, .close-game:hover {
     opacity: 0.8;
 }
 
-/* Game header layout */
 .game-header {
     display: flex;
     justify-content: space-between;
