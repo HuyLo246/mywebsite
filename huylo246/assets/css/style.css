@@ -2681,8 +2681,9 @@ section[data-aos].aos-animate {
 
 .game-controls {
     display: flex;
-    gap: 8px;
+    gap: 4px;
     align-items: center;
+    justify-content: flex-end; /* Align buttons to the right */
 }
 
 .minimize-button, .close-game {
@@ -2695,19 +2696,24 @@ section[data-aos].aos-animate {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    height: 24px; /* Fixed height for alignment */
+}
+
+.minimize-button {
+    height: 20px;
+    transform: translateY(2px);
 }
 
 .minimize-button i {
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .close-game {
     font-size: 24px;
-    line-height: 16px; /* Match the minimize icon height */
+    line-height: 24px;
+    height: 24px;
 }
 
-.close-game:hover {
+.minimize-button:hover, .close-game:hover {
     opacity: 0.8;
 }
 

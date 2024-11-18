@@ -2614,22 +2614,40 @@ section[data-aos].aos-animate {
 
 .game-controls {
     display: flex;
-    gap: 10px;
+    gap: 4px;
     align-items: center;
-    flex-direction: row-reverse; /* Reverses the order of buttons */
+    justify-content: flex-end;
 }
 
-.close-game {
+.minimize-button, .close-game {
     background: none;
     border: none;
     color: white;
-    font-size: 24px;
     cursor: pointer;
     padding: 5px;
-    transition: opacity 0.3s;
+    transition: opacity 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.close-game:hover {
+.close-game {
+    font-size: 20px;
+    height: 20px;
+    transform: translateY(2px);
+}
+
+.minimize-button {
+    font-size: 24px;
+    line-height: 24px;
+    height: 24px;
+}
+
+.minimize-button i {
+    font-size: 16px;
+}
+
+.minimize-button:hover, .close-game:hover {
     opacity: 0.8;
 }
 
@@ -2769,8 +2787,9 @@ section[data-aos].aos-animate {
 /* Game popup controls */
 .game-controls {
     display: flex;
-    gap: 8px;
+    gap: 4px;
     align-items: center;
+    justify-content: flex-end; /* Align buttons to the right */
 }
 
 .minimize-button, .close-game {
@@ -2783,7 +2802,9 @@ section[data-aos].aos-animate {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    height: 24px;
+    height: 20px;
+    transform: translateY(2px);
+    font-size: 14px;
 }
 
 .minimize-button i {
@@ -2792,7 +2813,8 @@ section[data-aos].aos-animate {
 
 .close-game {
     font-size: 24px;
-    line-height: 16px;
+    line-height: 24px;
+    height: 24px;
 }
 
 .minimize-button:hover, .close-game:hover {
