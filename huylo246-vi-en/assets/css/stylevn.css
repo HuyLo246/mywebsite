@@ -2568,35 +2568,34 @@ section[data-aos].aos-animate {
 }
 
 /* Game Popup Button */
+.game-popup-trigger {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 999;
+}
+
 .game-button {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 20px;
-    background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
     border: none;
-    border-radius: 8px;
-    color: white;
-    font-size: 16px;
-    font-weight: 600;
     cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
 .game-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 8px -1px rgba(0, 0, 0, 0.15), 0 3px 6px -1px rgba(0, 0, 0, 0.1);
-    background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
 }
 
-.game-button:active {
-    transform: translateY(0);
-    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.06);
-}
-
-.game-button i {
-    font-size: 18px;
+.game-icon {
+    width: 30px;
+    height: 30px;
+    filter: brightness(0) invert(1);
 }
 
 .game-tooltip {
@@ -2722,6 +2721,37 @@ section[data-aos].aos-animate {
     33% { content: '..'; }
     66% { content: '...'; }
     100% { content: '.'; }
+}
+
+.game-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.game-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px -1px rgba(0, 0, 0, 0.15), 0 3px 6px -1px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
+}
+
+.game-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.06);
+}
+
+.game-button i {
+    font-size: 18px;
 }
 
 .minimize-button {
