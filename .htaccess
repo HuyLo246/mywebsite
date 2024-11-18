@@ -3,6 +3,10 @@ RewriteEngine On
 # Add this section near the top, before other rules
 <IfModule mod_mime.c>
     AddType application/xml .xml
+    AddType application/wasm .wasm
+    AddType application/javascript .js
+    AddType application/octet-stream .data
+    AddType application/octet-stream .unityweb
 </IfModule>
 
 # Remove trailing slashes
@@ -79,3 +83,7 @@ RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
     Order Allow,Deny
     Allow from all
 </FilesMatch>
+
+<Files *.unityweb>
+    Header set Content-Encoding: ""
+</Files>

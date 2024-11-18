@@ -4,25 +4,13 @@
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Unity WebGL Player | Jump</title>
-    <style>
-      .loading {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        font-size: 24px;
-        color: white;
-      }
-    </style>
   </head>
   <body style="text-align: center; padding: 0; border: 0; margin: 0;">
-    <div id="loading" class="loading">Loading game...</div>
     <canvas id="unity-canvas" width=1080 height=1920 tabindex="-1" style="width: 1080px; height: 1920px; background: #1F1F20"></canvas>
     <script src="Build/file.gzip.loader.js"></script>
     <script>
-      var loadingElement = document.getElementById('loading');
-
       if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+        // Mobile device style: fill the whole browser client area with the game canvas:
         var meta = document.createElement('meta');
         meta.name = 'viewport';
         meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
@@ -37,19 +25,15 @@
       }
 
       createUnityInstance(document.querySelector("#unity-canvas"), {
-        dataUrl: "Build/file.gzip.data.br",
-        frameworkUrl: "Build/file.gzip.framework.js.br",
-        codeUrl: "Build/file.gzip.wasm.br",
+        dataUrl: "Build/file.gzip.data.unityweb",
+        frameworkUrl: "Build/file.gzip.framework.js.unityweb",
+        codeUrl: "Build/file.gzip.wasm.unityweb",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "HuyLo246",
         productName: "Jump",
         productVersion: "1.0.0",
-      }).then((unityInstance) => {
-        loadingElement.style.display = 'none';
-        console.log('Game loaded successfully');
-      }).catch((error) => {
-        loadingElement.innerHTML = 'Error loading game: ' + error;
-        console.error('Error loading game:', error);
+        // matchWebGLToCanvasSize: false, // Uncomment this to separately control WebGL canvas render size and DOM element size.
+        // devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
       });
     </script>
   </body>

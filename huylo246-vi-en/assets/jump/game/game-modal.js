@@ -1,7 +1,7 @@
 class GameModal {
     constructor() {
         this.openBtn = document.getElementById('gamePopupBtn');
-        this.gameUrl = window.location.origin + '/huylo246-vi-en/assets/jump/game/file.gzip/index.html';
+        this.gameUrl = 'assets/jump/game/file.gzip/index.html';
         this.init();
         console.log('GameModal initialized with URL:', this.gameUrl);
     }
