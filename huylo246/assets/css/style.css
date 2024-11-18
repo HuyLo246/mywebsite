@@ -2683,6 +2683,7 @@ section[data-aos].aos-animate {
     display: flex;
     gap: 10px;
     align-items: center;
+    flex-direction: row-reverse; /* Reverses the order of buttons */
 }
 
 .close-game {
@@ -2691,7 +2692,7 @@ section[data-aos].aos-animate {
     color: white;
     font-size: 24px;
     cursor: pointer;
-    padding: 5px 10px;
+    padding: 5px;
     transition: opacity 0.3s;
 }
 
@@ -2743,9 +2744,9 @@ section[data-aos].aos-animate {
     border: none;
     color: white;
     cursor: pointer;
-    padding: 8px;
+    padding: 5px;
     transition: opacity 0.3s ease;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
 }
@@ -2755,7 +2756,7 @@ section[data-aos].aos-animate {
 }
 
 .minimize-button i {
-    font-size: 20px;
+    font-size: 16px; /* Smaller icon size */
 }
 
 /* Game Popup Button */
