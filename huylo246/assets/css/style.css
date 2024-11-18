@@ -2693,7 +2693,7 @@ section[data-aos].aos-animate {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.9);
+    background: rgba(0, 0, 0, 0.8);
     z-index: 1000;
     justify-content: center;
     align-items: center;
@@ -2707,21 +2707,15 @@ section[data-aos].aos-animate {
     position: relative;
     border-radius: 8px;
     overflow: hidden;
-    aspect-ratio: 9/16; /* Match your Unity canvas aspect ratio */
 }
 
 .game-header {
-    padding: 15px 20px;
-    background: var(--primary-color);
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-.game-header h2 {
+    padding: 10px 20px;
+    background: #333;
     color: white;
-    margin: 0;
-    font-size: 20px;
 }
 
 .close-game {
@@ -2730,28 +2724,11 @@ section[data-aos].aos-animate {
     color: white;
     font-size: 24px;
     cursor: pointer;
-    padding: 0 5px;
 }
 
 .game-frame-container {
-    position: relative;
     width: 100%;
     height: calc(100% - 50px);
+    position: relative;
     overflow: hidden;
-}
-
-.game-frame-container iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: none;
-}
-
-#gameFrame {
-    border: none;
-    width: 100%;
-    height: 100%;
-    transform-origin: top left;
 }

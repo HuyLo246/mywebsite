@@ -1,9 +1,10 @@
 class GameModal {
     constructor() {
+        this.modal = document.getElementById('gamePopup');
         this.openBtn = document.getElementById('gamePopupBtn');
-        this.gameUrl = 'assets/jump/game/file.gzip/index.html';
+        this.closeBtn = document.getElementById('closeGame');
+        this.gameLoaded = false;
         this.init();
-        console.log('GameModal initialized with URL:', this.gameUrl);
     }
 
     init() {
@@ -11,26 +12,48 @@ class GameModal {
             console.error('Game button not found!');
             return;
         }
-        this.openBtn.addEventListener('click', () => {
-            console.log('Opening game...');
-            this.openGame();
+        this.openBtn.addEventListener('click', () => this.openModal());
+        this.closeBtn.addEventListener('click', () => this.closeModal());
+        window.addEventListener('click', (e) => {
+            if (e.target === this.modal) {
+                this.closeModal();
+            }
         });
     }
 
-    openGame() {
-        console.log('Attempting to open game at:', this.gameUrl);
-        try {
-            const gameWindow = window.open(this.gameUrl, '_blank');
-            if (gameWindow) {
-                gameWindow.onerror = (error) => {
-                    console.error('Game window error:', error);
-                };
-            } else {
-                console.error('Could not open game window - popup might be blocked');
-            }
-        } catch (error) {
-            console.error('Error opening game:', error);
+    openModal() {
+        this.modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        
+        if (!this.gameLoaded) {
+            this.loadGame();
         }
+    }
+
+    loadGame() {
+        try {
+            createUnityInstance(document.querySelector("#unity-canvas"), {
+                dataUrl: "assets/jump/game/file.gzip/Build/file.gzip.data.unityweb",
+                frameworkUrl: "assets/jump/game/file.gzip/Build/file.gzip.framework.js.unityweb",
+                codeUrl: "assets/jump/game/file.gzip/Build/file.gzip.wasm.unityweb",
+                streamingAssetsUrl: "assets/jump/game/file.gzip/StreamingAssets",
+                companyName: "HuyLo246",
+                productName: "Jump",
+                productVersion: "1.0.0",
+            }).then(() => {
+                console.log('Game loaded successfully');
+                this.gameLoaded = true;
+            }).catch((error) => {
+                console.error('Error loading game:', error);
+            });
+        } catch (error) {
+            console.error('Error initializing game:', error);
+        }
+    }
+
+    closeModal() {
+        this.modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
     }
 }
 
