@@ -378,42 +378,5 @@
             <span class="game-tooltip">Play Jump Game!</span>
         </button>
     </div>
-
-    <div class="game-popup" id="gamePopup">
-        <div class="game-container">
-            <div class="game-header">
-                <h2>Jump Game</h2>
-                <button class="close-game" id="closeGame">&times;</button>
-            </div>
-            <div class="game-frame-container">
-                <iframe id="gameFrame" 
-                        src="" 
-                        frameborder="0"
-                        scrolling="no"
-                        style="width: 100%; height: 100%; position: absolute; top: 0; left: 0;"
-                        allow="autoplay; fullscreen"
-                        allowfullscreen="true">
-                </iframe>
-            </div>
-        </div>
-    </div>
-    <script src="assets/jump/game/file.gzip/Build/file.gzip.loader.js"></script>
-    <script>
-        // Initialize game modal after DOM content is loaded
-        document.addEventListener('DOMContentLoaded', () => {
-            const gameModal = new GameModal();
-            
-            // Remove loading screen after a short delay
-            setTimeout(() => {
-                const loadingAnimation = document.querySelector('.loading-animation');
-                if (loadingAnimation) {
-                    loadingAnimation.style.opacity = '0';
-                    setTimeout(() => {
-                        loadingAnimation.style.display = 'none';
-                    }, 500);
-                }
-            }, 1000);
-        });
-    </script>
 </body>
 </html>
