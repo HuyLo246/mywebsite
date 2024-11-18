@@ -30,8 +30,18 @@ class GameModal {
     }
 
     loadGame() {
-        this.gameFrame.src = this.gameUrl;
-        this.gameLoaded = true;
+        try {
+            this.gameFrame.src = this.gameUrl;
+            this.gameFrame.onerror = (error) => {
+                console.error('Game loading error:', error);
+            };
+            this.gameFrame.onload = () => {
+                console.log('Game frame loaded');
+                this.gameLoaded = true;
+            };
+        } catch (error) {
+            console.error('Error loading game:', error);
+        }
     }
 
     closeModal() {

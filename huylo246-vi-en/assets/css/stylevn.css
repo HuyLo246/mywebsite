@@ -2633,12 +2633,14 @@ section[data-aos].aos-animate {
 }
 
 .game-container {
-    background: #1a1a1a;
-    border-radius: 10px;
-    overflow: hidden;
+    background: #fff;
     width: 90%;
-    max-width: 1200px;
+    max-width: 1080px;
+    height: 90vh;
     position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    aspect-ratio: 9/16; /* Match your Unity canvas aspect ratio */
 }
 
 .game-header {
@@ -2666,8 +2668,9 @@ section[data-aos].aos-animate {
 
 .game-frame-container {
     position: relative;
-    padding-top: 56.25%;
     width: 100%;
+    height: calc(100% - 50px);
+    overflow: hidden;
 }
 
 .game-frame-container iframe {
@@ -2677,4 +2680,11 @@ section[data-aos].aos-animate {
     width: 100%;
     height: 100%;
     border: none;
+}
+
+#gameFrame {
+    border: none;
+    width: 100%;
+    height: 100%;
+    transform-origin: top left;
 }
