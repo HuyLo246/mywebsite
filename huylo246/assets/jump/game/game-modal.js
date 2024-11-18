@@ -30,16 +30,11 @@ class GameModal {
     toggleSound() {
         this.isMuted = !this.isMuted;
         
-        // Mute/unmute all audio elements on the page
-        const audioElements = document.getElementsByTagName('audio');
-        Array.from(audioElements).forEach(audio => {
-            audio.muted = this.isMuted;
-        });
-
-        // Mute/unmute Unity game if instance exists
         if (this.gameInstance) {
             try {
                 this.gameInstance.SendMessage('AudioManager', 'SetMute', this.isMuted ? 1 : 0);
+                
+                this.gameInstance.SendMessage('AudioManager', 'SetVolume', this.isMuted ? 0 : 1);
             } catch (error) {
                 console.warn('Could not toggle Unity audio:', error);
             }
