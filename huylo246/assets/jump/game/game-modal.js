@@ -25,22 +25,30 @@ class GameModal {
                 this.closeModal();
             }
         });
-
-        window.addEventListener('message', (event) => {
-            if (event.data === 'returnToHome') {
-                this.closeModal();
-            }
-        });
     }
 
     toggleSound() {
         this.isMuted = !this.isMuted;
         if (this.gameInstance) {
-            this.gameInstance.SendMessage('AudioManager', 'SetMute', this.isMuted ? 1 : 0);
+            this.gameInstance.SendMessage('AudioManager', 'SetMute', this.isMuted);
         }
         
         const icon = this.soundBtn.querySelector('i');
         icon.className = this.isMuted ? 'fas fa-volume-mute' : 'fas fa-volume-up';
+    }
+
+    closeModal() {
+        if (this.gameInstance) {
+            this.gameInstance.Quit().then(() => {
+                this.gameInstance = null;
+                this.gameLoaded = false;
+                this.modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+        } else {
+            this.modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
     }
 
     loadGame() {
@@ -62,7 +70,7 @@ class GameModal {
                 this.gameLoaded = true;
                 this.loadingOverlay.style.display = 'none';
                 if (this.isMuted) {
-                    this.gameInstance.SendMessage('AudioManager', 'SetMute', 1);
+                    this.gameInstance.SendMessage('AudioManager', 'SetMute', true);
                 }
             }).catch((error) => {
                 console.error('Error loading game:', error);
@@ -81,11 +89,6 @@ class GameModal {
         if (!this.gameLoaded) {
             this.loadGame();
         }
-    }
-
-    closeModal() {
-        this.modal.style.display = 'none';
-        document.body.style.overflow = 'auto';
     }
 }
 
