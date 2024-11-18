@@ -3,19 +3,12 @@ class GameModal {
         this.modal = document.getElementById('gamePopup');
         this.openBtn = document.getElementById('gamePopupBtn');
         this.closeBtn = document.getElementById('closeGame');
-        this.soundBtn = document.getElementById('soundToggle');
+        this.minimizeBtn = document.getElementById('minimizeGame');
         this.gameLoaded = false;
         this.gameInstance = null;
-        this.isMuted = localStorage.getItem('websiteMuted') === 'true';
         this.loadingOverlay = document.getElementById('loadingOverlay');
         this.handleOutsideClick = this.handleOutsideClick.bind(this);
         this.init();
-        if (this.soundBtn) {
-            const icon = this.soundBtn.querySelector('i');
-            if (icon) {
-                icon.className = this.isMuted ? 'fas fa-volume-mute' : 'fas fa-volume-up';
-            }
-        }
     }
 
     init() {
@@ -25,7 +18,7 @@ class GameModal {
         }
         this.openBtn.addEventListener('click', () => this.openModal());
         this.closeBtn.addEventListener('click', () => this.closeModal(true));
-        this.soundBtn.addEventListener('click', () => this.toggleSound());
+        this.minimizeBtn.addEventListener('click', () => this.closeModal(false));
         window.addEventListener('click', this.handleOutsideClick);
     }
 
@@ -33,38 +26,6 @@ class GameModal {
         if (e.target === this.modal) {
             this.closeModal(false);
         }
-    }
-
-    toggleSound() {
-        this.isMuted = !this.isMuted;
-        
-        // Get all audio contexts in the page
-        const audioContexts = [];
-        for (const iframe of document.getElementsByTagName('iframe')) {
-            try {
-                const ctx = iframe.contentWindow.AudioContext || 
-                           iframe.contentWindow.webkitAudioContext;
-                if (ctx) audioContexts.push(ctx);
-            } catch (e) {}
-        }
-        
-        // Suspend/resume audio contexts
-        audioContexts.forEach(ctx => {
-            try {
-                if (this.isMuted) {
-                    ctx.suspend();
-                } else {
-                    ctx.resume();
-                }
-            } catch (e) {}
-        });
-        
-        // Update icon
-        const icon = this.soundBtn.querySelector('i');
-        icon.className = this.isMuted ? 'fas fa-volume-mute' : 'fas fa-volume-up';
-        
-        // Store mute preference
-        localStorage.setItem('websiteMuted', this.isMuted.toString());
     }
 
     closeModal(fullClose = false) {
@@ -138,10 +99,6 @@ class GameModal {
                 this.gameLoaded = true;
                 if (this.loadingOverlay) {
                     this.loadingOverlay.style.display = 'none';
-                }
-                // Apply initial mute state if needed
-                if (this.isMuted) {
-                    this.toggleSound();
                 }
             }).catch((error) => {
                 console.error('Error loading game:', error);
