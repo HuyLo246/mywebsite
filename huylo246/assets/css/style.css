@@ -2701,29 +2701,13 @@ section[data-aos].aos-animate {
 
 .game-container {
     background: #fff;
-    width: 360px;  /* One-third of 1080px */
-    height: 640px; /* One-third of 1920px */
+    width: 540px;
+    height: 960px;
     position: relative;
     border-radius: 8px;
     overflow: hidden;
-    max-height: 80vh;
-}
-
-.game-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background: #333;
-    color: white;
-}
-
-.close-game {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 24px;
-    cursor: pointer;
+    max-height: 90vh;
+    margin: auto;
 }
 
 .game-frame-container {
@@ -2731,9 +2715,14 @@ section[data-aos].aos-animate {
     height: calc(100% - 50px);
     position: relative;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #unity-canvas {
     width: 100% !important;
     height: 100% !important;
+    max-height: calc(90vh - 50px);
+    aspect-ratio: 9/16;
 }

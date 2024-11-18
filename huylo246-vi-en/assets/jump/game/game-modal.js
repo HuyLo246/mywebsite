@@ -4,6 +4,7 @@ class GameModal {
         this.openBtn = document.getElementById('gamePopupBtn');
         this.closeBtn = document.getElementById('closeGame');
         this.gameLoaded = false;
+        this.gameInstance = null;
         this.init();
     }
 
@@ -16,6 +17,13 @@ class GameModal {
         this.closeBtn.addEventListener('click', () => this.closeModal());
         window.addEventListener('click', (e) => {
             if (e.target === this.modal) {
+                this.closeModal();
+            }
+        });
+
+        // Add message listener for Unity
+        window.addEventListener('message', (event) => {
+            if (event.data === 'returnToHome') {
                 this.closeModal();
             }
         });
@@ -42,8 +50,9 @@ class GameModal {
                 productVersion: "1.0.0",
                 matchWebGLToCanvasSize: true,
                 devicePixelRatio: 1
-            }).then(() => {
+            }).then((unityInstance) => {
                 console.log('Game loaded successfully');
+                this.gameInstance = unityInstance;
                 this.gameLoaded = true;
             }).catch((error) => {
                 console.error('Error loading game:', error);
