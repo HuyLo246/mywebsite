@@ -6,9 +6,16 @@ class GameModal {
         this.soundBtn = document.getElementById('soundToggle');
         this.gameLoaded = false;
         this.gameInstance = null;
-        this.isMuted = false;
+        this.isMuted = localStorage.getItem('websiteMuted') === 'true';
         this.loadingOverlay = document.getElementById('loadingOverlay');
+        this.handleOutsideClick = this.handleOutsideClick.bind(this);
         this.init();
+        if (this.soundBtn) {
+            const icon = this.soundBtn.querySelector('i');
+            if (icon) {
+                icon.className = this.isMuted ? 'fas fa-volume-mute' : 'fas fa-volume-up';
+            }
+        }
     }
 
     init() {
@@ -17,34 +24,76 @@ class GameModal {
             return;
         }
         this.openBtn.addEventListener('click', () => this.openModal());
-        this.closeBtn.addEventListener('click', () => this.closeModal());
+        this.closeBtn.addEventListener('click', () => this.closeModal(true));
         this.soundBtn.addEventListener('click', () => this.toggleSound());
-        
-        window.addEventListener('click', (e) => {
-            if (e.target === this.modal) {
-                this.closeModal();
-            }
-        });
+        window.addEventListener('click', this.handleOutsideClick);
+    }
+
+    handleOutsideClick(e) {
+        if (e.target === this.modal) {
+            this.closeModal(false);
+        }
     }
 
     toggleSound() {
         this.isMuted = !this.isMuted;
         
+        // Mute/unmute all audio and video elements on the website
+        const mediaElements = [...document.getElementsByTagName('audio'), ...document.getElementsByTagName('video')];
+        mediaElements.forEach(element => {
+            element.muted = this.isMuted;
+        });
+        
+        // Try to mute Unity game sound if instance exists
         if (this.gameInstance) {
             try {
                 this.gameInstance.SendMessage('AudioManager', 'SetMute', this.isMuted ? 1 : 0);
-                
                 this.gameInstance.SendMessage('AudioManager', 'SetVolume', this.isMuted ? 0 : 1);
             } catch (error) {
                 console.warn('Could not toggle Unity audio:', error);
             }
         }
         
+        // Update icon
         const icon = this.soundBtn.querySelector('i');
         icon.className = this.isMuted ? 'fas fa-volume-mute' : 'fas fa-volume-up';
+        
+        // Store mute preference
+        localStorage.setItem('websiteMuted', this.isMuted.toString());
     }
 
-    closeModal() {
+    closeModal(fullClose = false) {
+        if (fullClose && this.gameInstance) {
+            try {
+                // Destroy the Unity instance
+                this.gameInstance.Quit().then(() => {
+                    this.gameInstance = null;
+                    this.gameLoaded = false;
+                    this.modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                    
+                    // Clear the canvas
+                    const canvas = document.querySelector("#unity-canvas");
+                    const ctx = canvas.getContext('2d');
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                }).catch(error => {
+                    console.warn('Error closing Unity instance:', error);
+                    this.handleCleanup();
+                });
+            } catch (error) {
+                console.warn('Error closing game:', error);
+                this.handleCleanup();
+            }
+        } else {
+            // Just hide the modal without destroying the game instance
+            this.modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    }
+
+    handleCleanup() {
+        this.gameInstance = null;
+        this.gameLoaded = false;
         this.modal.style.display = 'none';
         document.body.style.overflow = 'auto';
     }
