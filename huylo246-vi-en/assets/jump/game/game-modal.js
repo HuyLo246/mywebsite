@@ -38,21 +38,26 @@ class GameModal {
     toggleSound() {
         this.isMuted = !this.isMuted;
         
-        // Mute/unmute all audio and video elements on the website
-        const mediaElements = [...document.getElementsByTagName('audio'), ...document.getElementsByTagName('video')];
-        mediaElements.forEach(element => {
-            element.muted = this.isMuted;
-        });
-        
-        // Try to mute Unity game sound if instance exists
-        if (this.gameInstance) {
+        // Get all audio contexts in the page
+        const audioContexts = [];
+        for (const iframe of document.getElementsByTagName('iframe')) {
             try {
-                this.gameInstance.SendMessage('AudioManager', 'SetMute', this.isMuted ? 1 : 0);
-                this.gameInstance.SendMessage('AudioManager', 'SetVolume', this.isMuted ? 0 : 1);
-            } catch (error) {
-                console.warn('Could not toggle Unity audio:', error);
-            }
+                const ctx = iframe.contentWindow.AudioContext || 
+                           iframe.contentWindow.webkitAudioContext;
+                if (ctx) audioContexts.push(ctx);
+            } catch (e) {}
         }
+        
+        // Suspend/resume audio contexts
+        audioContexts.forEach(ctx => {
+            try {
+                if (this.isMuted) {
+                    ctx.suspend();
+                } else {
+                    ctx.resume();
+                }
+            } catch (e) {}
+        });
         
         // Update icon
         const icon = this.soundBtn.querySelector('i');
