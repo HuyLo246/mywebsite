@@ -3,8 +3,11 @@ class GameModal {
         this.modal = document.getElementById('gamePopup');
         this.openBtn = document.getElementById('gamePopupBtn');
         this.closeBtn = document.getElementById('closeGame');
+        this.soundBtn = document.getElementById('soundToggle');
         this.gameLoaded = false;
         this.gameInstance = null;
+        this.isMuted = false;
+        this.loadingOverlay = document.getElementById('loadingOverlay');
         this.init();
     }
 
@@ -15,13 +18,14 @@ class GameModal {
         }
         this.openBtn.addEventListener('click', () => this.openModal());
         this.closeBtn.addEventListener('click', () => this.closeModal());
+        this.soundBtn.addEventListener('click', () => this.toggleSound());
+        
         window.addEventListener('click', (e) => {
             if (e.target === this.modal) {
                 this.closeModal();
             }
         });
 
-        // Add message listener for Unity
         window.addEventListener('message', (event) => {
             if (event.data === 'returnToHome') {
                 this.closeModal();
@@ -29,17 +33,19 @@ class GameModal {
         });
     }
 
-    openModal() {
-        this.modal.style.display = 'flex';
-        document.body.style.overflow = 'hidden';
-        
-        if (!this.gameLoaded) {
-            this.loadGame();
+    toggleSound() {
+        this.isMuted = !this.isMuted;
+        if (this.gameInstance) {
+            this.gameInstance.SendMessage('AudioManager', 'SetMute', this.isMuted ? 1 : 0);
         }
+        
+        const icon = this.soundBtn.querySelector('i');
+        icon.className = this.isMuted ? 'fas fa-volume-mute' : 'fas fa-volume-up';
     }
 
     loadGame() {
         try {
+            this.loadingOverlay.style.display = 'flex';
             createUnityInstance(document.querySelector("#unity-canvas"), {
                 dataUrl: "assets/jump/game/file.gzip/Build/file.gzip.data.unityweb",
                 frameworkUrl: "assets/jump/game/file.gzip/Build/file.gzip.framework.js.unityweb",
@@ -54,11 +60,26 @@ class GameModal {
                 console.log('Game loaded successfully');
                 this.gameInstance = unityInstance;
                 this.gameLoaded = true;
+                this.loadingOverlay.style.display = 'none';
+                if (this.isMuted) {
+                    this.gameInstance.SendMessage('AudioManager', 'SetMute', 1);
+                }
             }).catch((error) => {
                 console.error('Error loading game:', error);
+                this.loadingOverlay.innerHTML = '<div class="loading-text">Error loading game</div>';
             });
         } catch (error) {
             console.error('Error initializing game:', error);
+            this.loadingOverlay.innerHTML = '<div class="loading-text">Error loading game</div>';
+        }
+    }
+
+    openModal() {
+        this.modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        
+        if (!this.gameLoaded) {
+            this.loadGame();
         }
     }
 

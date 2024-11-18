@@ -2700,14 +2700,15 @@ section[data-aos].aos-animate {
 }
 
 .game-container {
-    background: #fff;
+    background: #333;
     width: 540px;
     height: 960px;
     position: relative;
-    border-radius: 8px;
+    border-radius: 12px;
     overflow: hidden;
     max-height: 90vh;
     margin: auto;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
 .game-frame-container {
@@ -2720,9 +2721,88 @@ section[data-aos].aos-animate {
     align-items: center;
 }
 
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background: #222;
+    color: white;
+}
+
+.game-controls {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.sound-toggle {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 5px;
+    transition: opacity 0.3s;
+}
+
+.sound-toggle:hover {
+    opacity: 0.8;
+}
+
+.sound-toggle i {
+    pointer-events: none;
+}
+
+.close-game {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 5px 10px;
+    transition: opacity 0.3s;
+}
+
+.close-game:hover {
+    opacity: 0.8;
+}
+
 #unity-canvas {
     width: 100% !important;
     height: 100% !important;
     max-height: calc(90vh - 50px);
     aspect-ratio: 9/16;
+}
+
+.loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+}
+
+.loading-text {
+    color: white;
+    font-size: 24px;
+    font-family: Arial, sans-serif;
+}
+
+.loading-dots {
+    display: inline-block;
+    animation: loadingDots 1.5s infinite;
+    width: 24px;
+}
+
+@keyframes loadingDots {
+    0% { content: '.'; }
+    33% { content: '..'; }
+    66% { content: '...'; }
+    100% { content: '.'; }
 }
