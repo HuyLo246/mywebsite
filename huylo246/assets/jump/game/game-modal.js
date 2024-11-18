@@ -3,14 +3,27 @@ class GameModal {
         this.openBtn = document.getElementById('gamePopupBtn');
         this.gameUrl = 'assets/jump/game/file.gzip/index.html';
         this.init();
+        console.log('GameModal initialized');
     }
 
     init() {
-        this.openBtn.addEventListener('click', () => this.openGame());
+        if (!this.openBtn) {
+            console.error('Game button not found!');
+            return;
+        }
+        this.openBtn.addEventListener('click', () => {
+            console.log('Opening game...');
+            this.openGame();
+        });
     }
 
     openGame() {
-        window.open(this.gameUrl, '_blank');
+        console.log('Attempting to open game at:', this.gameUrl);
+        try {
+            window.open(this.gameUrl, '_blank');
+        } catch (error) {
+            console.error('Error opening game:', error);
+        }
     }
 }
 
