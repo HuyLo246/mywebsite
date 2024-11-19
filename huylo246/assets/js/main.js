@@ -140,9 +140,21 @@ const result = document.getElementById('result');
 if (form) {
     form.addEventListener('submit', function(e) {
         e.preventDefault();
+
+        // Verify reCAPTCHA
+        const recaptchaResponse = grecaptcha.getResponse();
+        if (!recaptchaResponse) {
+            result.innerHTML = document.documentElement.lang === 'vi' ? 
+                "Vui lòng xác nhận captcha!" : 
+                "Please complete the captcha!";
+            return;
+        }
+
         const formData = new FormData(form);
+        formData.append('g-recaptcha-response', recaptchaResponse);
         const object = Object.fromEntries(formData);
         const json = JSON.stringify(object);
+        
         result.innerHTML = document.documentElement.lang === 'vi' ? 
             "Vui lòng đợi..." : 
             "Please wait...";
@@ -174,6 +186,7 @@ if (form) {
         })
         .then(function() {
             form.reset();
+            grecaptcha.reset();
             setTimeout(() => {
                 result.style.display = "none";
             }, 3000);
