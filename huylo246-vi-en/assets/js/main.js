@@ -133,68 +133,53 @@ sidebarMenu.querySelectorAll('a').forEach(link => {
   link.addEventListener('click', closeSidebarMenu);
 });
 
-// Contact form handling with hCaptcha
+// Contact form submission
 const form = document.getElementById('contact-form');
 const result = document.getElementById('result');
 
 if (form) {
-    form.addEventListener('submit', async function(e) {
+    form.addEventListener('submit', function(e) {
         e.preventDefault();
-
-        // Get the hCaptcha response token
-        const hcaptchaResponse = document.querySelector('[name="h-captcha-response"]')?.value;
         
-        if (!hcaptchaResponse) {
-            result.innerHTML = document.documentElement.lang === 'vi' ? 
-                "Vui lòng xác nhận captcha!" : 
-                "Please complete the captcha!";
-            result.style.display = "block";
-            return;
-        }
+        const formData = new FormData(form);
+        const object = Object.fromEntries(formData);
+        const json = JSON.stringify(object);
+        
+        result.innerHTML = document.documentElement.lang === 'vi' ? 
+            "Vui lòng đợi..." : 
+            "Please wait...";
 
-        try {
-            result.innerHTML = document.documentElement.lang === 'vi' ? 
-                "Vui lòng đợi..." : 
-                "Please wait...";
-            result.style.display = "block";
-
-            const formData = new FormData(form);
-            const object = Object.fromEntries(formData);
-            const json = JSON.stringify(object);
-
-            const response = await fetch('https://api.web3forms.com/submit', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                body: json
-            });
-
-            const data = await response.json();
-
-            if (response.status === 200) {
+        fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: json
+        })
+        .then(async (response) => {
+            let json = await response.json();
+            if (response.status == 200) {
                 result.innerHTML = document.documentElement.lang === 'vi' ? 
                     "Gửi thành công!" : 
                     "Form submitted successfully!";
-                form.reset();
-                hcaptcha.reset(); // Reset hCaptcha
             } else {
-                result.innerHTML = data.message || (document.documentElement.lang === 'vi' ? 
-                    "Đã xảy ra lỗi!" : 
-                    "Something went wrong!");
+                console.log(response);
+                result.innerHTML = json.message;
             }
-        } catch (error) {
-            console.error('Error:', error);
+        })
+        .catch(error => {
+            console.log(error);
             result.innerHTML = document.documentElement.lang === 'vi' ? 
                 "Đã xảy ra lỗi!" : 
                 "Something went wrong!";
-        }
-
-        // Hide result message after 3 seconds
-        setTimeout(() => {
-            result.style.display = "none";
-        }, 3000);
+        })
+        .then(function() {
+            form.reset();
+            setTimeout(() => {
+                result.style.display = "none";
+            }, 3000);
+        });
     });
 }
 
@@ -1076,4 +1061,3 @@ module.exports = {
         publicPath: false,
     },
 };
-
