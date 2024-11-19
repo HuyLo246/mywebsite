@@ -134,20 +134,51 @@ sidebarMenu.querySelectorAll('a').forEach(link => {
 });
 
 // Contact form submission
-const form = document.querySelector("#contact-form");
-if (form) {
-  const statusTxt = form.querySelector(".button-area span");
+const form = document.getElementById('contact-form');
+const result = document.getElementById('result');
 
-  form.onsubmit = (e) => {
-    e.preventDefault();
-    const recaptchaResponse = grecaptcha.getResponse();
-    if (recaptchaResponse.length === 0) {
-      alert("Please complete the reCAPTCHA before sending your message.");
-      return; // Stop form submission
-    } else {
-      form.submit(); // Allow form submission if reCAPTCHA is completed
-    }
-  };
+if (form) {
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const formData = new FormData(form);
+        const object = Object.fromEntries(formData);
+        const json = JSON.stringify(object);
+        result.innerHTML = document.documentElement.lang === 'vi' ? 
+            "Vui lòng đợi..." : 
+            "Please wait...";
+
+        fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: json
+        })
+        .then(async (response) => {
+            let json = await response.json();
+            if (response.status == 200) {
+                result.innerHTML = document.documentElement.lang === 'vi' ? 
+                    "Gửi thành công!" : 
+                    "Form submitted successfully!";
+            } else {
+                console.log(response);
+                result.innerHTML = json.message;
+            }
+        })
+        .catch(error => {
+            console.log(error);
+            result.innerHTML = document.documentElement.lang === 'vi' ? 
+                "Đã xảy ra lỗi!" : 
+                "Something went wrong!";
+        })
+        .then(function() {
+            form.reset();
+            setTimeout(() => {
+                result.style.display = "none";
+            }, 3000);
+        });
+    });
 }
 
 // Count up

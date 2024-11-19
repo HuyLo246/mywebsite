@@ -321,7 +321,10 @@
             <p data-aos="fade-left">Fill out the form below and I'll get back to you as soon as possible.</p>
         </div>
         <div class="contact-form" data-aos="zoom-in" data-aos-delay="300">
-            <form action="https://formsubmit.co/huylo4660@gmail.com" method="POST" id="contact-form">
+            <form id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+                <input type="hidden" name="access_key" value="2d647fe7-93b6-4fef-9bef-53805a0f634a">
+                <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+                
                 <div class="dbl-field">
                     <div class="field" data-aos="fade-right" data-aos-delay="400">
                         <input type="text" name="name" placeholder="Your Name" required>
@@ -336,11 +339,9 @@
                 <div class="message" data-aos="fade-up" data-aos-delay="600">
                     <textarea name="message" placeholder="Your Message" required></textarea>
                 </div>
-                <!-- Add reCAPTCHA widget here -->
-                <div class="g-recaptcha" data-sitekey="6LfAKFwqAAAAAIaPOPqZuelZuSK5L5fUaZwEg9or"></div>
                 <div class="button-area" data-aos="fade-up" data-aos-delay="800">
                     <button type="submit">Send Message</button>
-                    <span></span>
+                    <span id="result"></span>
                 </div>
             </form>
         </div>
