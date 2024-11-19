@@ -140,11 +140,9 @@ const result = document.getElementById('result');
 if (form) {
     form.addEventListener('submit', function(e) {
         e.preventDefault();
-        
         const formData = new FormData(form);
         const object = Object.fromEntries(formData);
         const json = JSON.stringify(object);
-        
         result.innerHTML = document.documentElement.lang === 'vi' ? 
             "Vui lòng đợi..." : 
             "Please wait...";
@@ -182,7 +180,6 @@ if (form) {
         });
     });
 }
-
 // Count up
 function formatNumber(num) {
   if (num >= 1000000) {
@@ -1061,3 +1058,4 @@ module.exports = {
         publicPath: false,
     },
 };
+
