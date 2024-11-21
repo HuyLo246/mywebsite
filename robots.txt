@@ -1,4 +1,3 @@
-User-agent: *
-Disallow: 
-Disallow: /cgi-bin/
-Sitemap: https://two-four-six.port0.org/6139639_12.xml
+     User-agent: *
+     Allow: /
+     Sitemap: https://two-four-six.port0.org/sitemap.xml
