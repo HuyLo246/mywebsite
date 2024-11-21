@@ -1,18 +1,17 @@
 # Global rules
 User-agent: *
-Allow: /
+Allow: /sitemap.xml
+Sitemap: https://two-four-six.port0.org/sitemap.xml
+
+# Add these lines at the top
 Allow: /huylo246/
 Allow: /huylo246-vi-en/
 Allow: /sitemap.xml
 
-# Add these lines at the top
-Allow: /sitemap.xml
-Sitemap: https://two-four-six.port0.org/sitemap.xml
-
 # Block utility and development files
 Disallow: /assets/js/
 Disallow: /assets/css/
-Disallow: /.git/
+Disallow: /.git/ 
 Disallow: /.github/
 Disallow: /*.json$
 Disallow: /*.txt$
