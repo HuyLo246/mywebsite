@@ -1,6 +1,4 @@
 User-agent: *
-Disallow: /search
-Allow: /
-
-Sitemap:
-https://two-four-six.port0.org/sitemap.xml
+Disallow: 
+Disallow: /cgi-bin/
+Sitemap: https://two-four-six.port0.org/6139639_12.xml
