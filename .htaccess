@@ -9,11 +9,11 @@ RewriteEngine On
     AddType application/octet-stream .unityweb
 </IfModule>
 
-# Remove trailing slashes
+# Remove trailing slashes for all requests
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)/$ /$1 [L,R=301]
+RewriteRule ^(.+)/$ /$1 [R=301,L]
 
-# Add this new rule to remove trailing slashes from specific pages
+# Specific rules for your pages
 RewriteRule ^huylo246-vi-en/?$ /huylo246-vi-en [R=301,L]
 RewriteRule ^huylo246/?$ /huylo246 [R=301,L]
 
