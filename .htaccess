@@ -9,9 +9,13 @@ RewriteEngine On
     AddType application/octet-stream .unityweb
 </IfModule>
 
-# Remove trailing slashes for all URLs, including atom.xml and sitemap.xml
+# Remove trailing slashes
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.+)/$ /$1 [L,R=301]
+RewriteRule ^(.*)/$ /$1 [L,R=301]
+
+# Add this new rule to remove trailing slashes from specific pages
+RewriteRule ^huylo246-vi-en/?$ /huylo246-vi-en [R=301,L]
+RewriteRule ^huylo246/?$ /huylo246 [R=301,L]
 
 # Remove .html extension
 RewriteCond %{REQUEST_FILENAME} !-d
@@ -59,6 +63,7 @@ ErrorDocument 403 /403.html
 ErrorDocument 404 /404.html
 
 # Force HTTPS
+RewriteEngine On
 RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
@@ -69,6 +74,12 @@ RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
     Order Allow,Deny
     Allow from all
 </Files>
+
+# Remove any XML blocking rules
+<FilesMatch "\.(git|gitignore|env|md|json|lock|config|yml|yaml)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
 
 # Add XML content type
 <FilesMatch "\.xml$">
