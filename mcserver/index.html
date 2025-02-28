@@ -193,28 +193,47 @@
         <h2 class="headline">How to join</h2>
         <div class="main3_join_div_div">
           <div class="main3_join_div">
-            <h3 class="main3_join_title">Java</h3>
+            <h3 class="main3_join_title">Java Edition</h3>
             <div class="main3_join_content_div">
               <div class="main3_join_categories">
                 <span><i class="fas fa-server"></i> IP:</span>
                 <span><i class="fas fa-code-branch"></i> Version:</span>
+                <span><i class="fas fa-info-circle"></i> Status:</span>
+                <span><i class="fas fa-book"></i> How to Join:</span>
               </div>
               <div class="main3_join_values">
-                <span>lol.happyminecraft.org Port: 45172</span>
+                <span>lol.happyminecraft.org:45172</span>
                 <span>1.21.4</span>
+                <span><span class="status-online">Online</span></span>
+                <span class="join-steps">
+                  1. Open Minecraft Java Edition<br>
+                  2. Click "Multiplayer"<br>
+                  3. Click "Add Server"<br>
+                  4. Enter our IP and save<br>
+                  5. Select the server and join!
+                </span>
               </div>
             </div>
           </div>
           <div class="main3_join_div">
-            <h3 class="main3_join_title">Bedrock</h3>
+            <h3 class="main3_join_title">Bedrock Edition</h3>
             <div class="main3_join_content_div">
               <div class="main3_join_categories">
                 <span><i class="fas fa-server"></i> IP:</span>
                 <span><i class="fas fa-network-wired"></i> Port:</span>
+                <span><i class="fas fa-info-circle"></i> Status:</span>
+                <span><i class="fas fa-book"></i> Platforms:</span>
               </div>
               <div class="main3_join_values">
-                <span>coming soon</span>
-                <span>...</span>
+                <span>Coming Soon!</span>
+                <span>Coming Soon!</span>
+                <span><span class="status-coming-soon">Coming Soon</span></span>
+                <span class="platform-list">
+                  • Windows 10/11<br>
+                  • Mobile/Pocket Edition<br>
+                  • Xbox/PlayStation<br>
+                  • Nintendo Switch
+                </span>
               </div>
             </div>
           </div>
@@ -224,5 +243,79 @@
     <footer class="copyright_div">
       <a class="copyright">© Copyright HuyLo246 2025</a>
     </footer>
+    <style>
+      .main3_join_div {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 15px;
+        padding: 25px;
+        margin: 15px;
+        flex: 1;
+        min-width: 300px;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .main3_join_div:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      }
+
+      .main3_join_title {
+        color: #8b5cf6;
+        font-size: 1.5em;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+
+      .main3_join_content_div {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 15px;
+      }
+
+      .main3_join_categories span {
+        display: block;
+        margin: 10px 0;
+        color: #a78bfa;
+      }
+
+      .main3_join_values span {
+        display: block;
+        margin: 10px 0;
+        color: #e5e7eb;
+      }
+
+      .status-online {
+        color: #10b981;
+        font-weight: bold;
+      }
+
+      .status-coming-soon {
+        color: #f59e0b;
+        font-weight: bold;
+      }
+
+      .join-steps, .platform-list {
+        font-size: 0.9em;
+        line-height: 1.6;
+      }
+
+      .main3_join_categories i {
+        width: 20px;
+        text-align: center;
+        margin-right: 8px;
+      }
+
+      @media (max-width: 768px) {
+        .main3_join_div_div {
+          flex-direction: column;
+        }
+        
+        .main3_join_div {
+          margin: 10px 0;
+        }
+      }
+    </style>
   </body>
 </html>
